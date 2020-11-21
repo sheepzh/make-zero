@@ -57,7 +57,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, { status }, tab) { // listene
                 currentWindow: true,
                 active: true
             }, function (tab) {
-                chrome.tabs.update(tab.id, { url });
+                chrome.tabs.update(tabId, { url });
             });
         }
     }

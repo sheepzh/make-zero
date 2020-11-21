@@ -9,7 +9,7 @@
     ],
     "background": {
         "scripts": [
-            "js/domain/baidu.js",
+            "js/searcher/baidu.js",
             "js/component/switch.js",
             "background.js"
         ],

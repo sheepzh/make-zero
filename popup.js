@@ -1,30 +1,28 @@
 'use strict';
 
 // show the all switches
-const storage = chrome.storage.sync
+// const storage = chrome.storage.sync
 
-function _switchSearch(filterUrl) {
-    storage.get('domains', ({ domains }) => {
-        const value = domains[filterUrl]
-        const on = $(`#${_eleId(value.short)}`).prop('checked')
-        value.on = on
-        storage.set({ domains }, () => {
-            console.log(`Switch ${on ? 'on' : 'off'} ${filterUrl}`)
-        })
-    })
-}
+const bg = chrome.extension.getBackgroundPage()
+
+const { Switch } = bg
+
+console.log(bg)
 
 const _eleId = k => `search_checkbox_${k}`
 
+function _switchSearch(key) {
+    const on = $(`#${_eleId(key)}`).prop('checked')
+    Switch.change(key, on)
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-    storage.get('domains', ({ domains }) => {
-        Object.keys(domains).forEach((filterUrl) => {
-            const value = switches[filterUrl]
-            const eleId = _eleId(value.short)
-            $('#switch_container').append(
-                `<p><input id=${eleId} type="checkbox" ${value.on ? "checked" : ""}>${value.name}</input></p>`
-            )
-            $(`#${eleId}`).on('click', () => _switchSearch(k))
-        })
+    const domains = bg.getDomains() || []
+    domains.forEach(({ key, name }) => {
+        const eleId = _eleId(key)
+        $('#switch_container').append(
+            `<p><input id=${eleId} type="checkbox" ${Switch.isOn(key) ? "checked" : ""}>${name}</input></p>`
+        )
+        $(`#${eleId}`).on('click', () => _switchSearch(key))
     })
 });

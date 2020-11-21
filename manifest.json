@@ -5,12 +5,12 @@
     "author": "zhy",
     "permissions": [
         "storage",
-        "webRequest",
-        "*://www.google.com/",
-        "*://www.baidu.com/"
+        "tabs"
     ],
     "background": {
         "scripts": [
+            "js/domain/baidu.js",
+            "js/component/switch.js",
             "background.js"
         ],
         "persistent": true

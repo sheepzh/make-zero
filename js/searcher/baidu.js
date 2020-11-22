@@ -3,16 +3,18 @@
 
     /**
      * change the url 
-     * @param {sourceUrl} url 
-     * @param {words to filter} badWords
+     * @param {String} url  source url
+     * @param {Array} badWords words to filter
      * @return { targetUrl:string, needRedirect:boolean } 
      */
     function changeUrl(url, badWords) {
         let needRedirect = false
+        let originWords = ""
         let targetUrl = url.split('&').map(param => {
             [k, v] = param.split('=')
             if (k === keywordParam) {
                 needRedirect = false
+                originWords = v
                 let searchWords = v.split('%20') || []
                 badWords.map(w => '-' + w)
                     .map(w => encodeURI(w))
@@ -25,7 +27,7 @@
             }
             return k + "=" + v
         }).reduce((a, b) => a + '&' + b)
-        return { targetUrl, needRedirect }
+        return { targetUrl, needRedirect, originWords }
     }
 
     this.Baidu = {

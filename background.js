@@ -13,6 +13,8 @@ const domains = [
     }
 ]
 
+const tabKeyWords = {}
+
 const urls = domains.map(domain => domain.pattern)
 
 function getDomains() { return domains }
@@ -42,23 +44,30 @@ function shouldFilter(domain) {
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, { status }, tab) { // listener for tab opens
-    if (status !== 'loading') return
-    // when the page is loading (you can do info.status === 'complete' but you will see the page for a second or two)
     let { url } = tab
     const domain = getDomainOf(url)
+    if (!shouldFilter(domain)) return
 
-    if (shouldFilter(domain)) {
+    console.log(status)
+    if (status === 'loading') {
+        // when the page is loading (you can do info.status === 'complete' but you will see the page for a second or two)
         const component = domain.component
         if (!component) return
-        let { targetUrl, needRedirect } = component.changeUrl(url, badWords)
+        let { targetUrl, needRedirect, originWords } = component.changeUrl(url, badWords)
+        if (tabKeyWords[tabId] === originWords) return
         url = targetUrl
+        // change the tab url
         if (needRedirect) {
-            chrome.tabs.query({ // change the tab url
-                currentWindow: true,
-                active: true
-            }, function (tab) {
-                chrome.tabs.update(tabId, { url });
-            });
+            chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+                tabKeyWords[tabId] = originWords
+                chrome.tabs.update(tabId, { url }, () => { })
+            })
+        }
+    } else if (status === 'complete') {
+        const originWords = tabKeyWords[tabId]
+        if (!!originWords) {
+            delete tabKeyWords.i
+            chrome.tabs.sendMessage(tabId, { originWords }, res => console.log(res))
         }
     }
 })

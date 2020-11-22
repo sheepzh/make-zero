@@ -1,5 +1,4 @@
-console.log('Using sg')
-lastKeyword = ""
+lastKeyword = undefined
 wrappedHandler = false
 
 function canHandle(newWord) {

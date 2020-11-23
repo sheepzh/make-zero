@@ -1,5 +1,3 @@
-let badWords = ['csdn', '博客園']
-
 const domains = [
     {
         key: 'baidu',
@@ -10,6 +8,7 @@ const domains = [
         key: 'google',
         name: "Google",
         prefix: "www.google.com/search?",
+        component: Google
     }
 ]
 
@@ -19,7 +18,11 @@ const urls = domains.map(domain => domain.pattern)
 
 function getDomains() { return domains }
 
-chrome.runtime.onInstalled.addListener(() => Switch.upgrade(domains.map(d => d.key)))
+chrome.runtime.onInstalled.addListener(() => {
+    Switch.upgrade(domains.map(d => d.key))
+    Encryptor.onInstalled()
+})
+
 
 function getDomainOf(url) {
     for (let index in domains) {
@@ -48,11 +51,12 @@ chrome.tabs.onUpdated.addListener(function (tabId, { status }, tab) { // listene
     const domain = getDomainOf(url)
     if (!shouldFilter(domain)) return
 
-    console.log(status)
     if (status === 'loading') {
         // when the page is loading (you can do info.status === 'complete' but you will see the page for a second or two)
         const component = domain.component
         if (!component) return
+        const badWords = BadWord.listAll()
+        if (!badWords || !badWords.length) return
         let { targetUrl, needRedirect, originWords } = component.changeUrl(url, badWords)
         if (tabKeyWords[tabId] === originWords) return
         url = targetUrl

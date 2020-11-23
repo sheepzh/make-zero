@@ -3,6 +3,8 @@
 
     const storage = chrome.storage.sync
 
+    storage.get('switches', ({ switches }) => switches = switches)
+
     // save to the storage
     const saveSwitches = () => storage.set({ switches }, () => console.log('Save to storage'))
 

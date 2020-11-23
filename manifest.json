@@ -1,7 +1,7 @@
 {
-    "name": "Search Filter",
+    "name": "Seek zero",
     "version": "1.0",
-    "description": "Filte the search result of Google, Baidu",
+    "description": "Nothing is evenrything",
     "author": "zhy",
     "permissions": [
         "storage",
@@ -10,7 +10,11 @@
     "background": {
         "scripts": [
             "js/searcher/baidu.js",
+            "js/searcher/google.js",
+            "lib/crypto.js",
             "js/component/switch.js",
+            "js/component/encryptor.js",
+            "js/component/bad_word.js",
             "background.js"
         ],
         "persistent": true
@@ -23,6 +27,16 @@
             "js": [
                 "lib/jquery.js",
                 "js/content/_baidu.js"
+            ],
+            "run_at": "document_idle"
+        },
+        {
+            "matches": [
+                "https://www.google.com/search?*"
+            ],
+            "js": [
+                "lib/jquery.js",
+                "js/content/_google.js"
             ],
             "run_at": "document_idle"
         }

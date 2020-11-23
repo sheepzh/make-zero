@@ -5,7 +5,7 @@
 
 const bg = chrome.extension.getBackgroundPage()
 
-const { Switch } = bg
+const { Switch, Encryptor } = bg
 
 console.log(bg)
 
@@ -17,7 +17,7 @@ function _switchSearch(key) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const domains = bg.getDomains() || []
+    const domains = Switch.domains || []
     domains.forEach(({ key, name }) => {
         const eleId = _eleId(key)
         $('#switch_container').append(
@@ -25,4 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
         )
         $(`#${eleId}`).on('click', () => _switchSearch(key))
     })
-});
+
+    $('#encrupt_keyword').val(Encryptor.key())
+    $('#encrupt_keyword').change(ev => {
+        Encryptor.key(ev.target.value)
+    })
+})
+

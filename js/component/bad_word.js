@@ -1,5 +1,5 @@
 !(function () {
-    const obj = {}
+    const obj = { "csdn": 1 }
     function listAll() {
         return Object.keys(obj)
     }
@@ -9,7 +9,7 @@
     }
     function add(word) {
         obj[word] = 1
-     }
+    }
 
     this.BadWord = {
         listAll, remove, add

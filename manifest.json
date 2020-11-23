@@ -5,13 +5,15 @@
     "author": "zhy",
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "contextMenus"
     ],
     "background": {
         "scripts": [
             "js/searcher/baidu.js",
             "js/searcher/google.js",
             "lib/crypto.js",
+            "js/component/menu.js",
             "js/component/switch.js",
             "js/component/encryptor.js",
             "js/component/bad_word.js",
@@ -22,11 +24,20 @@
     "content_scripts": [
         {
             "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "js/content/resolver_chain.js",
+                "lib/jquery.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
                 "https://www.baidu.com/s?*"
             ],
             "js": [
-                "lib/jquery.js",
-                "js/content/_baidu.js"
+                "js/content/filter/_baidu.js"
             ],
             "run_at": "document_idle"
         },
@@ -35,10 +46,18 @@
                 "https://www.google.com/search?*"
             ],
             "js": [
-                "lib/jquery.js",
-                "js/content/_google.js"
+                "js/content/resolver_chain.js"
             ],
             "run_at": "document_idle"
+        },
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "js/content/listener.js"
+            ],
+            "run_at": "document_end"
         }
     ],
     "browser_action": {

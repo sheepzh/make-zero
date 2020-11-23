@@ -10,7 +10,7 @@
 
     const des = CryptoJS.DES
 
-    storage.get('encryptor', ({ encryptor }) => settings = encryptor)
+    storage.get('encryptor', ({ encryptor }) => settings = encryptor || {})
 
     function keyHex() {
         const key = settings.key || "zero"
@@ -35,13 +35,22 @@
 
 
     function onInstalled() {
-        if (!settings.key) settings.key = '123456'
+        storage.get('encryptor', ({ encryptor }) => {
+            settings = encryptor || {}
+            !settings.key && key('123456')
+        })
+    }
+
+    function key(key) {
+        if (!!key) settings.key = key
         save()
+        return settings.key
     }
 
     this.Encryptor = {
         onInstalled,
         encrypt,
-        decrypt
+        decrypt,
+        key
     }
 })()

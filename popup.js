@@ -30,5 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#encrupt_keyword').change(ev => {
         Encryptor.key(ev.target.value)
     })
+    $('#encrupt_on_off').prop('checked', Encryptor.autoOnOff())
+    $('#encrupt_on_off').on('click', () => {
+        const onOff = $('#encrupt_on_off').prop('checked')
+        Encryptor.auto(onOff)
+    })
 })
 

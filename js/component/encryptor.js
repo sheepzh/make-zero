@@ -1,7 +1,7 @@
 !(function () {
     const version = '01'
     const prefix = 'ZERO' + version
-    let settings = { key: "" }
+    let settings = { key: "", auto: false }
     const storage = chrome.storage.sync
     const OPTION = {
         mode: CryptoJS.mode.ECB,
@@ -47,10 +47,19 @@
         return settings.key
     }
 
+    function auto(onOff) {
+        settings.auto = onOff
+        save()
+    }
+
+    const autoOnOff = () => !!settings.auto
+
     this.Encryptor = {
         onInstalled,
         encrypt,
         decrypt,
-        key
+        key,
+        auto,
+        autoOnOff
     }
 })()

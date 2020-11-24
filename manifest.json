@@ -1,5 +1,5 @@
 {
-    "name": "Seek zero",
+    "name": "Make zero",
     "version": "1.0",
     "description": "Nothing is evenrything",
     "author": "zhy",
@@ -31,6 +31,17 @@
                 "lib/jquery.js"
             ],
             "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "lib/crypto.js",
+                "js/component/encryptor.js",
+                "js/content/encrypt.js"
+            ],
+            "run_at": "document_idle"
         },
         {
             "matches": [

@@ -1,14 +1,35 @@
 !(function () {
     const support = ({ tag }) => tag === 'encrypt'
 
-    function consume(data, sender, sendResponse) {
+    // function copyText(text){
+    //     var textarea = document.createElement("textarea");
+    //     var currentFocus = document.activeElement;
+    //     document.body.appendChild(textarea);
+    //     textarea.value = text;
+    //     textarea.focus();
+    //     if (textarea.setSelectionRange){textarea.setSelectionRange(0, textarea.value.length);}
+    //     else {textarea.select();}
+    //     try {var state = document.execCommand("copy");}
+    //     catch(err){var state = false;}
+    //     document.body.removeChild(textarea);
+    //     currentFocus.focus();
+    //     return state;
+    // }
+
+    function consume({ enOrD }, sender, sendResponse) {
         const selection = window.getSelection ?
             window.getSelection()
             : (document.getSelection ? document.getSelection() : (document.selection ? document.selection.createRange().text : "")
             )
         const selectionText = selection.toString()
 
-        alert(Encryptor.decrypt(selectionText))
+        if (enOrD) {
+            const txt = Encryptor.encrypt(selectionText)
+            // copyText(txt)
+            alert(txt)
+        } else {
+            alert(Encryptor.decrypt(selectionText))
+        }
 
         sendResponse("ok")
     }

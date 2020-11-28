@@ -39,7 +39,7 @@ class Google extends AbstractEngine {
 
     private static INSTANCE: Google
 
-    public static getInstance() {
+    public static getInstance(): Google {
         if (!Google.INSTANCE) Google.INSTANCE = new Google()
         return Google.INSTANCE
     }

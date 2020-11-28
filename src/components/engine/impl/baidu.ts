@@ -1,5 +1,6 @@
 import AbstractEngine, { UrlChanged } from '../abstract-engine'
 import AbstractEngineTailer from '../abstract-engine-tailer'
+
 /**
  * Baidu
  * @author zhy
@@ -10,7 +11,6 @@ class Baidu extends AbstractEngine {
     name = '百度'
     prefix = 'www.baidu.com/s?'
     tailer = new Tailer()
-
 
     private keywordParam: string = 'wd'
 

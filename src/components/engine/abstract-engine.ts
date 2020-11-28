@@ -5,8 +5,6 @@ import AbstractEngineTailer from './abstract-engine-tailer'
 import badWordDictionary from './bad-word-dictionary'
 import switcher from './switcher'
 import tabAndKeyword from './tab-and-keyword'
-import google from "./impl/google";
-import baidu from './impl/baidu'
 
 /**
  * Abstract engine
@@ -95,5 +93,3 @@ export class UrlChanged {
     needRedirect: boolean
     originParam: string
 }
-
-export const EngineComposite = [baidu, google]

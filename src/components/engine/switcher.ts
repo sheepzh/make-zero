@@ -4,22 +4,21 @@ import asyncStorage from '../../chrome/common/async-storage'
  * Switch keeper
  * @author zhy
  * @date 2020/11/28
- * @since 1.0.0
  */
 class Switcher {
-    private static instance: Switcher
+    private static INSTANCE: Switcher
 
     private static KEY = '__engine_switch__'
 
     private switchDict: { [key: string]: boolean; }
 
     private constructor() {
-        asyncStorage.getAsync(Switcher.KEY, data => this.switchDict = data)
+        asyncStorage.getAsync(Switcher.KEY, (data: any) => this.switchDict = data || {})
     }
 
     static getInstance(): Switcher {
-        if (!Switcher.instance) Switcher.instance = new Switcher()
-        return Switcher.instance
+        if (!Switcher.INSTANCE) Switcher.INSTANCE = new Switcher()
+        return Switcher.INSTANCE
     }
 
     /**

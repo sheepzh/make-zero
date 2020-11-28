@@ -13,7 +13,7 @@ class BadWordDictionary {
     private words: string[] = []
 
     private constructor() {
-        asyncStorage.getAsync(BadWordDictionary.KEY, data => this.words = data || ['csdn'])
+        asyncStorage.getAsync(BadWordDictionary.KEY, (data: any) => this.words = data || ['csdn'])
     }
 
     public static getInstance(): BadWordDictionary {

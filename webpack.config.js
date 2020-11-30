@@ -35,6 +35,17 @@ module.exports = {
                 exclude: '/node_modules/',
                 use: ['ts-loader']
 
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             }, {
                 test: /\.vue$/,
                 exclude: '/node_modules/',
@@ -43,10 +54,10 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: [path.join(__dirname, '..', 'src'), path.join(__dirname, '..', 'test')],
-            },
+            }
         ]
     },
     resolve: {
-        extensions: [".tsx", '.ts', ".js", '.vue']
+        extensions: [".tsx", '.ts', ".js", '.vue', 'css']
     }
 }

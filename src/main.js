@@ -23,7 +23,7 @@ module.exports = {
         }
     ],
     browser_action: {
-        // default_popup: "popup.html",
+        default_popup: "static/popup.html",
         default_icon: "static/images/icon.png"
     },
     manifest_version: 2

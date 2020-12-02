@@ -1,22 +1,36 @@
 import ITabUpdateHandler from './chrome/interface/i-tab-update-handler'
-import engineComposite from './components/engine/engine-composite'
 
-// chrome.runtime.onInstalled.addListener(() => {
-//     // new Filter().upgrade()
-//     // Switch.upgrade()
-//     // Encryptor.onInstalled()
-// })
+import IocBeans from './chrome/ioc'
+import Initializable from './chrome/interface/initializable'
+import Upgradable from './chrome/interface/upgradable'
 
 class Background {
     onTabUpdate(): void {
         chrome.tabs.onUpdated.addListener((tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => {
-            engineComposite.forEach((handler: ITabUpdateHandler) => {
-                handler.handleTabUpdate(tabId, tab.url, changeInfo.status, changeInfo, tab)
-            })
+            IocBeans.tabUpdateHandlers.forEach(
+                (handler: ITabUpdateHandler) => handler.handleTabUpdate(tabId, tab.url, changeInfo.status, changeInfo, tab)
+            )
+        })
+    }
+    onInstalled(): void {
+        chrome.runtime.onInstalled.addListener((details: chrome.runtime.InstalledDetails) => {
+            const reason: string = details.reason
+            switch (reason) {
+                case 'install':
+                    IocBeans.initializables.forEach((bean: Initializable) => bean.initialize())
+                    break
+                case 'update':
+                    IocBeans.upgradables.forEach((bean: Upgradable) => bean.upgrade(details.previousVersion))
+                    break
+            }
         })
     }
 }
 
+// entrance of the chrome app 
+
 const bg: Background = new Background()
 
+
 bg.onTabUpdate()
+bg.onInstalled()

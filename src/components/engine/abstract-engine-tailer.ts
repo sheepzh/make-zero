@@ -1,10 +1,12 @@
+import $ = require('jquery')
 /**
  * Define the action after the search engine redirected
+ * 
  * @author zhy
  * @date 20201129
  */
 export default abstract class AbstractEngineTailer {
-    abstract inputSelector: string // the xpath selector of the input box
+    abstract inputSelector(): string // the xpath selector of the input box
     abstract transferParamToWords(param: string): string // translate the param to input text
 
     private lastHandledKeyword: string
@@ -19,14 +21,16 @@ export default abstract class AbstractEngineTailer {
 
     /**
      * Invoke while this redirect url is loaded
+     * 
      * @param wordParam the origin word param
      */
     public tail(wordParam: string) {
         let words = decodeURI(wordParam)
         words = this.transferParamToWords(words)
+        const selector = this.inputSelector()
         if (this.keywordChanged(words)) {
             this.lastHandledKeyword = words
-            $(this.inputSelector).val(words)
+            $(selector).val(words)
             document.title = words;
         }
     }

@@ -10,7 +10,7 @@ class Switcher {
 
     private static KEY = '__engine_switch__'
 
-    private switchDict: { [key: string]: boolean; }
+    private switchDict: { [key: string]: boolean; } = {}
 
     private constructor() {
         asyncStorage.getAsync(Switcher.KEY, (data: any) => this.switchDict = data || {})
@@ -19,6 +19,13 @@ class Switcher {
     static getInstance(): Switcher {
         if (!Switcher.INSTANCE) Switcher.INSTANCE = new Switcher()
         return Switcher.INSTANCE
+    }
+
+    public init(callback: Function): void {
+        asyncStorage.getAsync(Switcher.KEY, (data: any) => {
+            this.switchDict = data || {}
+            callback && callback(data)
+        })
     }
 
     /**
@@ -34,8 +41,11 @@ class Switcher {
     /**
      * @param key Key of switch
      */
-    public on(key: string): boolean {
-        return this.switchDict[key]
+    public on(key: string, callback: Function) {
+        asyncStorage.getAsync(Switcher.KEY, (data: any) => {
+            this.switchDict = data || {}
+            callback(!!this.switchDict[key])
+        })
     }
 
     private save(): void {

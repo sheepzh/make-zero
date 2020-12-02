@@ -46,7 +46,7 @@ class Baidu extends AbstractEngine {
 }
 
 class Tailer extends AbstractEngineTailer {
-    inputSelector: '#kw'
+    inputSelector() { return '#kw' }
     transferParamToWords(param: string): string {
         return param
     }

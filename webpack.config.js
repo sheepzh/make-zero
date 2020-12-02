@@ -8,10 +8,14 @@ const manifest = require('./src/main.js')
 const background = require('./src/chrome/config/background')
 const contentListener = require('./src/chrome/config/content-listener')
 
+const contentScript = require('./src/chrome/config/content-script')
+
+
 const entry = {}
 // The output and input of the background.js
 entry[background.script] = './src/background.ts'
 entry[contentListener.script] = './src/content-listener.ts'
+entry[contentScript.script] = './src/content-script.ts'
 
 module.exports = {
     entry: {

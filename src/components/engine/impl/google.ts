@@ -46,7 +46,7 @@ class Google extends AbstractEngine {
 }
 
 class Tailer extends AbstractEngineTailer {
-    inputSelector: '.gLFyf.gsfi'
+    inputSelector() { return '.gLFyf.gsfi' }
     transferParamToWords(param: string): string {
         return param.replace('+', ' ')
     }

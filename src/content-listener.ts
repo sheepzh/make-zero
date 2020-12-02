@@ -10,9 +10,10 @@ chrome.runtime.onMessage.addListener(function (obj, sender, sendResponse) {
         listener => {
             try {
                 listener.handleMessage(obj.data, sender, sendResponse)
-            } catch {
+            } catch (e) {
                 console.error('Failed to consume message tag with ' + obj.tag)
                 console.error(listener)
+                console.error(e)
             }
         }
     )

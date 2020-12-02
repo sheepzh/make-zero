@@ -1,4 +1,3 @@
-import IContentScript from '../../chrome/interface/i-content-script'
 import IMessageListener from '../../chrome/interface/i-message-listener'
 import ITabUpdateHandler from '../../chrome/interface/i-tab-update-handler'
 import AbstractEngineTailer from './abstract-engine-tailer'
@@ -11,7 +10,7 @@ import tabAndKeyword from './tab-and-keyword'
  * @author zhy
  * @date 20201129
  */
-export default abstract class AbstractEngine implements IContentScript, ITabUpdateHandler, IMessageListener {
+export default abstract class AbstractEngine implements ITabUpdateHandler, IMessageListener {
     msgTag = 'ENGINE_FILTER' // implemention of IMessageListener
 
     abstract key: string
@@ -27,31 +26,34 @@ export default abstract class AbstractEngine implements IContentScript, ITabUpda
     abstract changeUrl(url: string, badWords: string[]): UrlChanged
 
     public handleTabUpdate(tabId: number, url: string, status: string): void {
-        if (!switcher.on(this.key)) return  // not open
-        if (!this.isEngine(url)) return // not one search engine
+        switcher.on(this.key, (isOn: boolean) => {
+            if (!isOn) return
+            if (!this.isEngine(url)) return // not one search engine
 
-        if (status === 'loading') {
-            const allBadWords: string[] = badWordDictionary.allWords() // get the needAppendchangeUrl
-            if (!allBadWords || !allBadWords.length) return
+            if (status === 'loading') {
+                const allBadWords: string[] = badWordDictionary.allWords() // get the needAppendchangeUrl
+                if (!allBadWords || !allBadWords.length) return
 
-            const urlChanged: UrlChanged = this.changeUrl(url, allBadWords)
+                const urlChanged: UrlChanged = this.changeUrl(url, allBadWords)
 
-            const { newUrl, needRedirect, originParam } = urlChanged
+                const { newUrl, needRedirect, originParam } = urlChanged
 
-            // change the tab url
-            if (needRedirect) {
-                chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-                    !tabAndKeyword.storeWords(tabId, originParam)
-                        && chrome.tabs.update(tabId, { url: newUrl }, () => { })
-                })
+                // change the tab url
+                if (needRedirect) {
+                    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+                        !tabAndKeyword.storeWords(tabId, originParam)
+                            && chrome.tabs.update(tabId, { url: newUrl }, () => { })
+                    })
+                }
+            } else if (status === 'complete') {
+                const originParam: string = tabAndKeyword.get(tabId)
+                if (!!originParam) {
+                    tabAndKeyword.delete(tabId)
+                    chrome.tabs.sendMessage(tabId, { tag: this.msgTag, data: originParam }, res => console.log(res))
+                }
             }
-        } else if (status === 'complete') {
-            const originParam: string = tabAndKeyword.get(tabId)
-            if (!!originParam) {
-                tabAndKeyword.delete(tabId)
-                chrome.tabs.sendMessage(tabId, { tag: this.msgTag, data: originParam }, res => console.log(res))
-            }
-        }
+
+        })
     }
 
     /**
@@ -65,12 +67,6 @@ export default abstract class AbstractEngine implements IContentScript, ITabUpda
         sendResponse(`the engine[${this.key}] seen`)
     }
 
-    runAtStart(): void {
-        // do nothing
-    }
-    runAtEnd(): void {
-        // do nothing
-    }
     /**
      * Switch the searcher of filter
      * 

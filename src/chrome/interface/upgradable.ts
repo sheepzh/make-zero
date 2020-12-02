@@ -1,6 +1,8 @@
 /**
- * Invoked while this extension is been installed
+ * Invoked while this extension is updated
+ * 
+ * @author zhy
  */
 export default interface Upgradable {
-    upgrade(): void
+    upgrade(periousVersion: string): void
 }

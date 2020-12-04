@@ -11,7 +11,7 @@ export class MenuDefine {
         chrome.tabs.query(
           { currentWindow: true, active: true },
           function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, enOrD: false }, res => console.log(res))
+            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, data: false }, res => console.log(res))
           }
         )
       }
@@ -28,7 +28,7 @@ export class MenuDefine {
         chrome.tabs.query(
           { currentWindow: true, active: true },
           function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, enOrD: true }, res => console.log(res))
+            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, data: true }, res => console.log(res))
           }
         )
       }

@@ -5,6 +5,8 @@ const handlers: IDomCompleteHandler[] = []
 
 handlers.push(new CryptorDomHanlder())
 
-handlers.forEach(handler => {
-    handler.support(window.location.host, window.location.href) && handler.handle()
-})
+window.onload = () =>
+    handlers.forEach(handler => {
+        handler.support(window.location.host, window.location.href) && handler.handle()
+    })
+

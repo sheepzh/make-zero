@@ -1,6 +1,7 @@
 import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
 import Cryptor from './cryptor';
 import cryptorConfig from './cryptor-config';
+import $ = require('jquery')
 
 export default class CryptorDomHanlder implements IDomCompleteHandler {
 
@@ -20,7 +21,6 @@ export default class CryptorDomHanlder implements IDomCompleteHandler {
             const _this = $(this)
             const val: string = _this.val() ? _this.val().toString() : ""
             val && _this.val(_cryptor.encrypt(val))
-
         })
     }
 }

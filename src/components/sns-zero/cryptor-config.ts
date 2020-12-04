@@ -23,20 +23,34 @@ class CryptorConfig implements Initializable {
         asyncStorage.setAsync(CryptorConfig.KEY, this.config)
     }
 
-    public getPassword(): string { return this.config.password }
+    public getPassword(callback?: Function): string {
+        this.init((config: any) => callback && callback(config.password))
+
+        return this.config.password // for sync forced
+    }
 
     public changeAutoFill(autoFill: boolean) {
         this.config.autoFill = autoFill
         asyncStorage.setAsync(CryptorConfig.KEY, this.config)
     }
 
-    public getAutoFill(): boolean {
-        return !!this.config.autoFill
+    public getAutoFill(callback?: Function): boolean {
+        this.init((config: any) => callback && callback(!!config.autoFill))
+        return this.config.autoFill
     }
 
     private static INSTANCE: CryptorConfig
 
-    private constructor() { asyncStorage.getAsync(CryptorConfig.KEY, (config: any) => this.config = config || {}) }
+    private constructor() {
+        this.init()
+    }
+
+    private init(callback?: Function) {
+        asyncStorage.getAsync(CryptorConfig.KEY, (config: any) => {
+            if (config) this.config = config
+            callback && callback(this.config)
+        })
+    }
 
     public static getInstance(): CryptorConfig {
         if (CryptorConfig.INSTANCE == null) CryptorConfig.INSTANCE = new CryptorConfig()

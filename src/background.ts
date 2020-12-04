@@ -3,6 +3,7 @@ import ITabUpdateHandler from './chrome/interface/i-tab-update-handler'
 import IocBeans from './chrome/ioc'
 import Initializable from './chrome/interface/initializable'
 import Upgradable from './chrome/interface/upgradable'
+import { MenuDefine } from './menu'
 
 class Background {
     onTabUpdate(): void {
@@ -30,6 +31,8 @@ class Background {
 // entrance of the chrome app 
 
 const bg: Background = new Background()
+
+new MenuDefine().create()
 
 
 bg.onTabUpdate()

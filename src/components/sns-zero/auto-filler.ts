@@ -6,7 +6,7 @@ export class AutoFiller implements IMessageListener {
 
     encryptor: Encryptor = new Encryptor()
 
-    handleMessage({ enOrD }: any, sender: chrome.runtime.MessageSender, sendResponse: Function): void {
+    handleMessage(enOrD: any, sender: chrome.runtime.MessageSender, sendResponse: Function): void {
         const selection = window.getSelection ?
             window.getSelection()
             : (document.getSelection ? document.getSelection() : (document.createRange() ? document.createRange().toString() : "")

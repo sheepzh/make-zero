@@ -2,6 +2,7 @@ const { name, version, description, author } = require('../package.json')
 const permissions = require('./chrome/config/permission')
 const background = require('./chrome/config/background')
 const contentListener = require('./chrome/config/content-listener')
+const contentScript = require('./chrome/config/content-script')
 
 module.exports = {
     name,
@@ -20,6 +21,10 @@ module.exports = {
             matches: [contentListener.matches],
             js: [contentListener.script + '.js'],
             run_at: contentListener.runAt
+        }, {
+            matches: [contentScript.matches],
+            js: [contentScript.script + '.js'],
+            run_at: contentScript.runAt
         }
     ],
     browser_action: {

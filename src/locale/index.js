@@ -1,11 +1,14 @@
-// import { en as engineEn, zhCn as engineZhCn } from './engine/index'
+import engine from './engine/index'
+import sns from './sns/index'
 export default {
   en: {
     lang: { name: 'English' },
-    // engine: engineEn
+    engine: engine.en,
+    sns: sns.en,
   },
   zhCn: {
     lang: { name: '简体中文' },
-    // engine: engineZhCn
-  }
+    engine: engine.zhCn,
+    sns: sns.zhCn,
+  },
 }

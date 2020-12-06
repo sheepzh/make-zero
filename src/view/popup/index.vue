@@ -1,27 +1,31 @@
 <template>
-  <div id="app">
-    <el-container>
-      <el-aside>
-      </el-aside>
-      <el-container>
-        <el-header>
-        </el-header>
-        <el-main>
-          <FilterSetting />
-          <ZeroSetting />
-        </el-main>
-      </el-container>
+  <el-container id="app-container">
+    <el-aside id="side-menu">
+      <p>
+        <router-link to="/engine">
+          {{ $t('engine.meta.menu') }}
+        </router-link>
+      </p>
+      <p>
+        <router-link to="/sns">
+          {{ $t('sns.meta.menu') }}
+        </router-link>
+      </p>
+    </el-aside>
+    <el-container id="app-body">
+      <el-header>
+      </el-header>
+      <el-main>
+        <router-view />
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 <script>
 import '../plugin/element-ui'
-import FilterSetting from "./engine/index"
-import ZeroSetting from './sns-zero/index'
 
 export default {
   name: "PopMain",
-  components: { FilterSetting, ZeroSetting },
   data () {
     return {
       menuVisible: false
@@ -30,8 +34,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#app {
-  width: 800px !important;
-  max-height: 500px;
+#app-container {
+  width: 600px;
+  height: 450px;
+}
+#side-menu {
+  width: 150px;
+  height: inherit;
 }
 </style>

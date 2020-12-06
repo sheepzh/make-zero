@@ -40,8 +40,18 @@ module.exports = {
                 use: ['ts-loader']
 
             }, {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+            }, {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }, {
+                test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
+                // exclude: /node_modules/,
+                use: ['url-loader?limit=100000']
+            }, {
                 test: /\.vue$/,
-                exclude: '/node_modules/',
+                exclude: /node_modules/,
                 use: ['vue-loader']
             }, {
                 test: /\.js$/,
@@ -51,6 +61,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".tsx", '.ts', ".js", '.vue', 'css']
+        extensions: [".tsx", '.ts', ".js", '.vue', 'css'],
     }
 }

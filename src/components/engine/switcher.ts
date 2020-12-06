@@ -24,7 +24,7 @@ class Switcher {
     public init(callback: Function): void {
         asyncStorage.getAsync(Switcher.KEY, (data: any) => {
             this.switchDict = data || {}
-            callback && callback(data)
+            callback && callback(this.switchDict)
         })
     }
 

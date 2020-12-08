@@ -3,9 +3,19 @@ import VueI18n from 'vue-i18n'
 import messages from '../../locale/index'
 Vue.use(VueI18n)
 
-console.log(messages)
+/**
+ * chrome codes at 
+ * https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc 
+ */
+const chromeLangCode = {
+  "en": "en",
+  "zh": "zhCn",
+  "zh-CN": "zhCn"
+}
 
-export default new VueI18n({
+const option = {
   messages,
-  locale: 'zhCn',
-})
+  locale: chromeLangCode[chrome.i18n.getUILanguage()] || 'en',
+}
+
+export default new VueI18n(option)

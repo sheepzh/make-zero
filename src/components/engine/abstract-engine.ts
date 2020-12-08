@@ -31,20 +31,22 @@ export default abstract class AbstractEngine implements ITabUpdateHandler, IMess
             if (!this.isEngine(url)) return // not one search engine
 
             if (status === 'loading') {
-                const allBadWords: string[] = badWordDictionary.allWords() // get the needAppendchangeUrl
-                if (!allBadWords || !allBadWords.length) return
+                badWordDictionary.allWords((allBadWords: string[]) => {
+                    // get the needAppendchangeUrl
+                    if (!allBadWords || !allBadWords.length) return
 
-                const urlChanged: UrlChanged = this.changeUrl(url, allBadWords)
+                    const urlChanged: UrlChanged = this.changeUrl(url, allBadWords)
 
-                const { newUrl, needRedirect, originParam } = urlChanged
+                    const { newUrl, needRedirect, originParam } = urlChanged
 
-                // change the tab url
-                if (needRedirect) {
-                    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-                        !tabAndKeyword.storeWords(tabId, originParam)
-                            && chrome.tabs.update(tabId, { url: newUrl }, () => { })
-                    })
-                }
+                    // change the tab url
+                    if (needRedirect) {
+                        chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+                            !tabAndKeyword.storeWords(tabId, originParam)
+                                && chrome.tabs.update(tabId, { url: newUrl }, () => { })
+                        })
+                    }
+                })
             } else if (status === 'complete') {
                 const originParam: string = tabAndKeyword.get(tabId)
                 if (!!originParam) {

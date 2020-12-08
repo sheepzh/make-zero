@@ -1,8 +1,12 @@
 export default {
   en: {
-    meta: { menu: '文字混淆' },
+    meta: { menu: 'ANTI-SNS' },
+    password: { title: 'Password' },
+    enabled: { title: 'Auto Blur' }
   },
   zhCn: {
-    meta: { menu: 'SNS Blurer' },
+    meta: { menu: '文本编码' },
+    password: { title: '口令' },
+    enabled: { title: '自动编码' }
   },
 }

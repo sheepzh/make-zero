@@ -1,20 +1,23 @@
 <template>
-  <el-container id="app-container">
-    <el-aside id="side-menu">
-      <p>
-        <router-link to="/engine">
-          {{ $t('engine.meta.menu') }}
-        </router-link>
-      </p>
-      <p>
-        <router-link to="/sns">
-          {{ $t('sns.meta.menu') }}
-        </router-link>
-      </p>
+  <el-container>
+    <el-aside>
+      <el-menu :default-active="$route.path"
+               class="menu">
+        <el-menu-item @click="openMenu('/')">
+          <h2>MAKE ZERO</h2>
+        </el-menu-item>
+        <el-menu-item v-for="({title,route,icon}) in menu"
+                      :key="title"
+                      :index="route"
+                      @click="openMenu(route)">
+          <i :class="`el-icon-${icon}`"></i>
+          <span slot="title">
+            {{ $t(title) }}
+          </span>
+        </el-menu-item>
+      </el-menu>
     </el-aside>
     <el-container id="app-body">
-      <el-header>
-      </el-header>
       <el-main>
         <router-view />
       </el-main>
@@ -22,24 +25,29 @@
   </el-container>
 </template>
 <script>
-import '../plugin/element-ui'
-
 export default {
   name: "PopMain",
   data () {
     return {
-      menuVisible: false
+      menu: [
+        {
+          title: 'sns.meta.menu',
+          route: '/sns',
+          icon: 'view'
+        },
+        {
+          title: 'engine.meta.menu',
+          route: '/engine',
+          icon: 'search'
+        }
+      ]
+    }
+  },
+  methods: {
+    openMenu (route) {
+      if (this.$route.path !== route)
+        this.$router.push(route)
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-#app-container {
-  width: 600px;
-  height: 450px;
-}
-#side-menu {
-  width: 150px;
-  height: inherit;
-}
-</style>

@@ -5,6 +5,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    component: () => import('./home/index')
+  },
+  {
     path: '/engine',
     component: () => import('./engine/index'),
   },

@@ -1,13 +1,15 @@
 <template>
   <div>
-    <p>加密设置</p>
-    <form>
-      开启
-      <input v-model="enabled"
-             type="checkbox" />
-      口令
-      <input v-model="password" />
-    </form>
+    <el-form label-position="left">
+      <el-form-item :label="$t('sns.enabled.title')">
+        <el-switch v-model="enabled"
+                   size="mini" />
+      </el-form-item>
+      <el-form-item :label="$t('sns.password.title')">
+        <el-input v-model="password"
+                  size="mini" />
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script>

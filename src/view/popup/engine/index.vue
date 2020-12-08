@@ -1,22 +1,31 @@
 <template>
   <div>
-    <p>搜索引擎筛选</p>
-    <div id="switch_container">
-      <p v-for="engine in engines"
-         :key="engine.key">
-        <input type="checkbox"
-               v-model="engine.on"
-               @click="({ target }) => reverse(engine)" />
-        {{ engine.name }}
-      </p>
-    </div>
+    <p>{{$t('engine.enabled.title')}}</p>
+    <el-form>
+      <el-row :gutter="10">
+        <el-col :span="12"
+                v-for="engine in engines"
+                :key="engine.key">
+          <el-form-item :label="$t(`engine.${engine.key}.name`)">
+            <el-switch type="checkbox"
+                       v-model="engine.on"
+                       @change="newOn=>change(engine.key,newOn)">
+
+            </el-switch>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+    <Words />
   </div>
 </template>
 <script>
 import engineComposite from "../../../components/engine/engine-composite"
 import switcher from "../../../components/engine/switcher"
+import Words from './words'
 export default {
   name: "Engine",
+  components: { Words },
   data () {
     const engines = engineComposite.map((engine) => {
       const en = {}
@@ -30,8 +39,8 @@ export default {
     }
   },
   methods: {
-    reverse ({ key, on }) {
-      switcher.set(key, !on)
+    change (key, on) {
+      switcher.set(key, on)
     },
   },
   created () {

@@ -12,8 +12,10 @@ class BadWordDictionary {
 
     private words: string[] = []
 
+    private static DEMO = ['csdn']
+
     private constructor() {
-        asyncStorage.getAsync(BadWordDictionary.KEY, (data: any) => this.words = data || ['csdn'])
+        this.getWords((data: any) => this.words = data)
     }
 
     public static getInstance(): BadWordDictionary {
@@ -25,8 +27,8 @@ class BadWordDictionary {
     /**
      * @return all bad words
      */
-    public allWords(): string[] {
-        return this.words
+    public allWords(callback: Function) {
+        this.getWords(callback)
     }
 
     /**
@@ -36,6 +38,7 @@ class BadWordDictionary {
     public remove(word2Remove: string) {
         const index = this.words.indexOf(word2Remove)
         if (index !== -1) this.words.splice(index, 1)
+        this.save()
     }
 
     /**
@@ -45,7 +48,15 @@ class BadWordDictionary {
     public add(word2Add: string) {
         const index = this.words.indexOf(word2Add)
         if (index === -1) this.words.push(word2Add)
+        this.save()
+    }
+
+    private save() {
         asyncStorage.setAsync(BadWordDictionary.KEY, this.words)
+    }
+
+    private getWords(callback: Function) {
+        asyncStorage.getAsync(BadWordDictionary.KEY, (data: any) => callback && callback(data || BadWordDictionary.DEMO))
     }
 }
 

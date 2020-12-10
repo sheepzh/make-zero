@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-alert type="success" :title="$t('sns.enabled.label')"></el-alert>
     <el-form label-position="left">
       <el-form-item :label="$t('sns.enabled.title')">
         <el-switch v-model="enabled"

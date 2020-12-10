@@ -1,1 +1,0 @@
-(self.webpackChunkmake_zero=self.webpackChunkmake_zero||[]).push([[10],{5010:(e,t,r)=>{"use strict";r.r(t),r.d(t,{default:()=>s});var l=function(){var e=this.$createElement;return(this._self._c||e)("div")};l._withStripped=!0;var n=(0,r(1900).Z)({},l,[],!1,null,null,null);n.options.__file="src/view/popup/home/index.vue";const s=n.exports}}]);

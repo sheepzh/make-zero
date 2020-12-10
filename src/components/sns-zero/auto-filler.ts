@@ -1,6 +1,14 @@
 import IMessageListener from '../../chrome/interface/i-message-listener'
 import Encryptor from '../sns-zero/cryptor'
 
+const _alert = (str: string) => require("show-toast")({
+    str,
+    time: 2000,
+    position: 'top'
+})
+
+import copy = require('clipboard-copy')
+
 export class AutoFiller implements IMessageListener {
     msgTag: string = 'encrypt'
 
@@ -15,10 +23,24 @@ export class AutoFiller implements IMessageListener {
 
         if (enOrD) {
             const txt = this.encryptor.encrypt(selectionText)
-            // copyText(txt)
-            alert(txt)
+            copy(txt).then(() => {
+                _alert("Copied the ciphertext!")
+            }).catch((e: any) => {
+                console.log(e)
+                alert("Failed to copy: " + txt)
+            })
         } else {
-            alert(this.encryptor.decrypt(selectionText))
+            const txt = this.encryptor.decrypt(selectionText)
+            if (txt === selectionText) {
+                _alert('Ciphertext not recognized!')
+            } else {
+                copy(txt).then(() => {
+                    _alert("Copied the plaintext!")
+                }).catch((e: any) => {
+                    console.log(e)
+                    alert("Failed to copy: " + txt)
+                })
+            }
         }
         sendResponse("ok")
     }

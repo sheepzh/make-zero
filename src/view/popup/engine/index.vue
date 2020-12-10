@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{$t('engine.enabled.title')}}</p>
+    <el-alert :title="$t('engine.enabled.label')" type="success"/>
     <el-form>
       <el-row :gutter="10">
         <el-col :span="12"

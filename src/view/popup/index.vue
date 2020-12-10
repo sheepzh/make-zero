@@ -45,8 +45,9 @@ export default {
   },
   methods: {
     openMenu (route) {
-      if (this.$route.path !== route)
+      if (this.$route.path !== route) {
         this.$router.push(route)
+      }
     }
   }
 }

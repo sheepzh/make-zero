@@ -1,4 +1,10 @@
 /*!
+ * A Toast Box
+ * v1.1.4 ©2018 PLDaily <pcd12321@gmail.com> 
+ * https://github.com/PLDaily/show-toast#readme
+ */
+
+/*!
  * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
@@ -37,3 +43,5 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
+
+/*! clipboard-copy. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */

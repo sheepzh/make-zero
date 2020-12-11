@@ -34,12 +34,7 @@ export class AutoFiller implements IMessageListener {
             if (txt === selectionText) {
                 _alert('Ciphertext not recognized!')
             } else {
-                copy(txt).then(() => {
-                    _alert("Copied the plaintext!")
-                }).catch((e: any) => {
-                    console.log(e)
-                    alert("Failed to copy: " + txt)
-                })
+                alert(txt)
             }
         }
         sendResponse("ok")

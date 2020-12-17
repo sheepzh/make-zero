@@ -4,16 +4,11 @@ export class MenuDefine {
   create() {
     chrome.contextMenus.create({
       type: 'normal',
-      title: '解码',
+      title: '解密',
       id: 'Zero-encryt',
       contexts: ['all'],
-      onclick: () => {
-        chrome.tabs.query(
-          { currentWindow: true, active: true },
-          function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, data: false }, res => console.log(res))
-          }
-        )
+      onclick: (info, tab) => {
+        chrome.tabs.sendMessage(tab.id, { tag: new AutoFiller().msgTag, data: false }, res => console.log(res))
       }
     }, function () {
       console.log('contextMenus are create.')
@@ -21,16 +16,11 @@ export class MenuDefine {
 
     chrome.contextMenus.create({
       type: 'normal',
-      title: '加码',
+      title: '加密',
       id: 'Zero-decrypt',
       contexts: ['all'],
-      onclick: () => {
-        chrome.tabs.query(
-          { currentWindow: true, active: true },
-          function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { tag: new AutoFiller().msgTag, data: true }, res => console.log(res))
-          }
-        )
+      onclick: (info, tab) => {
+        chrome.tabs.sendMessage(tab.id, { tag: new AutoFiller().msgTag, data: true }, res => console.log(res))
       }
     }, function () {
       console.log('contextMenus are create.')

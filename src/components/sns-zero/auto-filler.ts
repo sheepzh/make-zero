@@ -35,6 +35,7 @@ export class AutoFiller implements IMessageListener {
                 _alert('Ciphertext not recognized!')
             } else {
                 alert(txt)
+                copy(txt)
             }
         }
         sendResponse("ok")

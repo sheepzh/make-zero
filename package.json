@@ -1,6 +1,6 @@
 {
   "name": "make-zero",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Encrypt & decrypt your texts in any site. / 文字加密、解密工具",
   "directories": {
     "lib": "lib"

@@ -24,15 +24,15 @@ export class AutoFiller implements IMessageListener {
         if (enOrD) {
             const txt = this.encryptor.encrypt(selectionText)
             copy(txt).then(() => {
-                _alert("Copied the ciphertext!")
+                _alert("密文已经复制到剪切板板！")
             }).catch((e: any) => {
                 console.log(e)
-                alert("Failed to copy: " + txt)
+                alert("复制失败: " + txt)
             })
         } else {
             const txt = this.encryptor.decrypt(selectionText)
             if (txt === selectionText) {
-                _alert('Ciphertext not recognized!')
+                _alert('Sorry 啦，不认识这个密文')
             } else {
                 alert(txt)
                 copy(txt)

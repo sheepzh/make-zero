@@ -28,7 +28,7 @@ export default class Cryptor {
     }
 
     /**
-     * Translate to the password 2 number
+     * Translate the password 2 number
      */
     private getPasswordNumber(): number {
         let pn: number = 0

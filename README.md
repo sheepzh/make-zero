@@ -23,7 +23,7 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 + 手动解密选中的文字，密码设置正确将会弹出明文。
 
 <div align="center">
-  <img src="https://github.com/sheepzh/make-zero/blob/main/doc/img/use-in-douban.gif">
+  <img src="./doc/img/use-in-douban.gif">
 </div>
 
 还附带了一个小功能。
@@ -39,7 +39,7 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 3. 点击 ***加载已解压项目*** 按钮，选择项目目录下的 **chrome_dir** 文件夹。
 
 <div align=center>
-  <img src="https://github.com/sheepzh/make-zero/blob/main/doc/img/install.gif" />
+  <img src="./doc/img/install.gif" />
 </div>
 
 ## 如何使用？

@@ -1,11 +1,17 @@
-# MAKE-ZERO
-语言属于未知。
+<div align="center">
+	<img src="./doc/img/banner.jpeg" width="50%">
+</div>
+
+<!-- # MAKE-ZERO -->
+
+> 语言属于未知。
 
 [English](README.en.md)
 
 ## 它是什么？
 
 MakeZero 是一个用于加密网络文本的 Chrome 插件。
+
 
 ## 它能做什么？
 
@@ -15,6 +21,8 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 + 自动加密网页输入框内的文本。
 + 手动加密选中的文字，并粘贴至剪贴板。
 + 手动解密选中的文字，密码设置正确将会弹出明文。
+
+![img](https://github.com/sheepzh/make-zero/blob/main/doc/img/use-in-douban.gif)
 
 还附带了一个小功能。
 
@@ -28,6 +36,8 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 
 3. 点击 ***加载已解压项目*** 按钮，选择项目目录下的 **chrome_dir** 文件夹。
 
+![img](https://github.com/sheepzh/make-zero/blob/main/doc/img/install.gif)
+
 ## 如何使用？
 
 + 插件设置
@@ -39,6 +49,7 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 + 自动加密
 
   如果设置面板勾选了自动加密，网页输入框在输入/获取焦点时会显示明文；输入完成/失去焦点时，框内文本会自动变成密文。
+
 
 + 手动加/解密
   

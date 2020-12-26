@@ -25,7 +25,6 @@ class CryptorConfig implements Initializable {
 
     public getPassword(callback?: Function): string {
         this.init((config: any) => callback && callback(config.password))
-
         return this.config.password // for sync forced
     }
 

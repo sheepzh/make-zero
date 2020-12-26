@@ -3,7 +3,11 @@ import Cryptor from './cryptor';
 import cryptorConfig from './cryptor-config';
 import $ = require('jquery')
 
-export default class CryptorDomHanlder implements IDomCompleteHandler {
+/**
+ * Encrypt the <input> and <textarea> tags 
+ * @author zhy
+ */
+export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
 
     private cryptor: Cryptor = new Cryptor()
 
@@ -13,11 +17,11 @@ export default class CryptorDomHanlder implements IDomCompleteHandler {
 
     handle(): void {
         const _cryptor = this.cryptor
-        $(":input").filter('textarea, input').focus(function () {
+        $(":input").filter('textarea, input').on('focus', function () {
             const _this = $(this)
             const val: string = _this.val() ? _this.val().toString() : ""
             val && _this.val(_cryptor.decrypt(val.toString()))
-        }).blur(function () {
+        }).on('blur', function () {
             const _this = $(this)
             const val: string = _this.val() ? _this.val().toString() : ""
             val && _this.val(_cryptor.encrypt(val))

@@ -1,9 +1,11 @@
 import IDomCompleteHandler from "./chrome/interface/i-dom-complete-hanler";
-import CryptorDomHanlder from './components/sns-zero/cryptor-dom-hanlder';
+import AutoCryptorDomHanlder from './components/sns-zero/auto-cryptor-dom-hanlder';
+import DoubleClick2DecryptDomHandler from './components/sns-zero/dbclick-2-decrypt-dom-handler'
 
 const handlers: IDomCompleteHandler[] = []
 
-handlers.push(new CryptorDomHanlder())
+handlers.push(new AutoCryptorDomHanlder())
+handlers.push(new DoubleClick2DecryptDomHandler())
 
 window.onload = () =>
     handlers.forEach(handler => {

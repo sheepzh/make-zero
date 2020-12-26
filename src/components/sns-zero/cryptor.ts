@@ -17,6 +17,10 @@ export default class Cryptor {
         }
     }
 
+    support(cipher: string) {
+        return cipher.indexOf(this.prefix) === 0
+    }
+
     /**
      * Ring with XOR
      * 

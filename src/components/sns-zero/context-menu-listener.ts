@@ -6,13 +6,13 @@ const _alert = (text: string) => sweetAlert.fire({
     text,
     toast: true,
     timer: 2000,
-    position: 'top',
+    position: 'center',
     showConfirmButton: false
 })
 
 const alert = (text: string) => sweetAlert.fire({
     text,
-    position: 'top'
+    position: "center"
 })
 
 export default class ContextMenuListener implements IMessageListener {
@@ -38,7 +38,7 @@ export default class ContextMenuListener implements IMessageListener {
         } else {
             const txt = this.encryptor.decrypt(selectionText)
             if (txt === selectionText) {
-                _alert('Sorry 啦，不认识这个密文')
+                _alert('Sorry 啦，我不认识这个密文')
             } else {
                 alert(txt)
                 copy(txt)

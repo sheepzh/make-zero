@@ -1,18 +1,16 @@
-import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
-import Cryptor from './cryptor';
+import { DomDecryptor } from "."
+import Cryptor from "../cryptor"
+import FloatAlert from "./float-alert"
 import $ = require('jquery')
-import FloatAlert from './alert/float-alert'
 
-/**
- * Show the float button while the user moves its mouse on <p> tags within ciphertexts
- * @author zhy
- */
-export default class DoubleClick2DecryptDomHandler implements IDomCompleteHandler {
-  private cryptor: Cryptor = new Cryptor()
+export default class DefaultDecryptor implements DomDecryptor {
   private floatAlert: FloatAlert
+  private cryptor: Cryptor = new Cryptor()
 
-  support(host: string, href: string): boolean {
-    return host !== "wx2.qq.com"
+  constructor() { }
+
+  support(host: string): boolean {
+    return true
   }
   handle(): void {
     this.floatAlert = new FloatAlert($('body'))

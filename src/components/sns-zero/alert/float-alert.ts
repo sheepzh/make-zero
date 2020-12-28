@@ -13,7 +13,7 @@ export default function creatAlert(): JQuery<HTMLElement> {
     position: "absolute",
     margin: "5px",
     borderRadius: "10px",
-    backgroundColor: "#ebedf3",
+    backgroundColor: "#fff",
     width: "50px",
     height: "50px",
     verticalAlign: "middle",

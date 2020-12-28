@@ -1,15 +1,13 @@
 import IMessageListener from '../../chrome/interface/i-message-listener'
-import Encryptor from '../sns-zero/cryptor'
-
+import Encryptor from './cryptor'
+import copy = require('clipboard-copy')
 const _alert = (str: string) => require("show-toast")({
     str,
     time: 2000,
     position: 'top'
 })
 
-import copy = require('clipboard-copy')
-
-export class AutoFiller implements IMessageListener {
+export default class ContextMenuListener implements IMessageListener {
     msgTag: string = 'encrypt'
 
     encryptor: Encryptor = new Encryptor()

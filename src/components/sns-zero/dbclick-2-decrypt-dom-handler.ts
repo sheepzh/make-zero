@@ -24,25 +24,34 @@ export default class DoubleClick2DecryptDomHandler implements IDomCompleteHandle
     $('p').filter((index: number, el: HTMLElement) => {
       return _this_.cryptor.support(el.innerText)
     }).on("mouseover", (e: JQuery.MouseOverEvent<HTMLElement, undefined, HTMLElement, HTMLElement>) => {
-      const p: HTMLElement = e.currentTarget
-      const cipherText: string = p.innerText
+      const cipherText: string = _this_.getTxtOfTagP(e)
       if (!_this_.cryptor.support(cipherText)) {
         return
       }
-
       _this_.showAlert(e.pageY, e.pageX)
-
-      p.ondblclick = () => {
-        if (_this_.cryptor.support(cipherText)) {
-          const plain: string = _this_.cryptor.decrypt(cipherText)
-          p.innerHTML = plain
-          _this_.hideAlert()
-        }
-      }
     }).on("mouseout", () => {
       // hide the alert if the mouse is out
       _this_.hideAlert()
+    }).on("dbclick", (e: JQuery.DoubleClickEvent<HTMLElement, undefined, HTMLElement, HTMLElement>) => {
+      const cipherText: string = _this_.getTxtOfTagP(e)
+      if (_this_.cryptor.support(cipherText)) {
+        const plain: string = _this_.cryptor.decrypt(cipherText)
+        e.currentTarget.innerHTML = plain
+        _this_.hideAlert()
+      }
     })
+  }
+
+  /**
+   * Get the inner text of mouse event's target 
+   * 
+   * @param event event
+   */
+  private getTxtOfTagP(event: JQuery.TriggeredEvent<HTMLElement, undefined, HTMLElement, HTMLElement>): string {
+    if (!event) return ''
+    if (!event.currentTarget) return ''
+    if (!event.currentTarget.innerText) return ''
+    return event.currentTarget.innerText
   }
 
   private initAlert() {

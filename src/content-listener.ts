@@ -1,11 +1,11 @@
 import IMessageListener from './chrome/interface/i-message-listener'
 import engineComposite from './components/engine/engine-composite'
-import { AutoFiller } from './components/sns-zero/auto-filler'
+import ContextMenuListener from './components/sns-zero/context-menu-listener'
 
 const listeners: IMessageListener[] = []
 
 engineComposite.forEach((listener: IMessageListener) => listeners.push(listener))
-listeners.push(new AutoFiller())
+listeners.push(new ContextMenuListener())
 
 chrome.runtime.onMessage.addListener(function (obj, sender, sendResponse) {
     listeners.filter(listener => listener.msgTag === obj.tag).forEach(

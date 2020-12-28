@@ -1,4 +1,4 @@
-import { AutoFiller } from './components/sns-zero/auto-filler'
+import ContextMenuListener from './components/sns-zero/context-menu-listener'
 
 export class MenuDefine {
   create() {
@@ -8,7 +8,7 @@ export class MenuDefine {
       id: 'Zero-encryt',
       contexts: ['all'],
       onclick: (info, tab) => {
-        chrome.tabs.sendMessage(tab.id, { tag: new AutoFiller().msgTag, data: false }, res => console.log(res))
+        chrome.tabs.sendMessage(tab.id, { tag: new ContextMenuListener().msgTag, data: false }, res => console.log(res))
       }
     }, function () {
       console.log('contextMenus are create.')
@@ -20,7 +20,7 @@ export class MenuDefine {
       id: 'Zero-decrypt',
       contexts: ['all'],
       onclick: (info, tab) => {
-        chrome.tabs.sendMessage(tab.id, { tag: new AutoFiller().msgTag, data: true }, res => console.log(res))
+        chrome.tabs.sendMessage(tab.id, { tag: new ContextMenuListener().msgTag, data: true }, res => console.log(res))
       }
     }, function () {
       console.log('contextMenus are create.')

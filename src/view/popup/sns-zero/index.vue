@@ -2,19 +2,38 @@
   <div>
     <el-form label-position="left"
              label-width="90px">
-      <el-form-item>
-        <template slot="label">
-          <span>{{$t('sns.auto.encryptLabel')}}</span>
-          <el-tooltip placement="top">
-            <div slot="content">
-              <p>{{$t('sns.auto.encryptTip')}}</p>
-            </div>
-            <i class="el-icon-question" />
-          </el-tooltip>
-        </template>
-        <el-switch v-model="enabled"
-                   size="mini" />
-      </el-form-item>
+      <el-row :gutter="10">
+        <el-col :span="12">
+          <el-form-item>
+            <template slot="label">
+              <span>{{$t('sns.auto.encryptLabel')}}</span>
+              <el-tooltip placement="top">
+                <div slot="content">
+                  <p>{{$t('sns.auto.encryptTip')}}</p>
+                </div>
+                <i class="el-icon-question" />
+              </el-tooltip>
+            </template>
+            <el-switch v-model="autoEncrypt"
+                       size="mini" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item>
+            <template slot="label">
+              <span>{{$t('sns.auto.decryptLabel')}}</span>
+              <el-tooltip placement="top">
+                <div slot="content">
+                  <p>{{$t('sns.auto.decryptTip')}}</p>
+                </div>
+                <i class="el-icon-question" />
+              </el-tooltip>
+            </template>
+            <el-switch v-model="autoDecrypt"
+                       size="mini" />
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item :label="$t('sns.password.title')">
         <el-input v-model="password">
           <el-tooltip slot="append"
@@ -36,19 +55,24 @@ export default {
   data () {
     return {
       password: '',
-      enabled: false
+      autoEncrypt: false,
+      autoDecrypt: false
     }
   },
   created () {
     cryptorConfig.getPassword(password => this.password = password)
-    cryptorConfig.getAutoFill(isOn => this.enabled = isOn)
+    cryptorConfig.getAutoFill(isOn => this.autoEncrypt = !!isOn)
+    cryptorConfig.getAutoDecrypt(isOn => this.autoDecrypt = !!isOn)
   },
   watch: {
     password (nv, ov) {
       cryptorConfig.changePassword(nv)
     },
-    enabled (nv) {
+    autoEncrypt (nv) {
       cryptorConfig.changeAutoFill(nv)
+    },
+    autoDecrypt (nv) {
+      cryptorConfig.changeAutoDecrypt(nv)
     }
   },
   methods: {

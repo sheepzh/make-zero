@@ -15,10 +15,14 @@ export default class DoubleClick2DecryptDomHandler implements IDomCompleteHandle
     return host !== "wx2.qq.com"
   }
   handle(): void {
-    const _this_ = this
-    _this_.floatAlert = new FloatAlert($('body'))
+    this.floatAlert = new FloatAlert($('body'))
+    this.addListener($('p'))
+    this.addListener($('pre'))
+  }
 
-    $('p').filter((index: number, el: HTMLElement) => {
+  private addListener(selecotor: JQuery) {
+    const _this_ = this
+    selecotor.filter((index: number, el: HTMLElement) => {
       return _this_.cryptor.support(el.innerText)
     }).on("mouseover", (e: JQuery.MouseOverEvent<HTMLElement, undefined, HTMLElement, HTMLElement>) => {
       const p: HTMLElement = e.currentTarget

@@ -13,7 +13,11 @@ class CryptorConfig implements Initializable {
 
     private config: any = {
         password: '123456',
-        autoFill: false
+        autoFill: false,
+        /**
+         * @since 1.1.0
+         */
+        autoDecrypt: false
     }
 
     initialize(): void { this.changePassword('123456') }
@@ -36,6 +40,22 @@ class CryptorConfig implements Initializable {
     public getAutoFill(callback?: Function): boolean {
         this.init((config: any) => callback && callback(!!config.autoFill))
         return this.config.autoFill
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    public changeAutoDecrypt(autoDecrypt: boolean) {
+        this.config.autoDecrypt = autoDecrypt
+        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    public getAutoDecrypt(callback?: Function) {
+        this.init((config: any) => callback && callback(!!config.autoDecrypt))
+        return this.config.autoDecrypt
     }
 
     private static INSTANCE: CryptorConfig

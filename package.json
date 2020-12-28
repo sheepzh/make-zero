@@ -37,7 +37,7 @@
     "clipboard-copy": "^4.0.1",
     "element-ui": "^2.14.1",
     "jquery": "^3.5.1",
-    "show-toast": "^1.1.4",
+    "sweetalert2": "^10.12.6",
     "vue": "^2.6.12",
     "vue-i18n": "^8.22.2",
     "vue-router": "^3.4.9"

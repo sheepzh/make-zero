@@ -1,9 +1,17 @@
 import IMessageListener from '../../chrome/interface/i-message-listener'
 import Encryptor from './cryptor'
 import copy = require('clipboard-copy')
-const _alert = (str: string) => require("show-toast")({
-    str,
-    time: 2000,
+import sweetAlert from 'sweetalert2'
+const _alert = (text: string) => sweetAlert.fire({
+    text,
+    toast: true,
+    timer: 2000,
+    position: 'top',
+    showConfirmButton: false
+})
+
+const alert = (text: string) => sweetAlert.fire({
+    text,
     position: 'top'
 })
 
@@ -25,7 +33,7 @@ export default class ContextMenuListener implements IMessageListener {
                 _alert("密文已经复制到剪切板板！")
             }).catch((e: any) => {
                 console.log(e)
-                alert("复制失败: " + txt)
+                _alert("复制失败: " + txt)
             })
         } else {
             const txt = this.encryptor.decrypt(selectionText)

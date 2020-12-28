@@ -1,10 +1,4 @@
 /*!
- * A Toast Box
- * v1.1.4 ©2018 PLDaily <pcd12321@gmail.com> 
- * https://github.com/PLDaily/show-toast#readme
- */
-
-/*!
  * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *

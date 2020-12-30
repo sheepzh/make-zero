@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-12-28 22:25:33
- * @LastEditTime: 2020-12-30 19:07:42
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: /search-gater/src/components/sns-zero/dbclick/default-decryptor.ts
- */
 import { DomDecryptor } from "."
 import Cryptor from "../cryptor"
 import FloatAlert from "./float-alert"

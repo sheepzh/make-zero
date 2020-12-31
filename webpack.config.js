@@ -28,7 +28,9 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new CleanWebpackPlugin({}),
+        new CleanWebpackPlugin({
+            cleanAfterEveryBuildPatterns: ["*.LICENSE.txt"] // remove the license txts
+        }),
         new GenerateJsonPlugin('manifest.json', manifest),
         new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }) // copy static resources
     ],

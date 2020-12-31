@@ -1,4 +1,4 @@
-const { name, version, description, author } = require('../package.json')
+const { name, version, description, author, homepage } = require('../package.json')
 const permissions = require('./chrome/config/permission')
 const background = require('./chrome/config/background')
 const contentListener = require('./chrome/config/content-listener')
@@ -10,6 +10,7 @@ module.exports = {
     description,
     author,
     permissions,
+    homepage_url: homepage,
     background: {
         scripts: [
             background.script + '.js'

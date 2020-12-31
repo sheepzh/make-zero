@@ -6,7 +6,7 @@ import DomDecryptorComposite from './components/sns-zero/dbclick'
 const handlers: IDomCompleteHandler[] = []
 
 handlers.push(new AutoCryptorDomHanlder())
-handlers.push(new AutoDecryptorComposite()) // AutoDecryptorComposite must be the front of DomDecryptorComposite
+handlers.push(new AutoDecryptorComposite()) // AutoDecryptorComposite MUST be the front of DomDecryptorComposite
 handlers.push(new DomDecryptorComposite())
 
 window.onload = () =>

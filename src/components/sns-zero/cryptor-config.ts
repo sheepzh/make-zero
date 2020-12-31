@@ -17,7 +17,8 @@ class CryptorConfig implements Initializable {
         /**
          * @since 1.1.0
          */
-        autoDecrypt: false
+        autoDecrypt: false,
+        cipherVersion: 1
     }
 
     initialize(): void { this.changePassword('123456') }
@@ -56,6 +57,21 @@ class CryptorConfig implements Initializable {
     public getAutoDecrypt(callback?: Function) {
         this.init((config: any) => callback && callback(!!config.autoDecrypt))
         return this.config.autoDecrypt
+    }
+
+    /**
+     * @since 1.1.1
+     */
+    public getCipherVersion(callback?: Function) {
+        this.init((config: any) => callback && callback(config.cipherVersion))
+        return this.config.cipherVersion
+    }
+    /**
+     * @since 1.1.1
+     */
+    public changeCipherVersion(version: number) {
+        this.config.cipherVersion = version
+        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
     }
 
     private static INSTANCE: CryptorConfig

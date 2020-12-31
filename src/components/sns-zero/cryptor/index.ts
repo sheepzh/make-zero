@@ -27,7 +27,9 @@ class CryptorComposite {
   }
 
   encrypt(plain: string): string {
-    return this.prefix(this.latest) + this.latest.encript(plain, cryptorConfig.getPassword())
+    const version = cryptorConfig.getCipherVersion()
+    const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
+    return this.prefix(cryptor) + cryptor.encript(plain, cryptorConfig.getPassword())
   }
 
   decrypt(cipher: string): string {

@@ -44,25 +44,37 @@
           </el-tooltip>
         </el-input>
       </el-form-item>
+      <el-form-item :label="$t('sns.cipherType.label')">
+        <el-select v-model="cipherVersion">
+          <el-option v-for="i in maxVersion"
+                     :value="i"
+                     :key="i"
+                     :label="i+'. '+$t(`sns.cipherType.remark.${i}`)" />
+        </el-select>
+      </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
 import copy from '../../util/copy-util'
 import cryptorConfig from '../../../components/sns-zero/cryptor-config'
+import cryptor from '../../../components/sns-zero/cryptor'
 export default {
   name: 'ZeroSetting',
   data () {
     return {
       password: '',
       autoEncrypt: false,
-      autoDecrypt: false
+      autoDecrypt: false,
+      maxVersion: cryptor.version(),
+      cipherVersion: 1
     }
   },
   created () {
     cryptorConfig.getPassword(password => this.password = password)
     cryptorConfig.getAutoFill(isOn => this.autoEncrypt = !!isOn)
     cryptorConfig.getAutoDecrypt(isOn => this.autoDecrypt = !!isOn)
+    cryptorConfig.getCipherVersion(version => this.cipherVersion = version)
   },
   watch: {
     password (nv, ov) {
@@ -73,6 +85,9 @@ export default {
     },
     autoDecrypt (nv) {
       cryptorConfig.changeAutoDecrypt(nv)
+    },
+    cipherVersion (nv) {
+      cryptorConfig.changeCipherVersion(nv)
     }
   },
   methods: {

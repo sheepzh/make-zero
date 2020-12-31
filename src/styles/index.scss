@@ -1,7 +1,7 @@
 
 body {
-  width: 500px;
-  height: 300px;
+  width: 550px;
+  height: 330px;
   margin: 0 !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +24,12 @@ html {
 
 .el-container{
   height: 100%;
+}
+
+.el-form-item{
+  .el-select{
+    width: 100%;
+  }
 }
 
 *,
@@ -122,4 +128,11 @@ head{
   line-height: 32px;
   height: 32px;
   font-size: 12px;
+}
+
+
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
 }

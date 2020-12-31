@@ -14,7 +14,7 @@
       <br>
       <p>
         <a><i class="el-icon-message" /></a>
-        {{ mail }}
+        {{ mail }} &emsp;
         <el-tooltip :content="$t('button.copy')">
           <el-button icon="el-icon-copy-document"
                      @click="copyMail()"

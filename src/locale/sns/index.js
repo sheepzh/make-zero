@@ -9,11 +9,11 @@ export default {
       decryptTip: 'If the following switch is open, texts between the <p> tags all the sites will be decrypted automaticly'
     },
     cipherType: {
-      label: 'Ciphertext',
+      label: 'Cipher Format',
       remark: {
         1: 'Fixed and short',
         2: 'Random and short',
-        3: 'Encrypt to one natural language'
+        3: 'One natural language'
       }
     }
   },
@@ -29,8 +29,8 @@ export default {
     cipherType: {
       label: '密文风格',
       remark: {
-        1: '等长，且唯一',
-        2: '等长，且随机',
+        1: '等长唯一',
+        2: '等长随机',
         3: '自然语言'
       }
     }

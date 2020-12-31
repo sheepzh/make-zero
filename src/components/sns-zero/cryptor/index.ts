@@ -15,7 +15,6 @@ class CryptorComposite {
   constructor() {
     this.register(new Cryptor1())
     this.latest = this.register(new Cryptor2())
-    console.log(this.cryptorMap)
   }
 
   private register(cryptor: ICryptor): ICryptor {

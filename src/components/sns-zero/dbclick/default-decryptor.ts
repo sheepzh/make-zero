@@ -1,11 +1,10 @@
 import { DomDecryptor } from "."
-import Cryptor from "../cryptor"
+import cryptor from "../cryptor"
 import FloatAlert from "./float-alert"
 import $ = require('jquery')
 
 export default class DefaultDecryptor implements DomDecryptor {
   private floatAlert: FloatAlert
-  private cryptor: Cryptor = new Cryptor()
 
   constructor() { }
 
@@ -22,12 +21,12 @@ export default class DefaultDecryptor implements DomDecryptor {
   private addListener(selecotor: JQuery) {
     const _this_ = this
     selecotor.filter((index: number, el: HTMLElement) => {
-      return _this_.cryptor.support(el.innerText)
+      return cryptor.support(el.innerText)
     }).on("mouseover", (e: JQuery.MouseOverEvent<HTMLElement, undefined, HTMLElement, HTMLElement>) => {
       const p: HTMLElement = e.currentTarget
       const innerText: string = p.innerText
 
-      if (!_this_.cryptor.support(innerText)) {
+      if (!cryptor.support(innerText)) {
         // return if not support
         return
       }
@@ -36,8 +35,8 @@ export default class DefaultDecryptor implements DomDecryptor {
 
       p.ondblclick = () => {
         const innerText = p.innerText
-        if (_this_.cryptor.support(innerText)) {
-          const plain: string = _this_.cryptor.decrypt(innerText)
+        if (cryptor.support(innerText)) {
+          const plain: string = cryptor.decrypt(innerText)
           p.innerHTML = plain
           _this_.floatAlert.hide()
         }

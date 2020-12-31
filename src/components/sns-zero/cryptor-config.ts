@@ -18,6 +18,9 @@ class CryptorConfig implements Initializable {
          * @since 1.1.0
          */
         autoDecrypt: false,
+        /**
+         * @since 1.1.1
+         */
         cipherVersion: 1
     }
 
@@ -25,7 +28,7 @@ class CryptorConfig implements Initializable {
 
     public changePassword(psw: string) {
         this.config.password = psw
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+        this.update()
     }
 
     public getPassword(callback?: Function): string {
@@ -35,7 +38,7 @@ class CryptorConfig implements Initializable {
 
     public changeAutoFill(autoFill: boolean) {
         this.config.autoFill = autoFill
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+        this.update()
     }
 
     public getAutoFill(callback?: Function): boolean {
@@ -48,7 +51,7 @@ class CryptorConfig implements Initializable {
      */
     public changeAutoDecrypt(autoDecrypt: boolean) {
         this.config.autoDecrypt = autoDecrypt
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+        this.update()
     }
 
     /**
@@ -71,7 +74,8 @@ class CryptorConfig implements Initializable {
      */
     public changeCipherVersion(version: number) {
         this.config.cipherVersion = version
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+        this.update()
+        this.updateBadge()
     }
 
     private static INSTANCE: CryptorConfig
@@ -84,7 +88,18 @@ class CryptorConfig implements Initializable {
         asyncStorage.getAsync(CryptorConfig.KEY, (config: any) => {
             if (config) this.config = config
             callback && callback(this.config)
+            this.updateBadge()
         })
+    }
+
+    private update() {
+        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+    }
+
+    private updateBadge() {
+        const version = this.config.cipherVersion
+
+        chrome.browserAction.setBadgeText({ text: version ? version + '' : '' })
     }
 
     public static getInstance(): CryptorConfig {

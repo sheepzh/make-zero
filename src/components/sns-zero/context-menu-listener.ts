@@ -18,12 +18,22 @@ const alert = (text: string) => sweetAlert.fire({
 export default class ContextMenuListener implements IMessageListener {
     msgTag: string = 'encrypt'
 
-    handleMessage(enOrD: any, sender: chrome.runtime.MessageSender, sendResponse: Function): void {
+    private getSelection(): string {
         const selection = window.getSelection ?
             window.getSelection()
             : (document.getSelection ? document.getSelection() : (document.createRange() ? document.createRange().toString() : "")
             )
-        const selectionText = selection.toString()
+        let selectionText = selection.toString()
+        // @2020/01/04 v1.1.2, fix the text in the iframes cant be encrypted/decrypted 
+        const iframe = document.getElementsByTagName('iframe')
+        for (let index = 0; index < iframe.length && !selectionText; index++) {
+            selectionText = iframe[index].contentWindow.getSelection().toString()
+        }
+        return selectionText
+    }
+
+    handleMessage(enOrD: any, sender: chrome.runtime.MessageSender, sendResponse: Function): void {
+        const selectionText = this.getSelection()
 
         if (enOrD) {
             const txt = cryptor.encrypt(selectionText)

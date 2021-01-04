@@ -4,18 +4,18 @@ import messages from '../../locale/index'
 Vue.use(VueI18n)
 
 /**
- * chrome codes at 
- * https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc 
+ * chrome codes at
+ * https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc
  */
 const chromeLangCode = {
-  "en": "en",
-  "zh": "zhCn",
-  "zh-CN": "zhCn"
+  en: 'en',
+  zh: 'zhCn',
+  'zh-CN': 'zhCn',
 }
 
 const option = {
   messages,
-  locale: chromeLangCode[chrome.i18n.getUILanguage()] || 'en',
+  locale: chromeLangCode[chrome.i18n.getUILanguage()] || 'zhCn',
 }
 
 export default new VueI18n(option)

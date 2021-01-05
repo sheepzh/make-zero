@@ -20,7 +20,7 @@ export default class FloatAlert {
   }
 
   public hide() {
-    this.target.hide()
+    this.target && this.target.hide && this.target.hide()
   }
 
   private initAlert() {

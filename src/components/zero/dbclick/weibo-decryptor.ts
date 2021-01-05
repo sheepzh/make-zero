@@ -1,7 +1,7 @@
-import { DomDecryptor } from "."
 import $ = require('jquery')
+import AbstractDomDecryptor from './abstract-dom-decryptor'
 
-export default class WeiboDecryptor implements DomDecryptor {
+export default class WeiboDecryptor extends AbstractDomDecryptor {
   support(host: string): boolean {
     return 'weibo.com' === host
   }

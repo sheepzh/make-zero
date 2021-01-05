@@ -1,10 +1,8 @@
 import IMessageListener from './chrome/interface/i-message-listener'
-import engineComposite from './components/engine/engine-composite'
-import ContextMenuListener from './components/sns-zero/context-menu-listener'
+import ContextMenuListener from './components/zero/context-menu-listener'
 
 const listeners: IMessageListener[] = []
 
-engineComposite.forEach((listener: IMessageListener) => listeners.push(listener))
 listeners.push(new ContextMenuListener())
 
 chrome.runtime.onMessage.addListener(function (obj, sender, sendResponse) {

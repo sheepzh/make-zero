@@ -1,12 +1,15 @@
 import IDomCompleteHandler from "../../../chrome/interface/i-dom-complete-hanler";
-import cryptorConfig from "../cryptor-config";
+import AbstractDomDecryptor from "./abstract-dom-decryptor";
 import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'
 
-export default class AutoDecryptorComposite implements IDomCompleteHandler {
+/**
+ * Show the float button while the user moves its mouse on <p> tags within ciphertexts
+ * @author zhy
+ */
+export default class DomDecryptorComposite implements IDomCompleteHandler {
   private host: string
-  private composites: AutoDecryptor[]
-
+  private composites: AbstractDomDecryptor[]
   public constructor() {
     this.composites = []
 
@@ -16,7 +19,7 @@ export default class AutoDecryptorComposite implements IDomCompleteHandler {
 
   support(host: string, href: string): boolean {
     this.host = host
-    return host !== "wx2.qq.com" && cryptorConfig.getAutoDecrypt()
+    return host !== "wx2.qq.com"
   }
 
   handle(): void {
@@ -27,9 +30,4 @@ export default class AutoDecryptorComposite implements IDomCompleteHandler {
       }
     }
   }
-}
-
-export interface AutoDecryptor {
-  support(host: string): boolean
-  handle(): void
 }

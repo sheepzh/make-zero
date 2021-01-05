@@ -9,12 +9,8 @@ const routes = [
     component: () => import('./home/index')
   },
   {
-    path: '/engine',
-    component: () => import('./engine/index'),
-  },
-  {
-    path: '/sns',
-    component: () => import('./sns-zero/index'),
+    path: '/zero',
+    component: () => import('./zero/index'),
   },
 ]
 

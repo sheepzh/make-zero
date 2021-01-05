@@ -1,7 +1,7 @@
-import { AutoDecryptor } from ".";
 import swal from 'sweetalert2'
+import AbstractAutoDecryptor from './abstract-auto-decryptor'
 
-export default class WeiboDecryptor implements AutoDecryptor {
+export default class WeiboDecryptor extends AbstractAutoDecryptor {
   support(host: string): boolean {
     return 'weibo.com' === host
   }

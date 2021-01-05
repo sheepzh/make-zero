@@ -3,12 +3,21 @@
     <el-timeline>
       <el-timeline-item v-for="(v, k) in version"
                         :key="k"
-                        :timestamp="`v${k}  ${v.ts}`"
+                        :timestamp="v.ts||'0000-00-00'"
                         placement="top"
                         :type="v.current?'success':'primary'">
+        <h5>v{{ k }}
+          <el-tag class="version-item"
+                  v-if="v.name"
+                  :type="v.current?'success':'primary'"
+                  size="mini">
+            {{ v.name }}
+          </el-tag>
+        </h5>
         <p v-for="(tag, i) in v.contents"
            :key="i">
-          <i :class="`el-icon-${icons[tag]}`" />&emsp;{{$t(`version.${k.replaceAll('.','_')}.${i}`)}}
+          <i :class="`el-icon-${icons[tag]}`" />
+          <a class="version-item">{{ $t(`version.${k.replaceAll('.','_')}.${i}`) }}</a>
         </p>
       </el-timeline-item>
       <br>
@@ -46,3 +55,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.version-item {
+  padding-left: 4px;
+}
+</style>

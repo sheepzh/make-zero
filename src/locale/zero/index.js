@@ -1,6 +1,6 @@
 export default {
   en: {
-    meta: { menu: 'Text Encryption' },
+    meta: { menu: 'Settings' },
     password: { title: 'Password' },
     auto: {
       encryptLabel: 'Auto Enc.',
@@ -18,7 +18,7 @@ export default {
     }
   },
   zhCn: {
-    meta: { menu: '文本加密' },
+    meta: { menu: '设置' },
     password: { title: '密码' },
     auto: {
       encryptLabel: '自动加密',

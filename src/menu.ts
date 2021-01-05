@@ -1,4 +1,4 @@
-import ContextMenuListener from './components/sns-zero/context-menu-listener'
+import ContextMenuListener from './components/zero/context-menu-listener'
 
 export class MenuDefine {
   create() {

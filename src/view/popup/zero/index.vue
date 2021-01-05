@@ -6,10 +6,10 @@
         <el-col :span="12">
           <el-form-item>
             <template slot="label">
-              <span>{{$t('sns.auto.encryptLabel')}}</span>
+              <span>{{$t('zero.auto.encryptLabel')}}</span>
               <el-tooltip placement="top">
                 <div slot="content">
-                  <p>{{$t('sns.auto.encryptTip')}}</p>
+                  <p>{{$t('zero.auto.encryptTip')}}</p>
                 </div>
                 <i class="el-icon-question" />
               </el-tooltip>
@@ -21,10 +21,10 @@
         <el-col :span="12">
           <el-form-item>
             <template slot="label">
-              <span>{{$t('sns.auto.decryptLabel')}}</span>
+              <span>{{$t('zero.auto.decryptLabel')}}</span>
               <el-tooltip placement="top">
                 <div slot="content">
-                  <p>{{$t('sns.auto.decryptTip')}}</p>
+                  <p>{{$t('zero.auto.decryptTip')}}</p>
                 </div>
                 <i class="el-icon-question" />
               </el-tooltip>
@@ -34,7 +34,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item :label="$t('sns.password.title')">
+      <el-form-item :label="$t('zero.password.title')">
         <el-input v-model="password">
           <el-tooltip slot="append"
                       :content="$t('button.copy')">
@@ -44,12 +44,12 @@
           </el-tooltip>
         </el-input>
       </el-form-item>
-      <el-form-item :label="$t('sns.cipherType.label')">
+      <el-form-item :label="$t('zero.cipherType.label')">
         <el-select v-model="cipherVersion">
           <el-option v-for="i in maxVersion"
                      :value="i"
                      :key="i"
-                     :label="i+'. '+$t(`sns.cipherType.remark.${i}`)" />
+                     :label="i+'. '+$t(`zero.cipherType.remark.${i}`)" />
         </el-select>
       </el-form-item>
     </el-form>
@@ -57,8 +57,8 @@
 </template>
 <script>
 import copy from '../../util/copy-util'
-import cryptorConfig from '../../../components/sns-zero/cryptor-config'
-import cryptor from '../../../components/sns-zero/cryptor'
+import cryptorConfig from '../../../components/zero/cryptor-config'
+import cryptor from '../../../components/zero/cryptor'
 export default {
   name: 'ZeroSetting',
   data () {

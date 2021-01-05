@@ -31,14 +31,9 @@ export default {
     return {
       menu: [
         {
-          title: 'sns.meta.menu',
-          route: '/sns',
+          title: 'zero.meta.menu',
+          route: '/zero',
           icon: 'view'
-        },
-        {
-          title: 'engine.meta.menu',
-          route: '/engine',
-          icon: 'search'
         }
       ]
     }

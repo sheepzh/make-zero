@@ -99,7 +99,9 @@ class CryptorConfig implements Initializable {
     private updateBadge() {
         const version = this.config.cipherVersion
 
-        chrome.browserAction.setBadgeText({ text: version ? version + '' : '' })
+        chrome && chrome.browserAction
+            && chrome.browserAction.setBadgeText
+            && chrome.browserAction.setBadgeText({ text: version ? version + '' : '' })
     }
 
     public static getInstance(): CryptorConfig {

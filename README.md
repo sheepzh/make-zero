@@ -6,6 +6,8 @@
 
 > 语言属于未知。
 
+[![](https://img.shields.io/github/license/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
+
 ## 它是什么？
 
 MakeZero 是一个用于加密网络文本的 Chrome 插件。

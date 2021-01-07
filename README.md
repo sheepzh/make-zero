@@ -6,6 +6,7 @@
 
 [![](https://img.shields.io/badge/chrome-extension-red?style=flat-square)](chrome://extensions/)
 [![](https://img.shields.io/github/license/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
+[![](https://img.shields.io/badge/license-Anti%20996-blue?style=flat-square)](https://github.com/996icu/996.ICU)
 [![](https://img.shields.io/github/v/release/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
 [![](https://img.shields.io/github/release-date/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
 

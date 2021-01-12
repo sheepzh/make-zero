@@ -9,6 +9,7 @@
 [![](https://img.shields.io/badge/license-Anti%20996-blue?style=flat-square)](https://github.com/996icu/996.ICU)
 [![](https://img.shields.io/github/v/release/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
 [![](https://img.shields.io/github/release-date/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.make-zero)
 
 > 语言属于未知。
 

@@ -88,14 +88,14 @@ class CryptorComposite {
 }
 
 /**
- * abstract class of   ICryptor
+ * abstract class of cryptor
  * 
  * @author zhy
  * @since 1.1.1
  */
 export interface ICryptor {
   /**
-   * The version of   ICryptor
+   * The version of cryptor
    */
   version(): number
 

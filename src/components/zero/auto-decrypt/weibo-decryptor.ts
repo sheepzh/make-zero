@@ -7,7 +7,7 @@ export default class WeiboDecryptor extends AbstractAutoDecryptor {
   }
   handle(): void {
     swal.fire({
-      text: 'Sorry 啦，暂时还不支持微博自动解密哦！',
+      text: chrome.i18n.getMessage("message_unsupportedWeiboDecAuto"),
       toast: true,
       timer: 2000,
       position: 'center',

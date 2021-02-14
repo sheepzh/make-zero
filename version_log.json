@@ -1,6 +1,14 @@
 {
-  "1.1.2": {
+  "1.2.0": {
     "current": true,
+    "ts": "2021-02-14",
+    "name": "Robert Lowell",
+    "contents": [
+      "f",
+      "b"
+    ]
+  },
+  "1.1.2": {
     "ts": "2021-01-05",
     "name": "Li Shangyin-02",
     "contents": [

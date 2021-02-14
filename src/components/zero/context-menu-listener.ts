@@ -38,15 +38,15 @@ export default class ContextMenuListener implements IMessageListener {
         if (enOrD) {
             const txt = cryptor.encrypt(selectionText)
             copy(txt).then(() => {
-                _alert("密文已经复制到剪切板板！")
+                _alert(chrome.i18n.getMessage("message_encryptionSuccess"))
             }).catch((e: any) => {
                 console.log(e)
-                _alert("复制失败: " + txt)
+                _alert(chrome.i18n.getMessage("message_encryptionFail") + txt)
             })
         } else {
             const txt = cryptor.decrypt(selectionText)
             if (txt === selectionText) {
-                _alert('Sorry 啦，我不认识这个密文')
+                _alert(chrome.i18n.getMessage("message_unknownCipherText"))
             } else {
                 alert(txt)
                 copy(txt)

@@ -17,6 +17,16 @@ entry[background.script] = './src/background.ts'
 entry[contentListener.script] = './src/content-listener.ts'
 entry[contentScript.script] = './src/content-script.ts'
 
+// Generate json files 
+const generateJsonPlugins = [new GenerateJsonPlugin('manifest.json', manifest)]
+// @since 1.2.0 Resolve the locale json files
+const { chromeMessages } = require('./src/locale/index')
+for (const localeName in chromeMessages) {
+    const locale = chromeMessages[localeName]
+    generateJsonPlugins.push(new GenerateJsonPlugin(path.join("_locales", localeName, "messages.json"), locale))
+}
+
+
 module.exports = {
     entry: {
         ...entry,
@@ -31,7 +41,8 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanAfterEveryBuildPatterns: ["*.LICENSE.txt"] // remove the license txts
         }),
-        new GenerateJsonPlugin('manifest.json', manifest),
+        ...generateJsonPlugins,
+        // new GenerateJsonPlugin('manifest.json', manifest),
         new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }) // copy static resources
     ],
     module: {

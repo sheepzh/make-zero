@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-form label-position="left"
-             label-width="90px">
+             label-width="105px">
       <el-row :gutter="10">
         <el-col :span="12">
           <el-form-item>
             <template slot="label">
-              <span>{{$t('zero.auto.encryptLabel')}}</span>
+              <span>{{$t('setting.auto.encryptLabel')}}</span>
               <el-tooltip placement="top">
                 <div slot="content">
-                  <p>{{$t('zero.auto.encryptTip')}}</p>
+                  <p>{{$t('setting.auto.encryptTip')}}</p>
                 </div>
                 <i class="el-icon-question" />
               </el-tooltip>
@@ -21,10 +21,10 @@
         <el-col :span="12">
           <el-form-item>
             <template slot="label">
-              <span>{{$t('zero.auto.decryptLabel')}}</span>
+              <span>{{$t('setting.auto.decryptLabel')}}</span>
               <el-tooltip placement="top">
                 <div slot="content">
-                  <p>{{$t('zero.auto.decryptTip')}}</p>
+                  <p>{{$t('setting.auto.decryptTip')}}</p>
                 </div>
                 <i class="el-icon-question" />
               </el-tooltip>
@@ -34,7 +34,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item :label="$t('zero.password.title')">
+      <el-form-item :label="$t('setting.password.title')">
         <el-input v-model="password">
           <el-tooltip slot="append"
                       :content="$t('button.copy')">
@@ -44,12 +44,12 @@
           </el-tooltip>
         </el-input>
       </el-form-item>
-      <el-form-item :label="$t('zero.cipherType.label')">
+      <el-form-item :label="$t('setting.cipherType.label')">
         <el-select v-model="cipherVersion">
           <el-option v-for="i in maxVersion"
                      :value="i"
                      :key="i"
-                     :label="i+'. '+$t(`zero.cipherType.remark.${i}`)" />
+                     :label="i+'. '+$t(`setting.cipherType.remark.${i}`)" />
         </el-select>
       </el-form-item>
     </el-form>

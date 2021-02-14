@@ -1,17 +1,65 @@
-import zero from './zero/index'
-import version from './version/index'
-import button from './button'
-export default {
-  en: {
-    lang: { name: 'English' },
-    zero: zero.en,
-    version: version.en,
-    button: button.en
-  },
-  zhCn: {
-    lang: { name: '简体中文' },
-    zero: zero.zhCn,
-    version: version.zhCn,
-    button: button.zhCn
-  },
+const setting = require('./setting')
+const version = require('./version')
+const button = require('./button')
+const app = require('./app')
+const message = require('./message')
+const vueMessages = {
+    en: {
+        lang: { name: 'English' },
+        setting: setting.en,
+        version: version.en,
+        button: button.en,
+        app: app.en,
+        message: message.en
+    },
+    zh_CN: {
+        lang: { name: '简体中文' },
+        setting: setting.zh_CN,
+        version: version.zh_CN,
+        button: button.zh_CN,
+        app: app.zh_CN,
+        message: message.zh_CN
+    }
+}
+
+// Genearate the messages used by Chrome
+function translate (obj, parentKey = '') {
+    const result = {}
+    if (typeof obj === 'object') {
+        for (const key in obj) {
+            const val = obj[key]
+            // key of Chrome message
+            const messageKey = !!parentKey ? `${parentKey}_${key}` : key
+            children = translate(val, messageKey)
+            // copy from child
+            for (const childKey in children) {
+                result[childKey] = children[childKey]
+            }
+        }
+    } else {
+        result[parentKey] = {
+            message: obj + '',
+            description: 'None'
+        }
+    }
+    return result
+}
+const chromeMessages = {
+    // .e.g
+    // en: {
+    //     "lang.name": {
+    //         message: "English",
+    //         description: ""
+    //     }
+    // }
+}
+for (const localeName in vueMessages) {
+    const result = translate(vueMessages[localeName])
+    chromeMessages[localeName] = result
+}
+
+module.exports = {
+    vueMessages,
+    chromeMessages,
+    defaultLocale: 'zh_CN'
 }

@@ -1,15 +1,15 @@
-export default {
+module.exports = {
   en: {
     meta: { menu: 'Settings' },
     password: { title: 'Password' },
     auto: {
-      encryptLabel: 'Auto Enc.',
-      encryptTip: 'If the following switch is open, texts in the inputs of all the sites will be encrypted automaticly',
-      decryptLabel: 'Auto Dec.',
-      decryptTip: 'If the following switch is open, texts between the <p> tags all the sites will be decrypted automaticly'
+      encryptLabel: 'Auto-Enc.',
+      encryptTip: 'Encrypt plaintexts in the input box automatically.',
+      decryptLabel: 'Auto-Dec.',
+      decryptTip: 'Decrypt ciphertexts after pages loaded automatically.'
     },
     cipherType: {
-      label: 'Cipher Format',
+      label: 'Cipher',
       remark: {
         1: 'Fixed and short',
         2: 'Random and short',
@@ -17,7 +17,7 @@ export default {
       }
     }
   },
-  zhCn: {
+  zh_CN: {
     meta: { menu: '设置' },
     password: { title: '密码' },
     auto: {

@@ -1,14 +1,23 @@
-const { name, version, description, author, homepage } = require('../package.json')
+/**
+ * Build the manifest.json in chrome extension directory via this file
+ * 
+ * @author zhy
+ * @since 1.0.0
+ */
+const { name, version, author, homepage } = require('../package.json')
 const permissions = require('./chrome/config/permission')
 const background = require('./chrome/config/background')
 const contentListener = require('./chrome/config/content-listener')
 const contentScript = require('./chrome/config/content-script')
+const { defaultLocale } = require('./locale/index')
 
 module.exports = {
     name,
     version,
-    description,
+    // defined with i18n
+    description: '__MSG_app_description__',
     author,
+    default_locale: defaultLocale,
     permissions,
     homepage_url: homepage,
     background: {

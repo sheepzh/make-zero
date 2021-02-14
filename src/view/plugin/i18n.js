@@ -1,21 +1,27 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import messages from '../../locale/index'
+const { vueMessages, defaultLocale } = require('../../locale/index')
 Vue.use(VueI18n)
 
 /**
- * chrome codes at
- * https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc
+ * Codes returend by getUILanguage() are defined by Chrome browser
+ * @see https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc 
+ * But supported locale codes in Chrome extension
+ * @see https://developer.chrome.com/docs/webstore/i18n/#localeTable
+ * 
+ * They are different, so translate
  */
-const chromeLangCode = {
-  en: 'en',
-  zh: 'zhCn',
-  'zh-CN': 'zhCn',
+const chromeLocale2ExtensionLocale = chromeLocale => {
+  console.log('getUILanguage()', chromeLocale)
+  if (!chromeLocale) {
+    return undefined
+  }
+  return { 'zh-CN': 'zh_CN', 'zh-TW': 'zh_TW' }[chromeLocale] || chromeLocale
 }
 
 const option = {
-  messages,
-  locale: chromeLangCode[chrome.i18n.getUILanguage()] || 'zhCn',
+  messages: vueMessages,
+  locale: chromeLocale2ExtensionLocale(chrome.i18n.getUILanguage()) || defaultLocale,
 }
 
 export default new VueI18n(option)

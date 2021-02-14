@@ -50,7 +50,7 @@ export default class FloatAlert {
   }
 
   private createAlertText(): JQuery<HTMLElement> {
-    const floatAlert = $(`<p id="${idPrefix}alert-${this.roundId()}">双击</p>`)
+    const floatAlert = $(`<p id="${idPrefix}alert-${this.roundId()}">${chrome.i18n.getMessage('button_dbclick')}</p>`)
     floatAlert.css({
       fontFamily: "Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif",
       margin: "0 auto",

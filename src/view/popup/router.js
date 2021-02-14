@@ -9,8 +9,8 @@ const routes = [
     component: () => import('./home/index')
   },
   {
-    path: '/zero',
-    component: () => import('./zero/index'),
+    path: '/setting',
+    component: () => import('./setting/index'),
   },
 ]
 

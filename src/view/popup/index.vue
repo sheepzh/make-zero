@@ -31,8 +31,8 @@ export default {
     return {
       menu: [
         {
-          title: 'zero.meta.menu',
-          route: '/zero',
+          title: 'setting.meta.menu',
+          route: '/setting',
           icon: 'view'
         }
       ]

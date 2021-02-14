@@ -28,8 +28,4 @@ export default class AutoDecryptorComposite implements IDomCompleteHandler {
       }
     }
   }
-
-  private handle0() {
-
-  }
 }

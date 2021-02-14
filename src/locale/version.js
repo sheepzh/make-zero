@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   en: {
     "1_0_0": {
       "0": "Release really"
@@ -17,9 +17,13 @@ export default {
     "1_1_2": {
       "0": "Support lofter.com",
       "1": "Support ciphertext element inserted dymically"
+    },
+    "1_2_0": {
+      "0": "Internationalized, and both Chinese and English are supported.",
+      "1": "Errors occur while decrypting cypher-like texts."
     }
   },
-  zhCn: {
+  zh_CN: {
     "1_0_0": {
       "0": "终于发布啦！！"
     },
@@ -37,6 +41,10 @@ export default {
     "1_1_2": {
       "0": "支持 lofter.com",
       "1": "支持解密动态插入的密文块"
+    },
+    "1_2_0": {
+      "0": "新增国际化，支持简体中文和英文",
+      "1": "修复已知 bug"
     }
   }
 }

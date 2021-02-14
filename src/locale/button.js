@@ -1,10 +1,12 @@
-export default {
+module.exports = {
   en: {
     copy: 'Copy',
-    copied: 'Copied successfully'
+    copied: 'Copied successfully',
+    dbclick: 'Db-click'
   },
-  zhCn: {
+  zh_CN: {
     copy: '复制',
-    copied: '复制成功'
+    copied: '复制成功',
+    dbclick: '双击'
   }
 }

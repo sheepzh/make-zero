@@ -9,6 +9,7 @@
 [![](https://img.shields.io/badge/license-Anti%20996-blue?style=flat-square)](https://github.com/996icu/996.ICU)
 [![](https://img.shields.io/github/v/release/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
 [![](https://img.shields.io/github/release-date/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.make-zero)
 
 > 语言属于未知。
 
@@ -16,10 +17,12 @@
 
 MakeZero 是一个用于加密网络文本的 Chrome 插件。
 
+它能够加密你在微博，豆瓣或者博客等 SNS 社区中发送的任何文本内容，只有拥有相同密码的人能够解密。
+
+极大地方便了有相同共识的小群体能在微博/豆瓣等公共场所讨论~~国家大是~~ 🐶🐶🐶
+
 
 ## 它能做什么？
-
-它能够加密你在微博，豆瓣或者博客等 SNS 社区中发送的任何文本内容，只有拥有相同密码的人能够解密。
 
 + 文本加解密，支持多种方式：手动，自动，快捷加密。
 + 自定义密码，初次安装时缺省为 123456。

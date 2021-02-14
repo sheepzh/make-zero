@@ -67,7 +67,7 @@ class CryptorComposite {
     try {
       const version: number = Number.parseInt(versionStr)
       const cryptor: ICryptor = this.cryptorMap.get(version)
-      return cryptor
+      return cryptor ? cryptor : null
     } catch (e) {
       return null
     }

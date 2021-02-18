@@ -26,6 +26,12 @@ for (const localeName in chromeMessages) {
     generateJsonPlugins.push(new GenerateJsonPlugin(path.join("_locales", localeName, "messages.json"), locale))
 }
 
+// @since 1.2.1 build in alternative environments with different outputs
+const argv = process.argv
+// default is 'production'
+let mode = 'production'
+argv.filter(a => a.startsWith('--mode=')).map(a => a.substring(7)).forEach(a => mode = a)
+const output_path = { 'production': 'chrome_dir', 'development': 'dist_dev' }
 
 module.exports = {
     entry: {
@@ -33,7 +39,7 @@ module.exports = {
         'popup': './src/popup.js'
     },
     output: {
-        path: path.join(__dirname, './chrome_dir'),
+        path: path.join(__dirname, output_path[mode] || 'dist_dev'),
         filename: '[name].js',
     },
     plugins: [

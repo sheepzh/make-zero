@@ -10,8 +10,12 @@ const routes = [
   },
   {
     path: '/setting',
-    component: () => import('./setting/index'),
+    component: () => import('./setting/index')
   },
+  {
+    path: '/contact',
+    component: () => import('./contact/index')
+  }
 ]
 
 export default new VueRouter({ routes })

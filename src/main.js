@@ -14,7 +14,7 @@ const { defaultLocale } = require('./locale/index')
 module.exports = {
     name,
     version,
-    // defined with i18n
+    // @since 1.2.0 defined with i18n
     description: '__MSG_app_description__',
     author,
     default_locale: defaultLocale,

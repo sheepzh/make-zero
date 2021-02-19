@@ -1,3 +1,7 @@
 node_modules
 
 dist_dev
+
+server/main
+
+market_packages

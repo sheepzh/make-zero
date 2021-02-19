@@ -1,15 +1,31 @@
 const path = require('path')
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader-plugin')
+const FileManagerWebpackPlugin = require('filemanager-webpack-plugin')
 
 const manifest = require('./src/main.js')
 const background = require('./src/chrome/config/background')
 const contentListener = require('./src/chrome/config/content-listener')
 
 const contentScript = require('./src/chrome/config/content-script')
+const resolveEnv = require('./env')
 
+const { env, variables } = resolveEnv(__dirname)
+
+const { name, version } = require('./package.json')
+
+// @since 1.2.1 add url permission
+let api = variables.BASE_URL_API
+if (!!api && !!manifest.permissions) {
+    api = api.substring(1, api.length - 1)
+    if (!api.endsWith('/')) {
+        api += '/'
+    }
+    manifest.permissions.push(api)
+}
 
 const entry = {}
 // The output and input of the background.js
@@ -26,31 +42,51 @@ for (const localeName in chromeMessages) {
     generateJsonPlugins.push(new GenerateJsonPlugin(path.join("_locales", localeName, "messages.json"), locale))
 }
 
-// @since 1.2.1 build in alternative environments with different outputs
-const argv = process.argv
-// default is 'production'
-let mode = 'production'
-argv.filter(a => a.startsWith('--mode=')).map(a => a.substring(7)).forEach(a => mode = a)
-const output_path = { 'production': 'chrome_dir', 'development': 'dist_dev' }
+const plugins = [
+    new VueLoaderPlugin(),
+    new CleanWebpackPlugin({
+        cleanAfterEveryBuildPatterns: ["*.LICENSE.txt"] // remove the license txts
+    }),
+    ...generateJsonPlugins,
+    // new GenerateJsonPlugin('manifest.json', manifest),
+    new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }), // copy static resources
+    // Define environment variables
+    new webpack.DefinePlugin({
+        'process.env': {
+            ENV: env,
+            ...variables
+        }
+    })
+]
 
-module.exports = {
+if (env === 'production') {
+    // Define plugin to archive zip for differrent markets
+    const normalZipFilePath = `./market_packages/${name}-${version}.zip`
+    plugins.push(
+        new FileManagerWebpackPlugin({
+            events: {
+                // Archive at the end
+                onEnd: {
+                    delete: [normalZipFilePath],
+                    archive: [
+                        { source: './chrome_dir', destination: normalZipFilePath },
+                    ]
+                }
+            }
+        })
+    )
+}
+
+const options = {
     entry: {
         ...entry,
         'popup': './src/popup.js'
     },
     output: {
-        path: path.join(__dirname, output_path[mode] || 'dist_dev'),
+        path: path.join(__dirname, { 'production': 'chrome_dir', 'development': 'dist_dev' }[env] || 'dist_dev'),
         filename: '[name].js',
     },
-    plugins: [
-        new VueLoaderPlugin(),
-        new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ["*.LICENSE.txt"] // remove the license txts
-        }),
-        ...generateJsonPlugins,
-        // new GenerateJsonPlugin('manifest.json', manifest),
-        new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }) // copy static resources
-    ],
+    plugins,
     module: {
         rules: [
             {
@@ -83,3 +119,10 @@ module.exports = {
         extensions: [".tsx", '.ts', ".js", '.vue', 'css'],
     }
 }
+
+if (env === 'development') {
+    // no eval with development
+    options.devtool = 'cheap-module-source-map'
+}
+
+module.exports = options

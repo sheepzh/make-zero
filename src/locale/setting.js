@@ -18,7 +18,7 @@ module.exports = {
     }
   },
   zh_CN: {
-    meta: { menu: '设置' },
+    meta: { menu: '设置面板' },
     password: { title: '密码' },
     auto: {
       encryptLabel: '自动加密',

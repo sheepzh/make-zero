@@ -12,7 +12,6 @@ Vue.use(VueI18n)
  * They are different, so translate
  */
 const chromeLocale2ExtensionLocale = chromeLocale => {
-  console.log('getUILanguage()', chromeLocale)
   if (!chromeLocale) {
     return undefined
   }

@@ -28,14 +28,21 @@
 export default {
   name: "PopMain",
   data () {
+    const menu = [{
+      title: 'setting.meta.menu',
+      route: '/setting',
+      icon: 'setting'
+    }]
+    console.log(process.env.FEEDBACK_ENABLED)
+    if (process.env.FEEDBACK_ENABLED) {
+      menu.push({
+        title: 'contact.meta.menu',
+        route: '/contact',
+        icon: 'edit-outline'
+      })
+    }
     return {
-      menu: [
-        {
-          title: 'setting.meta.menu',
-          route: '/setting',
-          icon: 'view'
-        }
-      ]
+      menu
     }
   },
   methods: {

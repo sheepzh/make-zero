@@ -18,7 +18,8 @@ const { name, version } = require('./package.json')
 
 // @since 1.2.1 add url permission
 let api = variables.BASE_URL_API
-if (!!api && !!manifest.permissions) {
+let feedbackEnabled = variables.FEEDBACK_ENABLED
+if (!!api && !!manifest.permissions && feedbackEnabled === 'true') {
     api = api.substring(1, api.length - 1)
     if (!api.endsWith('/')) {
         api += '/'

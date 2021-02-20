@@ -4,7 +4,7 @@
  * @author zhy
  * @since 1.0.0
  */
-const { name, version, author, homepage } = require('../package.json')
+const { version, author, homepage } = require('../package.json')
 const permissions = require('./chrome/config/permission')
 const background = require('./chrome/config/background')
 const contentListener = require('./chrome/config/content-listener')
@@ -12,7 +12,7 @@ const contentScript = require('./chrome/config/content-script')
 const { defaultLocale } = require('./locale/index')
 
 module.exports = {
-    name,
+    name: '__MSG_app_name__',
     version,
     // @since 1.2.0 defined with i18n
     description: '__MSG_app_description__',

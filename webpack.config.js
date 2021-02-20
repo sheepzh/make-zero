@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader-plugin')
@@ -44,9 +43,6 @@ for (const localeName in chromeMessages) {
 
 const plugins = [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin({
-        cleanAfterEveryBuildPatterns: ["*.LICENSE.txt"] // remove the license txts
-    }),
     ...generateJsonPlugins,
     // new GenerateJsonPlugin('manifest.json', manifest),
     new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }), // copy static resources
@@ -60,18 +56,22 @@ const plugins = [
 ]
 
 if (env === 'production') {
-    // Define plugin to archive zip for differrent markets
     const normalZipFilePath = `./market_packages/${name}-${version}.zip`
+
     plugins.push(
         new FileManagerWebpackPlugin({
             events: {
                 // Archive at the end
-                onEnd: {
-                    delete: [normalZipFilePath],
-                    archive: [
-                        { source: './chrome_dir', destination: normalZipFilePath },
-                    ]
-                }
+                onEnd: [
+                    // delete license files
+                    { delete: ['./chrome_dir/*.LICENSE.txt'] },
+                    // Define plugin to archive zip for differrent markets
+                    {
+                        delete: [normalZipFilePath],
+                        archive: [
+                            { source: './chrome_dir', destination: normalZipFilePath },
+                        ]
+                    }]
             }
         })
     )
@@ -121,7 +121,7 @@ const options = {
 }
 
 if (env === 'development') {
-    // no eval with development
+    // no eval with development, but generate *.map.js
     options.devtool = 'cheap-module-source-map'
 }
 

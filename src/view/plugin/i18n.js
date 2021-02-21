@@ -3,6 +3,14 @@ import VueI18n from 'vue-i18n'
 const { vueMessages, defaultLocale } = require('../../locale/index')
 Vue.use(VueI18n)
 
+// Standardize the locale code according to the Chrome locale code
+const chrome2I18n = {
+  'zh-CN': 'zh_CN',
+  'zh-TW': 'zh_TW',
+  'en-US': 'en',
+  'en-GB': 'en'
+}
+
 /**
  * Codes returend by getUILanguage() are defined by Chrome browser
  * @see https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc 
@@ -15,7 +23,7 @@ const chromeLocale2ExtensionLocale = chromeLocale => {
   if (!chromeLocale) {
     return undefined
   }
-  return { 'zh-CN': 'zh_CN', 'zh-TW': 'zh_TW' }[chromeLocale] || chromeLocale
+  return chrome2I18n[chromeLocale] || chromeLocale
 }
 
 const option = {

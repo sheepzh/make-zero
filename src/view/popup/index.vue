@@ -33,7 +33,6 @@ export default {
       route: '/setting',
       icon: 'setting'
     }]
-    console.log(process.env.FEEDBACK_ENABLED)
     if (process.env.FEEDBACK_ENABLED) {
       menu.push({
         title: 'contact.meta.menu',

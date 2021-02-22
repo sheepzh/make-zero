@@ -3,6 +3,7 @@ import ContentEditablePasteHandler from "./components/common/content-editable-pa
 import AutoCryptorDomHanlder from './components/zero/auto-cryptor-dom-hanlder';
 import AutoDecryptorComposite from "./components/zero/auto-decrypt";
 import DomDecryptorComposite from './components/zero/dbclick'
+import ShortcutCryptor from "./components/zero/shortcut-cryptor";
 
 const handlers: IDomCompleteHandler[] = []
 
@@ -10,6 +11,7 @@ handlers.push(new ContentEditablePasteHandler("www.lofter.com"))
 handlers.push(new AutoCryptorDomHanlder())
 handlers.push(new AutoDecryptorComposite()) // AutoDecryptorComposite MUST be the front of DomDecryptorComposite
 handlers.push(new DomDecryptorComposite())
+handlers.push(new ShortcutCryptor())
 
 window.onload = () =>
     handlers.forEach(handler => {

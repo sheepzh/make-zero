@@ -21,6 +21,8 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 
 极大地方便了有相同共识的小群体能在微博/豆瓣等公共场所讨论~~国家大是~~ 🐶🐶🐶
 
+<u>**插件演示视频**</u>：[Make Zero | SNS 从加密开始](https://www.bilibili.com/video/BV1x54y1t7MR)
+
 
 ## 它能做什么？
 
@@ -31,6 +33,23 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 <div align="center">
   <img src="./doc/img/use-in-douban.gif">
 </div>
+
+## 如何编译？
+
+先确保已经安装 nodejs
+
+```shell
+git clone https://github.com/sheepzh/make-zero.git
+cd make-zero
+npm install
+
+# 开发环境编译，输出目录：dist_dev
+npm run build
+
+# 生产环境编译
+# 输出目录：chrome_dir，以及 node_modules (发布到各大插件商城的 zip，以及源码 zip)
+npm run build:prod
+```
 
 ## 如何安装？
 
@@ -59,18 +78,6 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 + 手动加/解密
   
   直接选中文字，点击右键弹出菜单，然后点击菜单项 make-zero -> 加/解密
-
-## 如何编译？
-
-先确保已经安装 nodejs
-
-```shell
-git clone https://github.com/sheepzh/make-zero.git
-cd make-zero
-npm install
-npm run build
-```
-输出目录为 ./chrome_dir
 
 ## 有什么好的建议吗？
 

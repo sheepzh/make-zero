@@ -37,7 +37,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
         const addedNodes: NodeList = mutation.addedNodes
         addedNodes.forEach(node => {
           const element: HTMLElement = node.parentElement
-          const needDeryct: boolean = '#text' === node.nodeName
+          const needDeryct: boolean = '#text' === node.nodeName && !!element
             && !element.getAttribute('contenteditable') // exclude the contenteditable elements
           if (needDeryct) {
             const cipher = node.textContent

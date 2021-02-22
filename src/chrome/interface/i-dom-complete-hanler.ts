@@ -1,5 +1,5 @@
 /**
- * Can be injected dynamicly in the background.js
+ * Can be injected dynamically in the background.js
  */
 export default interface IDomCompleteHandler {
     support(host: string, href: string): boolean

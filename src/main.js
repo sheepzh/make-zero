@@ -16,6 +16,11 @@ module.exports = {
     version,
     // @since 1.2.0 defined with i18n
     description: '__MSG_app_description__',
+    icons: {
+        "16": "static/images/icon.png",
+        "48": "static/images/icon.png",
+        "128": "static/images/icon.png"
+    },
     author,
     default_locale: defaultLocale,
     permissions,

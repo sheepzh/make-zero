@@ -19,8 +19,12 @@ module.exports = {
       "1": "Support ciphertext element inserted dymically"
     },
     "1_2_0": {
-      "0": "Internationalized, and both Chinese and English are supported.",
-      "1": "Errors occur while decrypting cypher-like texts."
+      "0": "Internationalized, and both Chinese and English are supported",
+      "1": "Errors occur while decrypting cypher-like texts"
+    },
+    "1_3_0": {
+      "0": "Change the logo",
+      "1": "Support Ctrl+Q to quickly encrypt and decrypt the selected text"
     }
   },
   zh_CN: {
@@ -45,6 +49,10 @@ module.exports = {
     "1_2_0": {
       "0": "新增国际化，支持简体中文和英文",
       "1": "修复已知 bug"
+    },
+    "1_3_0": {
+      "0": "支持Ctrl+Q快捷加解密选中的明文/密文",
+      "1": "更改图标和 Logo"
     }
   }
 }

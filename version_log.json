@@ -1,6 +1,14 @@
 {
-  "1.2.0": {
+  "1.3.0": {
     "current": true,
+    "name": "Baudelaire",
+    "ts": "2021-02-22",
+    "contents": [
+      "f",
+      "f"
+    ]
+  },
+  "1.2.0": {
     "ts": "2021-02-14",
     "name": "Robert Lowell",
     "contents": [

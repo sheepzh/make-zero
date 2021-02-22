@@ -28,6 +28,7 @@ const chromeLocale2ExtensionLocale = chromeLocale => {
 
 const option = {
   messages: vueMessages,
+  fallbackLocale: defaultLocale,
   locale: chromeLocale2ExtensionLocale(chrome.i18n.getUILanguage()) || defaultLocale,
 }
 

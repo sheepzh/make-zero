@@ -58,13 +58,17 @@ const plugins = [
 
 if (env === 'production') {
     const normalZipFilePath = `./market_packages/${name}-${version}.zip`
+    const sourceCodeForFireFox = `./market_packages/${name}-${version}-src.zip`
+
+    const srcDir = ['public', 'src', '.env.development', '.env.production', 'env.js', 'package.json', 'tsconfig.json', 'version_log.json', 'webpack.config.js']
+    const copyMapper = srcDir.map(path => { return { source: `./${path}`, destination: `./firefox/${path}` } })
 
     plugins.push(
         new FileManagerWebpackPlugin({
             events: {
                 // Archive at the end
                 onEnd: [
-                    // delete license files
+                    // Delete license files
                     { delete: ['./chrome_dir/*.LICENSE.txt'] },
                     // Define plugin to archive zip for differrent markets
                     {
@@ -72,7 +76,20 @@ if (env === 'production') {
                         archive: [
                             { source: './chrome_dir', destination: normalZipFilePath },
                         ]
-                    }]
+                    },
+                    // Archive srouce code for FireFox
+                    {
+                        copy: [
+                            { source: './doc/for-fire-fox.md', destination: './firefox/README.md' },
+                            { source: './doc/for-fire-fox.md', destination: './firefox/doc/for-fire-fox.md' },
+                            ...copyMapper
+                        ],
+                        archive: [
+                            { source: './firefox', destination: sourceCodeForFireFox },
+                        ],
+                        delete: ['./firefox']
+                    }
+                ]
             }
         })
     )

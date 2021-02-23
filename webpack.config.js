@@ -14,6 +14,10 @@ const resolveEnv = require('./env')
 
 const { env, variables } = resolveEnv(__dirname)
 
+const isDev = env === 'development'
+const isProd = env === 'production'
+
+
 const { name, version } = require('./package.json')
 
 // @since 1.2.1 add url permission
@@ -41,11 +45,16 @@ for (const localeName in chromeMessages) {
     const locale = chromeMessages[localeName]
     generateJsonPlugins.push(new GenerateJsonPlugin(path.join("_locales", localeName, "messages.json"), locale))
 }
+const manifestFirefoxName = 'manifest-firefox.json'
+if (isDev) {
+    // The manifest.json is different from Chrome's with add-on ID
+    const firefoxManifestGeneratePlugin = new GenerateJsonPlugin(manifestFirefoxName, { ...manifest, browser_specific_settings: { gecko: { id: 'make-zero@zhy' } } })
+    generateJsonPlugins.push(firefoxManifestGeneratePlugin)
+}
 
 const plugins = [
     new VueLoaderPlugin(),
     ...generateJsonPlugins,
-    // new GenerateJsonPlugin('manifest.json', manifest),
     new CopyWebpackPlugin({ patterns: [{ from: __dirname + '/public', to: './static' }] }), // copy static resources
     // Define environment variables
     new webpack.DefinePlugin({
@@ -56,7 +65,7 @@ const plugins = [
     })
 ]
 
-if (env === 'production') {
+if (isProd) {
     const normalZipFilePath = `./market_packages/${name}-${version}.zip`
     const sourceCodeForFireFox = `./market_packages/${name}-${version}-src.zip`
 
@@ -93,6 +102,24 @@ if (env === 'production') {
             }
         })
     )
+} else if (isDev) {
+    const firefoxDevDir = './firefox_dev'
+    // Generate FireFox dev files
+    plugins.push(new FileManagerWebpackPlugin({
+        events: {
+            onEnd: [
+                {
+                    copy: [
+                        { source: './dist_dev', destination: firefoxDevDir }
+                    ],
+                    delete: [`./dist_dev/${manifestFirefoxName}`, `${firefoxDevDir}/manifest.json`],
+                    move: [
+                        { source: `${firefoxDevDir}/${manifestFirefoxName}`, destination: `${firefoxDevDir}/manifest.json` }
+                    ]
+                }
+            ]
+        }
+    }))
 }
 
 const options = {
@@ -138,7 +165,7 @@ const options = {
     }
 }
 
-if (env === 'development') {
+if (isDev) {
     // no eval with development, but generate *.map.js
     options.devtool = 'cheap-module-source-map'
 }

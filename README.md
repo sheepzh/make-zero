@@ -54,18 +54,6 @@ npm run build
 npm run build:prod
 ```
 
-## 如何安装？
-
-1. 克隆或者下载解压该项目。
-
-2. 在 Chrome 的地址栏输入：***chrome://extensions/*** 。
-
-3. 点击 ***加载已解压项目*** 按钮，选择项目目录下的 **chrome_dir** 文件夹。
-
-<div align=center>
-  <img src="./doc/img/install.gif" />
-</div>
-
 ## 如何使用？
 
 + 插件设置

@@ -25,6 +25,9 @@ module.exports = {
     "1_3_0": {
       "0": "Change the logo",
       "1": "Support Ctrl+Q to quickly encrypt and decrypt the selected text"
+    },
+    "1_3_1": {
+      "0": "Fix manual decription bug caused by FireFox's bug"
     }
   },
   zh_CN: {
@@ -53,6 +56,9 @@ module.exports = {
     "1_3_0": {
       "0": "支持Ctrl+Q快捷加解密选中的明文/密文",
       "1": "更改图标和 Logo"
+    },
+    "1_3_1": {
+      "0": "修复由火狐浏览器自身 bug 导致手动解密失败的问题"
     }
   }
 }

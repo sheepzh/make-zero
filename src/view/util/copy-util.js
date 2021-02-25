@@ -1,4 +1,4 @@
-const copy0 = require('clipboard-copy')
+import { write as copy0 } from 'clipboardy'
 export default function copy (txt, vueContext) {
   copy0(txt).then(r => {
     vueContext.$notify({

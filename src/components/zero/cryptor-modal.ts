@@ -3,7 +3,7 @@
  */
 
 import cryptor from './cryptor'
-import copy = require('clipboard-copy')
+import { write as copy } from 'clipboardy'
 import sweetAlert from 'sweetalert2'
 
 const _alert = (text: string) => sweetAlert.fire({

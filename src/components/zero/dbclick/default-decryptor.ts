@@ -2,6 +2,8 @@ import cryptor from "../cryptor"
 import FloatAlert from "./float-alert"
 import $ = require('jquery')
 import AbstractDomDecryptor from "./abstract-dom-decryptor"
+import { CIPHER_ATTR_NAME } from "."
+
 
 export default class DefaultDecryptor extends AbstractDomDecryptor {
   private static ELE_TYPES_2_LISTEN = ['span', 'p', 'pre']
@@ -22,7 +24,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
   private addListener(selecotor: JQuery) {
     const _this_ = this
     selecotor.filter((index: number, el: HTMLElement) => {
-      const support = cryptor.support(el.innerText)
+      const support = el.hasAttribute(CIPHER_ATTR_NAME) || cryptor.support(el.innerText)
       if (support && !super.hasMarked(el)) {
         super.mark(el)
       }

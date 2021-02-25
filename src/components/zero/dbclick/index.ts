@@ -4,6 +4,13 @@ import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'
 
 /**
+ * Mark the ciphertext element with attr. 
+ * 
+ * @since 1.4.0
+ */
+export const CIPHER_ATTR_NAME = 'make-zero-ciphertext'
+
+/**
  * Show the float button while the user moves its mouse on <p> tags within ciphertexts
  * @author zhy
  */

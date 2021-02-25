@@ -36,7 +36,7 @@
   "dependencies": {
     "@types/chrome": "0.0.126",
     "axios": "^0.21.1",
-    "clipboard-copy": "^4.0.1",
+    "clipboardy": "^2.3.0",
     "element-ui": "^2.14.1",
     "filemanager-webpack-plugin": "^3.1.0",
     "jquery": "^3.5.1",

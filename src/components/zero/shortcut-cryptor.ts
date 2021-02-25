@@ -19,7 +19,6 @@ export default class ShortcutCryptor implements IDomCompleteHandler {
       if (ev.defaultPrevented) {
         return
       }
-      console.log(ev.key)
       if (ev.ctrlKey && ev.key === ",") {
         const selectionText = getSelectionText()
         // Try to decrypt first.

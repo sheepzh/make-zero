@@ -3,7 +3,8 @@
     <el-aside>
       <el-menu :default-active="$route.path"
                class="menu">
-        <el-menu-item @click="openMenu('/')">
+        <el-menu-item @click="openMenu('/setting')"
+                      index="/setting">
           <h2>MAKE ZERO</h2>
         </el-menu-item>
         <el-menu-item v-for="({title,route,icon}) in menu"
@@ -13,6 +14,13 @@
           <i :class="`el-icon-${icon}`"></i>
           <span slot="title">
             {{ $t(title) }}
+          </span>
+        </el-menu-item>
+        <el-menu-item @click="openGuide()"
+                      index="/guide">
+          <i :class="`el-icon-notebook-1`"></i>
+          <span slot="title">
+            {{ $t('guide.meta.menu') }}
           </span>
         </el-menu-item>
       </el-menu>
@@ -25,14 +33,17 @@
   </el-container>
 </template>
 <script>
+import { openGuide } from '../../components/common/guide-opener'
 export default {
-  name: "PopMain",
+  name: "PopUpMain",
   data () {
-    const menu = [{
-      title: 'setting.meta.menu',
-      route: '/setting',
-      icon: 'setting'
-    }]
+    const menu = [
+      {
+        title: 'version.meta.menu',
+        route: '/version',
+        icon: 'date'
+      }
+    ]
     if (process.env.FEEDBACK_ENABLED) {
       menu.push({
         title: 'contact.meta.menu',
@@ -49,6 +60,9 @@ export default {
       if (this.$route.path !== route) {
         this.$router.push(route)
       }
+    },
+    openGuide () {
+      openGuide()
     }
   }
 }

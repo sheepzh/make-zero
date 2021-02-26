@@ -40,7 +40,7 @@ const version = require('../../../../version_log.json')
 import copy from '../../util/copy-util'
 
 export default {
-  name: 'Home',
+  name: 'Version',
   data () {
     return {
       icons: { f: 'star-on', b: 'warning-outline' },

@@ -47,6 +47,14 @@ class CryptorConfig implements Initializable {
     }
 
     /**
+     * @since 1.4.0
+     */
+    public getConfig(callback?: Function): any {
+        this.init((config: any) => callback && callback(!!config))
+        return this.config
+    }
+
+    /**
      * @since 1.1.0
      */
     public changeAutoDecrypt(autoDecrypt: boolean) {

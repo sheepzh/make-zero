@@ -17,7 +17,6 @@ const { env, variables } = resolveEnv(__dirname)
 const isDev = env === 'development'
 const isProd = env === 'production'
 
-
 const { name, version } = require('./package.json')
 
 // @since 1.2.1 add url permission
@@ -36,6 +35,7 @@ const entry = {}
 entry[background.script] = './src/background.ts'
 entry[contentListener.script] = './src/content-listener.ts'
 entry[contentScript.script] = './src/content-script.ts'
+
 
 // Generate json files 
 const generateJsonPlugins = [new GenerateJsonPlugin('manifest.json', manifest)]
@@ -125,7 +125,8 @@ if (isProd) {
 const options = {
     entry: {
         ...entry,
-        'popup': './src/popup.js'
+        'popup': './src/view/popup/index.js',
+        'guide': './src/view/guide/index.js'
     },
     output: {
         path: path.join(__dirname, { 'production': 'chrome_dir', 'development': 'dist_dev' }[env] || 'dist_dev'),

@@ -9,7 +9,7 @@ module.exports = {
       decryptTip: 'Decrypt ciphertexts after pages loaded automatically.'
     },
     cipherType: {
-      label: 'Cipher',
+      label: 'Ciphertext',
       remark: {
         1: 'Fixed and short',
         2: 'Random and short',

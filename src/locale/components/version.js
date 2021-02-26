@@ -1,5 +1,6 @@
 module.exports = {
   en: {
+    meta: { menu: "Versions" },
     "1_0_0": {
       "0": "Release really"
     },
@@ -28,9 +29,13 @@ module.exports = {
     },
     "1_3_1": {
       "0": "Fix manual decription bug caused by FireFox's bug"
+    },
+    "1_4_0": {
+      "0": "Add guide page."
     }
   },
   zh_CN: {
+    meta: { menu: "更新历史" },
     "1_0_0": {
       "0": "终于发布啦！！"
     },
@@ -59,6 +64,9 @@ module.exports = {
     },
     "1_3_1": {
       "0": "修复由火狐浏览器自身 bug 导致手动解密失败的问题"
+    },
+    "1_4_0": {
+      "0": "增加引导页。"
     }
   }
 }

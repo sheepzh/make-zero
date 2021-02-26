@@ -1,10 +1,12 @@
 import ContextMenuListener from './components/zero/context-menu-listener'
 
+console.log(chrome)
+
 export class MenuDefine {
   create() {
     chrome.contextMenus.create({
       type: 'normal',
-      title: '解密',
+      title: chrome.i18n.getMessage('contextMenu_decrypt'),
       id: 'Zero-encryt',
       contexts: ['all'],
       onclick: (info, tab) => {
@@ -16,7 +18,7 @@ export class MenuDefine {
 
     chrome.contextMenus.create({
       type: 'normal',
-      title: '加密',
+      title: chrome.i18n.getMessage('contextMenu_encrypt'),
       id: 'Zero-decrypt',
       contexts: ['all'],
       onclick: (info, tab) => {

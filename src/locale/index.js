@@ -1,9 +1,11 @@
-const setting = require('./setting')
-const version = require('./version')
-const button = require('./button')
-const app = require('./app')
-const message = require('./message')
-const contact = require('./contact')
+const setting = require('./components/setting')
+const version = require('./components/version')
+const button = require('./components/button')
+const app = require('./components/app')
+const message = require('./components/message')
+const contact = require('./components/contact')
+const guide = require('./components/guide')
+const contextMenu = require('./components/contextMenu')
 const vueMessages = {
     en: {
         lang: { name: 'English' },
@@ -12,7 +14,9 @@ const vueMessages = {
         button: button.en,
         app: app.en,
         message: message.en,
-        contact: contact.en
+        contact: contact.en,
+        guide: guide.en,
+        contextMenu: contextMenu.en
     },
     zh_CN: {
         lang: { name: '简体中文' },
@@ -21,7 +25,9 @@ const vueMessages = {
         button: button.zh_CN,
         app: app.zh_CN,
         message: message.zh_CN,
-        contact: contact.zh_CN
+        contact: contact.zh_CN,
+        guide: guide.zh_CN,
+        contextMenu: contextMenu.zh_CN
     }
 }
 

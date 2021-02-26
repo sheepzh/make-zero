@@ -4,11 +4,12 @@ import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'
 
 /**
- * Mark the ciphertext element with attr. 
+ * Mark the ciphertext and plaintext element with attr. 
  * 
  * @since 1.4.0
  */
 export const CIPHER_ATTR_NAME = 'make-zero-ciphertext'
+export const PLAIN_ATTR_NAME = 'make-zero-plaintext'
 
 /**
  * Show the float button while the user moves its mouse on <p> tags within ciphertexts

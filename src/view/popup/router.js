@@ -6,11 +6,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('./home/index')
+    redirect: '/setting'
   },
   {
     path: '/setting',
     component: () => import('./setting/index')
+  },
+  {
+    path: '/version',
+    component: () => import('./version/index')
   },
   {
     path: '/contact',

@@ -23,7 +23,7 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 
 <u>**插件演示视频**</u>：[Make Zero | SNS 从加密开始](https://www.bilibili.com/video/BV1x54y1t7MR)
 
-<u>**下载地址**</u>: Chrome(审核中) Edge(审核中) [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
+<u>**下载地址**</u>: [Google Chrome](https://chrome.google.com/webstore/detail/make-zero/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN) [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gkjmpdoddilgcfoeokeajfecogaaocol) [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
 
 
 ## 它能做什么？

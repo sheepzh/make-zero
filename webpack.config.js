@@ -10,9 +10,8 @@ const background = require('./src/chrome/config/background')
 const contentListener = require('./src/chrome/config/content-listener')
 
 const contentScript = require('./src/chrome/config/content-script')
-const resolveEnv = require('./env')
 
-const { env, variables } = resolveEnv(__dirname)
+const { env, variables } = require('./env')(__dirname)
 
 const isDev = env === 'development'
 const isProd = env === 'production'

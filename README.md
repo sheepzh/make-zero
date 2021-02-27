@@ -76,7 +76,3 @@ npm run build:prod
 
 
 如果对你有帮助，请 star 噢！  
-
-微信群
-
-![Image text](./doc/img/qrcode.jpg)

@@ -4,7 +4,7 @@ module.exports = {
     description: 'Encrypt & decrypt your texts in any site.'
   },
   zh_CN: {
-    name: "Make Zero",
+    name: "Make Zero - 文字加密器",
     description: '便捷地加解密你在社交网站上的文字发言，只有拥有相同密码的人才能阅读。'
   }
 }

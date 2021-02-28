@@ -1,6 +1,6 @@
 <template>
   <div class="guide-container">
-    <h2>{{ $t('guide.autoEncryption.title') }}</h2>
+    <h2>{{ $t('guide.autoDecryption.title') }}</h2>
     <el-alert :type="on?'success':'warning'">
       {{ $t(`guide.autoDecryption.${on?'alertIfOn':'alertIfOff'}`) }}
     </el-alert>

@@ -32,6 +32,9 @@ module.exports = {
     },
     "1_4_0": {
       "0": "Add guide page."
+    },
+    "1_4_1": {
+      "0": "Optimize package size."
     }
   },
   zh_CN: {
@@ -67,6 +70,9 @@ module.exports = {
     },
     "1_4_0": {
       "0": "增加引导页。"
+    },
+    "1_4_1": {
+      "0": "优化安装包体积。"
     }
   }
 }

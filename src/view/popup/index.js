@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Popup from './AppMain'
-import '../plugin/element-ui'
+import './element'
 import i18n from '../plugin/i18n'
 import router from './router'
 

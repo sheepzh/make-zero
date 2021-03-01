@@ -1,24 +1,22 @@
 /**
  * Reconstructed @since 1.3.0
  */
-
 import cryptor from './cryptor'
 import { write as copy } from 'clipboardy'
-import sweetAlert from 'sweetalert2'
+/**
+ * Replace sweetalert2 with element-ui
+ * @since 1.4.1 
+ */
+import { Message, MessageBox } from 'element-ui'
+import { MessageType } from 'element-ui/types/message'
+import 'element-ui/lib/theme-chalk/message-box.css'
+import 'element-ui/lib/theme-chalk/message.css'
 
-const _alert = (text: string) => sweetAlert.fire({
-  text,
-  toast: true,
-  timer: 2000,
-  position: 'center',
-  showConfirmButton: false
-})
+const _alert = (message: string, type: MessageType) => Message({ message, duration: 2000, type })
 
-const alert = (text: string) => sweetAlert.fire({
-  text,
-  position: "center"
-})
+const success = (message: string) => _alert(message, 'success')
 
+const error = (message: string) => _alert(message, 'error')
 /**
  * Encrypt the plaintext and copy to the clipboard
  * 
@@ -27,10 +25,10 @@ const alert = (text: string) => sweetAlert.fire({
 export function encryptAndMessage(plaintext: string) {
   const txt = cryptor.encrypt(plaintext)
   copy(txt).then(() => {
-    _alert(chrome.i18n.getMessage("message_encryptionSuccess"))
+    success(chrome.i18n.getMessage("message_encryptionSuccess"))
   }).catch((e: any) => {
     console.log(e)
-    _alert(chrome.i18n.getMessage("message_encryptionFail") + txt)
+    error(chrome.i18n.getMessage("message_encryptionFail") + txt)
   })
 }
 
@@ -46,12 +44,21 @@ export function decryptAndMessage(ciphertext: string, showError: boolean): boole
   const txt = cryptor.decrypt(ciphertext)
   if (txt === ciphertext) {
     if (showError) {
-      _alert(chrome.i18n.getMessage("message_unknownCipherText"))
+      error(chrome.i18n.getMessage("message_unknownCipherText"))
     }
     return false
   } else {
-    alert(txt)
-    copy(txt)
+    MessageBox({
+      title: chrome.i18n.getMessage('message_decryptionResult'),
+      message: txt,
+      type: 'success',
+      showCancelButton: true,
+      confirmButtonText: chrome.i18n.getMessage('button_copy')
+    }).then(() => {
+      copy(txt)
+        .then(() => success(chrome.i18n.getMessage("message_decryptionCopied")))
+        .catch(() => error(chrome.i18n.getMessage("message_decryptionCopyFailed")))
+    }).catch(() => { })
     return true
   }
 }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Guide from './AppMain'
 import i18n from '../plugin/i18n'
-import '../plugin/element-ui'
+import './element'
 import router from './router'
 
 import './styles/index.scss' // global css

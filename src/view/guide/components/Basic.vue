@@ -79,7 +79,6 @@
   </div>
 </template>
 <script>
-import sweetAlert from 'sweetalert2'
 import cryptorConfig from '../../../components/zero/cryptor-config'
 import { read as readClipboard } from 'clipboardy'
 import cryptor from '../../../components/zero/cryptor'
@@ -113,12 +112,10 @@ export default {
       readClipboard().then(content => {
         this.ciphertext = content || ''
       }).catch(e => {
-        sweetAlert.fire({
-          text: this.$t('guide.basic.pasteError'),
-          toast: true,
-          timer: 2000,
-          position: 'center',
-          showConfirmButton: false
+        this.$message({
+          message: this.$t('guide.basic.pasteError'),
+          duration: 2000,
+          type: 'error'
         })
       })
     },

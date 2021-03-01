@@ -137,7 +137,14 @@ const options = {
             {
                 test: /\.tsx?$/,
                 exclude: '/node_modules/',
-                use: ['ts-loader']
+                use: ['ts-loader', {
+                    loader: 'ui-component-loader',
+                    options: {
+                        'element-ui': {
+                            'camel2': '-'
+                        }
+                    }
+                }]
 
             }, {
                 test: /\.css$/,
@@ -154,9 +161,20 @@ const options = {
                 exclude: /node_modules/,
                 use: ['vue-loader']
             }, {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: [path.join(__dirname, '..', 'src'), path.join(__dirname, '..', 'test')],
+                test: /\.m?js$/,
+                exclude: /(node_modules)/,
+                use:
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            ['import', {
+                                "libraryName": "element-ui",
+                                "style": false,   // or 'css'
+                            }]
+                        ]
+                    }
+                }
             }
         ]
     },

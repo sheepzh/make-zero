@@ -24,7 +24,12 @@ export function getSelectionText(): string {
   // @2020/01/04 v1.1.2, fix the text in the iframes cant be encrypted/decrypted 
   const iframe = document.getElementsByTagName('iframe')
   for (let index = 0; index < iframe.length && !selectionText; index++) {
-    selectionText = iframe[index].contentWindow.getSelection().toString()
+    try {
+      selectionText = iframe[index].contentWindow.getSelection().toString()
+    } catch {
+      // @2020/03/15 v1.4.2, fix erros caused by same-origin policy
+      // do nothing
+    }
   }
   return selectionText
 }

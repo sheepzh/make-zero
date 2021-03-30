@@ -50,7 +50,7 @@ npm install
 npm run build
 
 # 生产环境编译
-# 输出目录：chrome_dir，以及 node_modules (发布到各大插件商城的 zip，以及源码 zip)
+# 输出目录：chrome_dir，以及 market_packages (发布到各大插件商城的 zip，以及源码 zip)
 npm run build:prod
 ```
 
@@ -58,9 +58,7 @@ npm run build:prod
 
 + 插件设置
 
-  1. 点击 Chrome 右上角的插件按钮，固定 MakeZero 插件。如果熟悉插件使用可省略该步骤。
-
-  2. 点击 MakeZero 的小图标打开主面板，点击菜单进入 **文本加密** 设置界面。可在该界面修改密码，以及是否自动加/解密，修改完成之后请刷新网页或重启浏览器。
+ 点击 MakeZero 的小图标打开主面板。可在该界面修改密码，以及是否自动加/解密，修改完成之后请刷新网页。
 
 + 自动加密
 
@@ -68,7 +66,7 @@ npm run build:prod
 
 + 手动加/解密
   
-  直接选中文字，点击右键弹出菜单，然后点击菜单项 make-zero -> 加/解密
+  直接选中文字，点击右键弹出菜单，然后点击菜单项 make-zero -> 加/解密。或者使用快捷键 Ctrl + ,
 
 ## 有什么好的建议吗？
 

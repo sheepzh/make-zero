@@ -1,6 +1,7 @@
 import cryptorConfig from "../cryptor-config"
 import Cryptor1 from './cryptor1'
 import Cryptor2 from './cryptor2'
+import Cryptor3 from "./cryptor3"
 
 /**
  * The set of cryptors with different version
@@ -15,7 +16,8 @@ class CryptorComposite {
 
   constructor() {
     this.register(new Cryptor1())
-    this.latest = this.register(new Cryptor2())
+    this.register(new Cryptor2())
+    this.latest = this.register(new Cryptor3())
   }
 
   private register(cryptor: ICryptor): ICryptor {

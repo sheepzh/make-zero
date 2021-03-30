@@ -25,7 +25,7 @@ module.exports = {
     },
     "1_3_0": {
       "0": "Change the logo",
-      "1": "Support Ctrl+Q to quickly encrypt and decrypt the selected text"
+      "1": "Support Ctrl+, to quickly encrypt and decrypt the selected text"
     },
     "1_3_1": {
       "0": "Fix manual decription bug caused by FireFox's bug"
@@ -36,8 +36,9 @@ module.exports = {
     "1_4_1": {
       "0": "Optimize package size."
     },
-    "1_4_2": {
-      "0": "Fix bugs on www.tumblr.com"
+    "1_5_0": {
+      "0": "Support new ciphertext format: morse code",
+      "1": "Needn't refresh pages any more after settings changed"
     }
   },
   zh_CN: {
@@ -65,7 +66,7 @@ module.exports = {
       "1": "修复已知 bug"
     },
     "1_3_0": {
-      "0": "支持Ctrl+Q快捷加解密选中的明文/密文",
+      "0": "支持Ctrl+,快捷加解密选中的明文/密文",
       "1": "更改图标和 Logo"
     },
     "1_3_1": {
@@ -79,6 +80,10 @@ module.exports = {
     },
     "1_4_2": {
       "0": "修复 www.tumblr.com 上的一些 bug"
+    },
+    "1_5_0": {
+      "0": "支持新的密文风格：摩斯码",
+      "1": "修改设置信息后不用再刷新页面"
     }
   }
 }

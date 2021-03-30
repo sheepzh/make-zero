@@ -1,7 +1,6 @@
 import { ICryptor } from ".";
 import Cryptor1 from "./cryptor1";
-import Salt from "./salt";
-import { password2Number, toUnicodeArray } from "./util";
+import { password2Number, ring } from "./algorithm/string-process";
 
 /**
  * The second version of cryptor
@@ -23,26 +22,85 @@ export default class Cryptor2 extends Cryptor1 implements ICryptor {
   }
 
   encript(plain: string, password: string): string {
-    const charArr: Array<number> = toUnicodeArray(plain)
-
     let pn: number = password2Number(password)
     const salt: Salt = new Salt()
     salt.calcSalt(pn)
     pn = salt.getNewPn()
 
-    const cipher = charArr.map(value => value ^ pn).map(c => String.fromCharCode(c)).join("")
-    return salt.getPrefix() + cipher
+    const cipher = ring(pn, plain)
+    return String.fromCharCode(salt.getPrefixUnicode()) + cipher
   }
 
   decrypt(cipher: string, password: string): string {
     let pn: number = password2Number(password)
 
     const salt: Salt = new Salt()
-    salt.parseSalt(pn, cipher)
+    salt.parseSalt(pn, cipher.charCodeAt(0))
     pn = salt.getNewPn()
 
-    const charArr: Array<number> = toUnicodeArray(cipher.substring(1))
+    return ring(pn, cipher.substring(1))
+  }
+}
 
-    return charArr.map(value => value ^ pn).map(c => String.fromCharCode(c)).join("")
+
+/**
+ * Salt for ramdon cipher
+ * 
+ * @since 1.1.1
+ */
+class Salt {
+  private static ZERO_BASE = 0x4e00
+  private static MASK_SEGMENT = [7, 15, 31, 63, 127, 255]
+  private static ZH_LENGTH = 1 << 10 // = 1024
+
+  mask: number
+  salt: number
+  pn: number
+
+  /**
+   * Generate salt
+   * 
+   * @param pn 
+   */
+  calcSalt(pn: number): void {
+    this.pn = pn
+    this.calcMask()
+    while (!this.isValid()) {
+      this.circle()
+    }
+  }
+
+  parseSalt(pn: number, cipherSaltCode: number) {
+    this.pn = pn
+    this.calcMask()
+    this.salt = (cipherSaltCode - Salt.ZERO_BASE) * (this.mask + 1) / Salt.ZH_LENGTH
+  }
+
+  private isValid(): boolean {
+    return !!this.getNewPn()  // newPn != 0      
+  }
+
+  private circle() {
+    this.salt = new Date().getTime() & this.mask
+  }
+
+  private calcMask() {
+    let mask: number
+    for (let i = 0; i < Salt.MASK_SEGMENT.length; i++) {
+      mask = Salt.MASK_SEGMENT[i]
+      if (this.pn < mask) {
+        this.mask = mask
+        break
+      }
+    }
+    this.mask = mask
+  }
+
+  getNewPn(): number {
+    return this.pn + this.salt
+  }
+
+  getPrefixUnicode(): number {
+    return (this.salt * Salt.ZH_LENGTH / (this.mask + 1)) + Salt.ZERO_BASE
   }
 }

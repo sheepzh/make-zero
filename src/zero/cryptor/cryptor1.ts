@@ -1,5 +1,5 @@
 import { ICryptor } from '.'
-import { password2Number, toUnicodeArray } from './util'
+import { password2Number, ring } from './algorithm/string-process'
 
 /**
  * The first cryptor
@@ -23,13 +23,8 @@ export default class Cryptor1 implements ICryptor {
     return this.ring(cipher, password)
   }
 
-  /**
-   * Ring with XOR
-   * 
-   * @param msg msg
-   */
   private ring(msg: string, psw: string): string {
     const pn = password2Number(psw)
-    return toUnicodeArray(msg).map(mn => mn ^ pn).map(cn => String.fromCharCode(cn)).join("")
+    return ring(pn, msg)
   }
 }

@@ -13,7 +13,7 @@ module.exports = {
       remark: {
         1: 'Fixed and short',
         2: 'Random and short',
-        3: 'One natural language'
+        3: 'Morse code'
       }
     }
   },
@@ -31,7 +31,7 @@ module.exports = {
       remark: {
         1: '等长唯一',
         2: '等长随机',
-        3: '自然语言'
+        3: '摩斯码'
       }
     }
   },

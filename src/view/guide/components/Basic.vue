@@ -79,10 +79,10 @@
   </div>
 </template>
 <script>
-import cryptorConfig from '../../../components/zero/cryptor-config'
+import cryptorConfig from '../../../zero/cryptor-config'
 import { read as readClipboard } from 'clipboardy'
-import cryptor from '../../../components/zero/cryptor'
-import { CIPHER_ATTR_NAME } from '../../../components/zero/dbclick'
+import cryptor from '../../../zero/cryptor'
+import { CIPHER_ATTR_NAME } from '../../../zero/dbclick'
 export default {
   name: 'Basic',
   data () {

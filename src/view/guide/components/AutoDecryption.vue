@@ -12,10 +12,9 @@
   </div>
 </template>
 <script>
-import cryptor from '../../../components/zero/cryptor'
-import { CIPHER_ATTR_NAME, PLAIN_ATTR_NAME } from '../../../components/zero/dbclick'
-
-import cryptorConfig from '../../../components/zero/cryptor-config'
+import cryptor from '../../../zero/cryptor'
+import { CIPHER_ATTR_NAME, PLAIN_ATTR_NAME } from '../../../zero/dbclick'
+import cryptorConfig from '../../../zero/cryptor-config'
 export default {
   name: "Auto-decryption",
   data () {

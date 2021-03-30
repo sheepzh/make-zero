@@ -1,47 +1,10 @@
-import { ICryptor } from ".";
-import Cryptor1 from "./cryptor1";
 
 /**
- * The second version of cryptor
+ * Salt for ramdon cipher
  * 
- * New features:
- *  randomize the ciphertext
- * 
- * @author zhy
  * @since 1.1.1
  */
-export default class Cryptor2 extends Cryptor1 implements ICryptor {
-
-  version(): number {
-    return 2
-  }
-
-  encript(plain: string, password: string): string {
-    const charArr: Array<number> = super.toUnicodeArray(plain)
-
-    let pn: number = super.getPasswordNumber(password)
-    const salt: Salt = new Salt()
-    salt.calcSalt(pn)
-    pn = salt.getNewPn()
-
-    const cipher = charArr.map(value => value ^ pn).map(c => String.fromCharCode(c)).join("")
-    return salt.getPrefix() + cipher
-  }
-
-  decrypt(cipher: string, password: string): string {
-    let pn: number = super.getPasswordNumber(password)
-
-    const salt: Salt = new Salt()
-    salt.parseSalt(pn, cipher)
-    pn = salt.getNewPn()
-
-    const charArr: Array<number> = super.toUnicodeArray(cipher.substring(1))
-
-    return charArr.map(value => value ^ pn).map(c => String.fromCharCode(c)).join("")
-  }
-}
-
-class Salt {
+export default class Salt {
   private static ZERO_BASE = 0x4e00
   private static MASK_SEGMENT = [7, 15, 31, 63, 127, 255]
   private static ZH_LENGTH = 1 << 10 // = 1024

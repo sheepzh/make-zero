@@ -1,6 +1,4 @@
-import ContextMenuListener from './components/zero/context-menu-listener'
-
-console.log(chrome)
+import ContextMenuListener from './zero/context-menu-listener'
 
 export class MenuDefine {
   create() {

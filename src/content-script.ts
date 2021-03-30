@@ -1,9 +1,9 @@
 import IDomCompleteHandler from "./chrome/interface/i-dom-complete-hanler";
-import ContentEditablePasteHandler from "./components/common/content-editable-paste-handler";
-import AutoCryptorDomHanlder from './components/zero/auto-cryptor-dom-hanlder';
-import AutoDecryptorComposite from "./components/zero/auto-decrypt";
-import DomDecryptorComposite from './components/zero/dbclick'
-import ShortcutCryptor from "./components/zero/shortcut-cryptor";
+import ContentEditablePasteHandler from "./zero/common/content-editable-paste-handler";
+import AutoCryptorDomHanlder from './zero/auto-cryptor-dom-hanlder';
+import AutoDecryptorComposite from "./zero/auto-decrypt";
+import DomDecryptorComposite from './zero/dbclick'
+import ShortcutCryptor from "./zero/shortcut-cryptor";
 
 const handlers: IDomCompleteHandler[] = []
 

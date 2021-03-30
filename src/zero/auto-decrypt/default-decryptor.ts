@@ -11,11 +11,12 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
       const addedNodes: NodeList = mutation.addedNodes
       addedNodes.forEach(node => {
         const needDeryct: boolean = '#text' === node.nodeName
-        if (needDeryct) {
-          const cipher = node.textContent
-          if (cryptor.support(cipher)) {
-            node.textContent = cryptor.decrypt(cipher)
-          }
+        if (!needDeryct) {
+          return
+        }
+        const cipher = node.textContent
+        if (cryptor.support(cipher)) {
+          cryptor.decrypt(cipher, plain => node.textContent = plain)
         }
       })
     })
@@ -44,7 +45,7 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
           super.mark(p)
         }
         return support
-      }).each((index, p) => { p.innerText = cryptor.decrypt(p.innerText) })
+      }).each((_, p) => { cryptor.decrypt(p.innerText, plain => p.innerText = plain) })
   }
 
   private registerObserver() {

@@ -35,6 +35,9 @@ module.exports = {
     },
     "1_4_1": {
       "0": "Optimize package size."
+    },
+    "1_4_2": {
+      "0": "Fix bugs on www.tumblr.com"
     }
   },
   zh_CN: {
@@ -73,6 +76,9 @@ module.exports = {
     },
     "1_4_1": {
       "0": "优化安装包体积。"
+    },
+    "1_4_2": {
+      "0": "修复 www.tumblr.com 上的一些 bug"
     }
   }
 }

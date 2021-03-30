@@ -10,6 +10,7 @@ import Cryptor2 from './cryptor2'
  */
 class CryptorComposite {
   private cryptorMap: Map<number, ICryptor> = new Map<number, ICryptor>()
+  private cryptors: ICryptor[] = []
   private latest: ICryptor
 
   constructor() {
@@ -19,6 +20,7 @@ class CryptorComposite {
 
   private register(cryptor: ICryptor): ICryptor {
     this.cryptorMap.set(cryptor.version(), cryptor)
+    this.cryptors.push(cryptor)
     return cryptor
   }
 
@@ -26,27 +28,26 @@ class CryptorComposite {
     return this.latest.version()
   }
 
-  encrypt(plain: string): string {
-    const version = cryptorConfig.getCipherVersion()
-    const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
-    return this.prefix(cryptor) + cryptor.encript(plain, cryptorConfig.getPassword())
+  encrypt(plain: string, callback: (ciphertext: string) => void): void {
+    cryptorConfig.getCipherVersion(version => {
+      const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
+      cryptorConfig.getPassword((password: string) => {
+        callback(cryptor.prefix() + cryptor.encript(plain, password))
+      })
+    })
   }
 
-  decrypt(cipher: string): string {
-    const ICryptor: ICryptor = this.getCryptor(cipher)
-    if (ICryptor === null) {
+  decrypt(cipher: string, callback: (plaintext: string) => void): void {
+    const cryptor: ICryptor = this.getCryptor(cipher)
+    if (cryptor === null) {
       // return if not support
-      return cipher
-    }
-    return ICryptor.decrypt(cipher.substring(3), cryptorConfig.getPassword())
-  }
-
-  private prefix(ICryptor: ICryptor) {
-    const version: number = ICryptor.version()
-    if (version < 10) {
-      return 'z0' + version
+      callback(cipher)
     } else {
-      return 'z' + version
+      const realCipher = cipher.substring(cryptor.prefix().length)
+      cryptorConfig.getPassword((psw: string) => {
+        const plaintext = cryptor.decrypt(realCipher, psw)
+        callback(plaintext)
+      })
     }
   }
 
@@ -60,17 +61,14 @@ class CryptorComposite {
 
   private getCryptor(cipher: string): ICryptor {
     cipher = this.preprocess(cipher)
-    if (cipher.length < 3 || !cipher.startsWith('z')) {
-      return null
-    }
-    const versionStr = cipher.substring(1, 3)
-    try {
-      const version: number = Number.parseInt(versionStr)
-      const cryptor: ICryptor = this.cryptorMap.get(version)
-      return cryptor ? cryptor : null
-    } catch (e) {
-      return null
-    }
+    let cryptor: ICryptor = null
+    this.cryptors.forEach(c => {
+      if (cipher.startsWith(c.prefix())) {
+        cryptor = c
+      }
+    })
+
+    return cryptor
   }
 
   /**
@@ -99,9 +97,17 @@ export interface ICryptor {
    */
   version(): number
 
+  /**
+   * The prefix of ciphertext
+   * 
+   * @since 1.5.0
+   */
+  prefix(): string
+
   encript(plain: string, password: string): string
 
   decrypt(cipher: string, password: string): string
 }
 
 export default new CryptorComposite()
+

@@ -1,6 +1,7 @@
-import asyncStorage from '../../chrome/common/async-storage';
-import Initializable from "../../chrome/interface/initializable";
+import asyncStorage from '../chrome/common/async-storage';
+import Initializable from "../chrome/interface/initializable";
 
+export const DEFAULT_PASSWORD = '123456'
 /**
  * Config for cryptor
  * 
@@ -12,7 +13,7 @@ class CryptorConfig implements Initializable {
     private static KEY: string = '__CryptorConfig__'
 
     private config: any = {
-        password: '123456',
+        password: DEFAULT_PASSWORD,
         autoFill: false,
         /**
          * @since 1.1.0
@@ -24,16 +25,15 @@ class CryptorConfig implements Initializable {
         cipherVersion: 1
     }
 
-    initialize(): void { this.changePassword('123456') }
+    initialize(): void { this.changePassword(DEFAULT_PASSWORD) }
 
-    public changePassword(psw: string) {
+    public changePassword(psw: string, callback?: () => void) {
         this.config.password = psw
-        this.update()
+        this.update(callback)
     }
 
-    public getPassword(callback?: Function): string {
+    public getPassword(callback: (psw: string) => void): void {
         this.init((config: any) => callback && callback(config.password))
-        return this.config.password // for sync forced
     }
 
     public changeAutoFill(autoFill: boolean) {
@@ -41,17 +41,15 @@ class CryptorConfig implements Initializable {
         this.update()
     }
 
-    public getAutoFill(callback?: Function): boolean {
+    public getAutoFill(callback: (autoFill: boolean) => void): void {
         this.init((config: any) => callback && callback(!!config.autoFill))
-        return this.config.autoFill
     }
 
     /**
      * @since 1.4.0
      */
-    public getConfig(callback?: Function): any {
+    public getConfig(callback: (config: any) => void): void {
         this.init((config: any) => callback && callback(!!config))
-        return this.config
     }
 
     /**
@@ -65,7 +63,7 @@ class CryptorConfig implements Initializable {
     /**
      * @since 1.1.0
      */
-    public getAutoDecrypt(callback?: Function) {
+    public getAutoDecrypt(callback: (autoDecrypt: boolean) => void): void {
         this.init((config: any) => callback && callback(!!config.autoDecrypt))
         return this.config.autoDecrypt
     }
@@ -73,9 +71,8 @@ class CryptorConfig implements Initializable {
     /**
      * @since 1.1.1
      */
-    public getCipherVersion(callback?: Function) {
+    public getCipherVersion(callback: (version: number) => void): void {
         this.init((config: any) => callback && callback(config.cipherVersion))
-        return this.config.cipherVersion
     }
     /**
      * @since 1.1.1
@@ -92,7 +89,7 @@ class CryptorConfig implements Initializable {
         this.init()
     }
 
-    private init(callback?: Function) {
+    private init(callback?: (config: any) => void) {
         asyncStorage.getAsync(CryptorConfig.KEY, (config: any) => {
             if (config) this.config = config
             callback && callback(this.config)
@@ -100,8 +97,8 @@ class CryptorConfig implements Initializable {
         })
     }
 
-    private update() {
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config)
+    private update(callback?: () => void) {
+        asyncStorage.setAsync(CryptorConfig.KEY, this.config, callback)
     }
 
     private updateBadge() {

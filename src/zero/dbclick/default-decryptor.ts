@@ -71,8 +71,9 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
     element.ondblclick = () => {
       const innerText = element.innerText
       if (cryptor.support(innerText)) {
-        const plain: string = cryptor.decrypt(innerText)
-        element.innerHTML = plain
+        cryptor.decrypt(innerText, plain => {
+          element.innerHTML = plain
+        })
         this.floatAlert.hide()
       }
     }

@@ -1,4 +1,4 @@
-import IDomCompleteHandler from "../../../chrome/interface/i-dom-complete-hanler";
+import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
 import cryptorConfig from "../cryptor-config";
 import AbstractAutoDecryptor from "./abstract-auto-decryptor";
 import DefaultDecryptor from "./default-decryptor";
@@ -17,15 +17,20 @@ export default class AutoDecryptorComposite implements IDomCompleteHandler {
 
   support(host: string, href: string): boolean {
     this.host = host
-    return host !== "wx2.qq.com" && cryptorConfig.getAutoDecrypt()
+    return host !== "wx2.qq.com"
   }
 
   handle(): void {
-    for (const decryptor of this.composites) {
-      if (decryptor.support(this.host)) {
-        decryptor.handle()
+    cryptorConfig.getAutoDecrypt(autoDecrypt => {
+      if (!autoDecrypt) {
         return
       }
-    }
+      for (const decryptor of this.composites) {
+        if (decryptor.support(this.host)) {
+          decryptor.handle()
+          return
+        }
+      }
+    })
   }
 }

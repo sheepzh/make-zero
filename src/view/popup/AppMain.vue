@@ -33,7 +33,7 @@
   </el-container>
 </template>
 <script>
-import { openGuide } from '../../components/common/guide-opener'
+import { openGuide } from '../../zero/common/guide-opener'
 export default {
   name: "PopUpMain",
   data () {

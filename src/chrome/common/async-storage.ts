@@ -21,10 +21,10 @@ class AsyncStorage {
         })
     }
 
-    public setAsync<T>(key: string, value: T, callback?: Function) {
+    public setAsync<T>(key: string, value: T, callback?: () => void) {
         const toSave = {}
         toSave[key] = value
-        this.storage.set(toSave, () => callback && callback(key, value))
+        this.storage.set(toSave, () => callback && callback())
     }
 }
 

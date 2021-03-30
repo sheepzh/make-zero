@@ -57,8 +57,8 @@
 </template>
 <script>
 import copy from '../../util/copy-util'
-import cryptorConfig from '../../../components/zero/cryptor-config'
-import cryptor from '../../../components/zero/cryptor'
+import cryptorConfig from '../../../zero/cryptor-config'
+import cryptor from '../../../zero/cryptor'
 export default {
   name: 'ZeroSetting',
   data () {
@@ -77,7 +77,7 @@ export default {
     cryptorConfig.getCipherVersion(version => this.cipherVersion = version)
   },
   watch: {
-    password (nv, ov) {
+    password (nv) {
       cryptorConfig.changePassword(nv)
     },
     autoEncrypt (nv) {

@@ -1,6 +1,6 @@
-import IMessageListener from '../../chrome/interface/i-message-listener'
+import IMessageListener from '../chrome/interface/i-message-listener'
 import { encryptAndMessage, decryptAndMessage } from './cryptor-modal'
-import { getSelectionText } from '../common/util'
+import { getSelectionText } from './common/util'
 
 export default class ContextMenuListener implements IMessageListener {
     msgTag: string = 'encrypt'

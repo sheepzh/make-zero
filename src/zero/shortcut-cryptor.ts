@@ -1,6 +1,6 @@
-import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler"
+import IDomCompleteHandler from "../chrome/interface/i-dom-complete-hanler"
 import { encryptAndMessage, decryptAndMessage } from "./cryptor-modal"
-import { getSelectionText } from '../common/util'
+import { getSelectionText } from './common/util'
 
 /**
  * Encrypt the plaintext by Ctrl + Q
@@ -23,7 +23,7 @@ export default class ShortcutCryptor implements IDomCompleteHandler {
         const selectionText = getSelectionText()
         // Try to decrypt first.
         // If failed, then encrypt the selection text
-        decryptAndMessage(selectionText, false) || encryptAndMessage(selectionText)
+        decryptAndMessage(selectionText, false, success => success || encryptAndMessage(selectionText))
       }
     }
   }

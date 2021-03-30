@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import cryptorConfig from '../../../components/zero/cryptor-config'
+import cryptorConfig from '../../../zero/cryptor-config'
 export default {
   name: "Auto-encryption",
   data () {

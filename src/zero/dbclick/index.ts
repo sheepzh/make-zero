@@ -1,4 +1,4 @@
-import IDomCompleteHandler from "../../../chrome/interface/i-dom-complete-hanler";
+import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
 import AbstractDomDecryptor from "./abstract-dom-decryptor";
 import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'

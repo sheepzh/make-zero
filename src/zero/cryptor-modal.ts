@@ -48,7 +48,7 @@ export function decryptAndMessage(ciphertext: string, showError: boolean, callba
       if (showError) {
         error(chrome.i18n.getMessage("message_unknownCipherText"))
       }
-      callback(false)
+      callback && callback(false)
     } else {
       MessageBox({
         title: chrome.i18n.getMessage('message_decryptionResult'),
@@ -61,7 +61,7 @@ export function decryptAndMessage(ciphertext: string, showError: boolean, callba
           .then(() => success(chrome.i18n.getMessage("message_decryptionCopied")))
           .catch(() => error(chrome.i18n.getMessage("message_decryptionCopyFailed")))
       }).catch(() => { })
-      callback(true)
+      callback && callback(true)
     }
   })
 }

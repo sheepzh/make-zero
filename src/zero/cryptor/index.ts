@@ -34,7 +34,7 @@ class CryptorComposite {
     cryptorConfig.getCipherVersion(version => {
       const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
       cryptorConfig.getPassword((password: string) => {
-        callback(cryptor.prefix() + cryptor.encript(plain, password))
+        callback(cryptor.encript(plain, password))
       })
     })
   }
@@ -45,9 +45,8 @@ class CryptorComposite {
       // return if not support
       callback(cipher)
     } else {
-      const realCipher = cipher.substring(cryptor.prefix().length)
       cryptorConfig.getPassword((psw: string) => {
-        const plaintext = cryptor.decrypt(realCipher, psw)
+        const plaintext = cryptor.decrypt(cipher, psw)
         callback(plaintext)
       })
     }
@@ -65,7 +64,7 @@ class CryptorComposite {
     cipher = this.preprocess(cipher)
     let cryptor: ICryptor = null
     this.cryptors.forEach(c => {
-      if (cipher.startsWith(c.prefix())) {
+      if (c.support(cipher)) {
         cryptor = c
       }
     })
@@ -94,17 +93,18 @@ class CryptorComposite {
  * @since 1.1.1
  */
 export interface ICryptor {
+
+  /**
+   * Whether support the cipher 
+   * 
+   * @param cipher v1.5.1
+   */
+  support(cipher: string): boolean
+
   /**
    * The version of cryptor
    */
   version(): number
-
-  /**
-   * The prefix of ciphertext
-   * 
-   * @since 1.5.0
-   */
-  prefix(): string
 
   encript(plain: string, password: string): string
 

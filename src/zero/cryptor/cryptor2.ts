@@ -1,7 +1,6 @@
 import { ICryptor } from ".";
 import Cryptor1 from "./cryptor1";
 import { password2Number, ring } from "./algorithm/string-process";
-
 /**
  * The second version of cryptor
  * 
@@ -17,6 +16,10 @@ export default class Cryptor2 extends Cryptor1 implements ICryptor {
     return 2
   }
 
+  /**
+   * @see Cryptor1
+   * @override
+   */
   prefix(): string {
     return 'z02'
   }
@@ -28,7 +31,7 @@ export default class Cryptor2 extends Cryptor1 implements ICryptor {
     pn = salt.getNewPn()
 
     const cipher = ring(pn, plain)
-    return String.fromCharCode(salt.getPrefixUnicode()) + cipher
+    return this.prefix() + String.fromCharCode(salt.getPrefixUnicode()) + cipher
   }
 
   decrypt(cipher: string, password: string): string {

@@ -5,5 +5,10 @@ test('test-cryptor-support-01', () => {
 })
 
 test('test-cryptor-support-01', () => {
-  cryptor.support('z02ጠኻ㮷㵂ព鬾鬾鬾')
+  expect(cryptor.support('z02ጠኻ㮷㵂ព鬾鬾鬾')).toBeTruthy()
+})
+
+test('test-cryptor-support-02', () => {
+  expect(cryptor.support('--adk')).toBeFalsy()
+  expect(cryptor.support('-----')).toBeTruthy()
 })

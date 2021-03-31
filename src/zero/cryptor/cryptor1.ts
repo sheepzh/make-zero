@@ -7,7 +7,14 @@ import { password2Number, ring } from './algorithm/string-process'
  * @since 1.0.0
  */
 export default class Cryptor1 implements ICryptor {
-  prefix(): string {
+  support(cipher: string): boolean {
+    return cipher.startsWith(this.prefix())
+  }
+
+  /**
+   * The prefix of cipher
+   */
+  prefix() {
     return 'z01'
   }
 

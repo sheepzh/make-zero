@@ -2,6 +2,11 @@ import { ICryptor } from "."
 import { password2Number, ringFromUnicodes, ringToUnicodes } from "./algorithm/string-process"
 
 const WORD_LEN_LEN = 4
+const PREFIX = '-'
+
+const ONE = '-'
+const ZERO = '·'
+
 /**
  * 
  * The second version of cryptor with morse code
@@ -12,13 +17,21 @@ const WORD_LEN_LEN = 4
  * @since 1.5.0
  */
 export default class Cryptor3 implements ICryptor {
+  support(cipher: string): boolean {
+    if (!cipher.startsWith('-')) {
+      return false
+    }
+    for (let i = 0; i < cipher.length; i++) {
+      const c = cipher.charAt(i)
+      if (c != ZERO && c != ONE) {
+        return false
+      }
+    }
+    return true
+  }
 
   version(): number {
     return 3
-  }
-
-  prefix(): string {
-    return '-'
   }
 
   encript(plain: string, password: string): string {
@@ -28,13 +41,14 @@ export default class Cryptor3 implements ICryptor {
 
     const unicodeLength: number = this.maxUnicodeLength(cipherUnicodes)
 
-    return this.number2MorseCode(unicodeLength, WORD_LEN_LEN) + cipherUnicodes.map(unicode => this.number2MorseCode(unicode, unicodeLength)).join("")
+    return PREFIX + this.number2MorseCode(unicodeLength, WORD_LEN_LEN) + cipherUnicodes.map(unicode => this.number2MorseCode(unicode, unicodeLength)).join("")
   }
 
   decrypt(cipher: string, password: string): string {
-    if (cipher.length < WORD_LEN_LEN) {
+    if (cipher.length < WORD_LEN_LEN + 1) {
       return cipher
     }
+    cipher = cipher.substr(1)
     const lenthMorse = cipher.substring(0, 4)
     let length = this.morse2Number(lenthMorse)
     if (length < 0) {

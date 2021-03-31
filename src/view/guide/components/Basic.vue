@@ -97,7 +97,9 @@ export default {
     // Get the password
     cryptorConfig.getPassword(p => {
       this.password = p
-      this.ciphertextExample = cryptor.encrypt(this.$t('guide.welcome'))
+      cryptor.encrypt(this.$t('guide.welcome'), cipher => {
+        this.ciphertextExample = cipher
+      })
     })
   },
   methods: {

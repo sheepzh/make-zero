@@ -1,6 +1,13 @@
 {
-  "1.5.0": {
+  "1.5.1": {
     "current": true,
+    "name": "Rilke-01",
+    "ts": "2021-03-31",
+    "contents": [
+      "f"
+    ]
+  },
+  "1.5.0": {
     "name": "Rilke",
     "ts": "2021-03-30",
     "contents": [

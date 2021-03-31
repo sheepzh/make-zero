@@ -39,6 +39,9 @@ module.exports = {
     "1_5_0": {
       "0": "Support new ciphertext format: morse code",
       "1": "Needn't refresh pages any more after settings changed"
+    },
+    "1_5_1": {
+      "0": "Fix the error that some text was mistaken for Morse code"
     }
   },
   zh_CN: {
@@ -84,6 +87,9 @@ module.exports = {
     "1_5_0": {
       "0": "支持新的密文风格：摩斯码",
       "1": "修改设置信息后不用再刷新页面"
+    },
+    "1_5_1": {
+      "0": "修复某些文字被误认为摩斯码的错误",
     }
   }
 }

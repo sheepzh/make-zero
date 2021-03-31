@@ -1,6 +1,6 @@
 {
   "name": "make-zero",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Encrypt & decrypt your texts in any site. / 文字加密、解密工具",
   "directories": {
     "lib": "lib"
@@ -31,7 +31,7 @@
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
-    "ts-jest": "^24.3.0",
+    "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.11",
     "typescript": "^4.1.2",
     "ui-component-loader": "^1.4.3",
@@ -43,7 +43,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "clipboardy": "^2.3.0",
     "element-ui": "^2.14.1",
     "jquery": "^3.5.1",

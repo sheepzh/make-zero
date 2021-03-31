@@ -15,10 +15,6 @@ const routes = [
   {
     path: '/version',
     component: () => import('./version/index')
-  },
-  {
-    path: '/contact',
-    component: () => import('./contact/index')
   }
 ]
 

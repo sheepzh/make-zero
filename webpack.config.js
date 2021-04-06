@@ -74,6 +74,7 @@ if (isProd) {
     plugins.push(
         new FileManagerWebpackPlugin({
             events: {
+                onStart: [{ delete: ['./chrome_dir/*'] }],
                 // Archive at the end
                 onEnd: [
                     // Delete license files

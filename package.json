@@ -1,6 +1,6 @@
 {
   "name": "make-zero",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Encrypt & decrypt your texts in any site. / 文字加密、解密工具",
   "directories": {
     "lib": "lib"
@@ -10,7 +10,7 @@
     "build": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
     "test": "jest",
-    "test -c": "jest --coverage"
+    "test-c": "jest --coverage"
   },
   "keywords": [],
   "author": "zhy",

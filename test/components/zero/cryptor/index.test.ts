@@ -12,3 +12,7 @@ test('test-cryptor-support-02', () => {
   expect(cryptor.support('--adk')).toBeFalsy()
   expect(cryptor.support('-----')).toBeTruthy()
 })
+
+test('test-cryptor-type', () => {
+
+})

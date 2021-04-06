@@ -23,11 +23,11 @@ export default class Cryptor1 implements ICryptor {
   }
 
   encript(plain: string, password: string): string {
-    return this.ring(plain, password)
+    return this.prefix() + this.ring(plain, password)
   }
 
   decrypt(cipher: string, password: string): string {
-    return this.ring(cipher, password)
+    return this.ring(cipher.substr(this.prefix().length), password)
   }
 
   private ring(msg: string, psw: string): string {

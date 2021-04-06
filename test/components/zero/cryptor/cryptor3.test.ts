@@ -19,3 +19,13 @@ test('test-cryptor3', () => {
     expect(str).toEqual(plain)
   }
 })
+
+test('test-cryptor3-support', () => {
+  expect(cryptor.support('---')).toBeTruthy()
+  expect(cryptor.support('-11')).toBeFalsy()
+})
+
+test('test-cryptor3-decrypt', () => {
+  const cipher = '-·······-··--··-········-··-·-·---·--··---·---·--·---··----·-·-····-····-·----··-·--·-··--·--··-----·-··--·--··-----·-··--·--··-----·'
+  expect(cryptor.decrypt(cipher, '我支持MakeZero')).toEqual('真的很好玩！！！')
+})

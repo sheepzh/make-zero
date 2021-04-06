@@ -38,10 +38,10 @@ export default class Cryptor2 extends Cryptor1 implements ICryptor {
     let pn: number = password2Number(password)
 
     const salt: Salt = new Salt()
-    salt.parseSalt(pn, cipher.charCodeAt(0))
+    salt.parseSalt(pn, cipher.charCodeAt(this.prefix().length))
     pn = salt.getNewPn()
 
-    return ring(pn, cipher.substring(1))
+    return ring(pn, cipher.substring(this.prefix().length + 1))
   }
 }
 

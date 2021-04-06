@@ -42,6 +42,9 @@ module.exports = {
     },
     "1_5_1": {
       "0": "Fix the error that some text was mistaken for Morse code"
+    },
+    "1_5_2": {
+      "0": "Fix some bugs of cryptor1 and cryptor2"
     }
   },
   zh_CN: {
@@ -90,6 +93,9 @@ module.exports = {
     },
     "1_5_1": {
       "0": "修复某些文字被误认为摩斯码的错误",
+    },
+    "1_5_2": {
+      "0": "修复加密器1和加密器2的错误"
     }
   }
 }

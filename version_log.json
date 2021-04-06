@@ -1,4 +1,11 @@
 {
+  "1.5.2": {
+    "name": "Rilke-02",
+    "ts": "2021-04-06",
+    "contents": [
+      "f"
+    ]
+  },
   "1.5.1": {
     "current": true,
     "name": "Rilke-01",

@@ -7,7 +7,7 @@
 class AsyncStorage {
     private static instance: AsyncStorage
 
-    private storage = chrome.storage.sync
+    private storage = chrome.storage.local
 
     static getInstance(): AsyncStorage {
         if (!AsyncStorage.instance) AsyncStorage.instance = new AsyncStorage()

@@ -18,6 +18,10 @@ test('test-cryptor3', () => {
     const plain = cryptor.decrypt(cipher, DEFAULT_PASSWORD)
     expect(str).toEqual(plain)
   }
+
+  expect(cryptor.decrypt('---·····A', DEFAULT_PASSWORD)).toEqual('---·····A')
+  expect(cryptor.decrypt('---', DEFAULT_PASSWORD)).toEqual('---')
+  expect(cryptor.decrypt('---·-', DEFAULT_PASSWORD)).toEqual('---·-')
 })
 
 test('test-cryptor3-support', () => {

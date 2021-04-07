@@ -45,6 +45,9 @@ module.exports = {
     },
     "1_5_2": {
       "0": "Fix some bugs of cryptor1 and cryptor2"
+    },
+    "1_6_0": {
+      "0": "Support new ciphertext format: Cherus"
     }
   },
   zh_CN: {
@@ -96,6 +99,9 @@ module.exports = {
     },
     "1_5_2": {
       "0": "修复加密器1和加密器2的一些 bug"
+    },
+    "1_6_0": {
+      "0": "支持新的密文风格：切噜语"
     }
   }
 }

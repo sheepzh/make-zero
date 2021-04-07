@@ -1,6 +1,6 @@
-import { ICryptor } from ".";
-import Cryptor1 from "./cryptor1";
-import { password2Number, ring } from "./algorithm/string-process";
+import { ICryptor } from './i-cryptor'
+import Cryptor1 from "./cryptor1"
+import { password2Number, ring } from "./algorithm/string-process"
 /**
  * The second version of cryptor
  * 

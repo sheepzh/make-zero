@@ -1,6 +1,6 @@
 {
   "name": "make-zero",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Encrypt & decrypt your texts in any site. / 文字加密、解密工具",
   "directories": {
     "lib": "lib"
@@ -20,7 +20,7 @@
     "@types/jest": "^26.0.22",
     "@types/jquery": "^3.5.4",
     "babel-loader": "^8.2.2",
-    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-component": "^1.1.1",
     "copy-webpack-plugin": "^6.3.2",
     "css-loader": "^5.0.1",
     "deepmerge": "^4.2.2",

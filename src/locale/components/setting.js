@@ -13,7 +13,8 @@ module.exports = {
       remark: {
         1: 'Fixed and short',
         2: 'Random and short',
-        3: 'Morse code'
+        3: 'Morse code',
+        4: 'Cherus'
       }
     }
   },
@@ -31,7 +32,8 @@ module.exports = {
       remark: {
         1: '等长唯一',
         2: '等长随机',
-        3: '摩斯码'
+        3: '摩斯码',
+        4: '切噜语'
       }
     }
   },

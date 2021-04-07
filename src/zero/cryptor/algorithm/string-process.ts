@@ -51,3 +51,21 @@ export function ringToUnicodes(passwordNumber: number, source: string): number[]
 export function ringFromUnicodes(passwordNumber: number, source: number[]): string {
   return unicodes2Str(source.map(mn => mn ^ passwordNumber))
 }
+
+/**
+ * Get the max length of unicodes
+ * 
+ * @param cipherUnicodes 
+ */
+export function maxUnicodeLength(cipherUnicodes: number[]) {
+  let length = 1
+  let max = 1
+  cipherUnicodes.forEach(unicode => {
+    while (max < unicode) {
+      max <<= 1
+      max += 1
+      length++
+    }
+  })
+  return length
+}

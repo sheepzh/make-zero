@@ -3,7 +3,7 @@ import { encryptAndMessage, decryptAndMessage } from "./cryptor-modal"
 import { getSelectionText } from './common/util'
 
 /**
- * Encrypt the plaintext by Ctrl + Q
+ * Encrypt the plaintext by Ctrl + ,
  * 
  * @author zhy
  * @since 1.3.0

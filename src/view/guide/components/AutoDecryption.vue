@@ -32,7 +32,7 @@ export default {
     this.foo = this.$t('guide.welcome')
     cryptorConfig.getAutoDecrypt(ad => {
       this.on = ad
-      if (!this.on) this.foo = cryptor.encrypt(this.foo)
+      !ad && cryptor.encrypt(this.foo, cipher => this.foo = cipher)
     })
   }
 }

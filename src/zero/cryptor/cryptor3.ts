@@ -1,5 +1,5 @@
-import { ICryptor } from "."
-import { password2Number, ringFromUnicodes, ringToUnicodes } from "./algorithm/string-process"
+import { ICryptor } from './i-cryptor'
+import { maxUnicodeLength, password2Number, ringFromUnicodes, ringToUnicodes } from "./algorithm/string-process"
 
 const WORD_LEN_LEN = 4
 const PREFIX = '-'
@@ -9,7 +9,7 @@ const ZERO = '·'
 
 /**
  * 
- * The second version of cryptor with morse code
+ * The third version of cryptor with morse code
  * 
  * Format:
  * 4-digits-max-word-length + cipher
@@ -18,7 +18,7 @@ const ZERO = '·'
  */
 export default class Cryptor3 implements ICryptor {
   support(cipher: string): boolean {
-    if (!cipher.startsWith('-')) {
+    if (!cipher.startsWith(PREFIX)) {
       return false
     }
     for (let i = 0; i < cipher.length; i++) {
@@ -36,41 +36,42 @@ export default class Cryptor3 implements ICryptor {
 
   encript(plain: string, password: string): string {
     let pn = password2Number(password)
-
     const cipherUnicodes: number[] = ringToUnicodes(pn, plain)
-
-    const unicodeLength: number = this.maxUnicodeLength(cipherUnicodes)
-
+    const unicodeLength: number = maxUnicodeLength(cipherUnicodes)
     return PREFIX + this.number2MorseCode(unicodeLength, WORD_LEN_LEN) + cipherUnicodes.map(unicode => this.number2MorseCode(unicode, unicodeLength)).join("")
   }
 
-  decrypt(cipher: string, password: string): string {
-    if (cipher.length < WORD_LEN_LEN + 1) {
-      return cipher
+  decrypt(originCipher: string, password: string): string {
+    if (originCipher.length < WORD_LEN_LEN + PREFIX.length) {
+      return originCipher
     }
-    cipher = cipher.substr(1)
-    const lenthMorse = cipher.substring(0, 4)
+    let cipher = originCipher.substr(PREFIX.length)
+    const lenthMorse = cipher.substring(0, WORD_LEN_LEN)
     let length = this.morse2Number(lenthMorse)
     if (length < 0) {
-      return cipher
+      return originCipher
     }
     if (length === 0) {
       length = 16
     }
     const unicodes: number[] = []
-    for (let i = WORD_LEN_LEN; i + length <= cipher.length; i += length) {
+    for (let i = WORD_LEN_LEN; i < cipher.length; i += length) {
       const unicode = this.morse2Number(cipher.substr(i, length))
       if (unicode === -1) {
-        return cipher
+        return originCipher
       }
       unicodes.push(unicode)
     }
     const pn = password2Number(password)
+    if (!unicodes.length) {
+      return originCipher
+    }
     return ringFromUnicodes(pn, unicodes)
   }
 
   /**
     * Translate unicode 2 morse code
+    * 
     * @param code unicode
     * @returns the length of morse code
     */
@@ -94,18 +95,5 @@ export default class Cryptor3 implements ICryptor {
       }
     }
     return result
-  }
-
-  private maxUnicodeLength(cipherUnicodes: number[]) {
-    let length = 1
-    let max = 1
-    cipherUnicodes.forEach(unicode => {
-      while (max < unicode) {
-        max <<= 1
-        max += 1
-        length++
-      }
-    })
-    return length
   }
 }

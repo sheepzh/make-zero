@@ -1,5 +1,5 @@
-import { ICryptor } from '.'
 import { password2Number, ring } from './algorithm/string-process'
+import { ICryptor } from './i-cryptor'
 
 /**
  * The first cryptor

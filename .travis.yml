@@ -4,8 +4,9 @@ node_js:
   - 14
 install:
   - npm install
-after_success:
+script:  
   - npm run test-c
+after_success:
   - codecov -f coverage/*.json
 branches:
   only:

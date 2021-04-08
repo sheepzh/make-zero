@@ -1,0 +1,12 @@
+language: node_js
+sudo: false
+node_js:
+  - 14
+install:
+  - npm install
+after_success:
+  - npm run test-c
+  - codecov -f coverage/*.json
+branches:
+  only:
+    main

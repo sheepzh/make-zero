@@ -2,13 +2,14 @@
 	<img src="./doc/img/banner.jpeg" width="50%">
 </div>
 
-<!-- # MAKE-ZERO -->
+<div align="center">
+  <h1>MAKE ZERO</h1>
+</div>
 
-[![](https://img.shields.io/badge/chrome-extension-red?style=flat-square)](chrome://extensions/)
-[![](https://img.shields.io/github/license/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
-[![](https://img.shields.io/badge/license-Anti%20996-blue?style=flat-square)](https://github.com/996icu/996.ICU)
-[![](https://img.shields.io/github/v/release/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
-[![](https://img.shields.io/github/release-date/sheepzh/make-zero?style=flat-square)](https://github.com/sheepzh/make-zero/releases)
+[![codecov](https://codecov.io/gh/sheepzh/make-zero/branch/main/graph/badge.svg?token=S98QSBSKCR&style=flat-square)](https://codecov.io/gh/sheepzh/make-zero)
+[![](https://img.shields.io/github/license/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
+[![](https://img.shields.io/badge/license-Anti%20996-blue)](https://github.com/996icu/996.ICU)
+[![](https://img.shields.io/github/v/release/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/releases)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.make-zero)
 
 > 语言属于未知。

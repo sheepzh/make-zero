@@ -13,3 +13,10 @@ after_success:
 branches:
   only:
     - main
+notifications:
+  slack:    
+    on_success: never
+    on_failure: always
+  email:
+    - returnzhy@outlook.com
+  

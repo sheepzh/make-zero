@@ -22,7 +22,7 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。
 
 极大地方便了有相同共识的小群体能在微博/豆瓣等公共场所讨论~~国家大是~~ 🐶🐶🐶，同时也防止你殚精竭虑绞尽脑汁的语言输出，最终变成语料，变成被监控和探测的敏感词。
 
-<u>**插件演示视频**</u>：[Make Zero | SNS 从加密开始](https://www.bilibili.com/video/BV1x54y1t7MR)
+<u>**插件演示视频**</u>：[www.bilibili.com](https://www.bilibili.com/video/BV1x54y1t7MR)
 
 <u>**下载地址**</u>: [Google Chrome](https://chrome.google.com/webstore/detail/make-zero/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gkjmpdoddilgcfoeokeajfecogaaocol) | [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
 

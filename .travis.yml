@@ -5,6 +5,7 @@ node_js:
   - 14
 install:
   - npm install
+  - npm install codecov
 script:
   - npm run test-c
 after_success:

@@ -14,9 +14,8 @@ branches:
   only:
     - main
 notifications:
-  slack:    
+  slack:
     on_success: never
     on_failure: always
   email:
-    - returnzhy@outlook.com
-  
+    - returnzhy1996@outlook.com

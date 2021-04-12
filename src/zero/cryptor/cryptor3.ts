@@ -21,6 +21,10 @@ export default class Cryptor3 implements ICryptor {
     if (!cipher.startsWith(PREFIX)) {
       return false
     }
+    // #2 Wrong detection result of '-'
+    if (cipher.length < (PREFIX.length + WORD_LEN_LEN)) {
+      return false
+    }
     for (let i = 0; i < cipher.length; i++) {
       const c = cipher.charAt(i)
       if (c != ZERO && c != ONE) {
@@ -55,8 +59,14 @@ export default class Cryptor3 implements ICryptor {
       length = 16
     }
     const unicodes: number[] = []
+    let cipherUnit: string
     for (let i = WORD_LEN_LEN; i < cipher.length; i += length) {
-      const unicode = this.morse2Number(cipher.substr(i, length))
+      cipherUnit = cipher.substr(i, length)
+      // Ignore the tail part unit
+      if (cipherUnit.length < length) {
+        break
+      }
+      const unicode = this.morse2Number(cipherUnit)
       if (unicode === -1) {
         return originCipher
       }

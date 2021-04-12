@@ -2,7 +2,7 @@
 	<img src="./doc/img/banner.jpeg" width="50%">
 </div>
 
-[](https://api.travis-ci.com/sheepzh/make-zero.svg?branch=main)
+[![](https://travis-ci.com/sheepzh/make-zero.svg?branch=main&status=passed)](https://travis-ci.com/sheepzh/make-zero.svg?branch=main&status=passed)
 [![codecov](https://codecov.io/gh/sheepzh/make-zero/branch/main/graph/badge.svg?token=S98QSBSKCR&style=flat-square)](https://codecov.io/gh/sheepzh/make-zero)
 [![](https://img.shields.io/github/license/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
 [![](https://img.shields.io/badge/license-Anti%20996-blue)](https://github.com/996icu/996.ICU)

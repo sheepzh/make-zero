@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/sheepzh/make-zero/branch/main/graph/badge.svg?token=S98QSBSKCR&style=flat-square)](https://codecov.io/gh/sheepzh/make-zero)
 [![](https://img.shields.io/github/license/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/blob/main/LICENSE)
 [![](https://img.shields.io/badge/license-Anti%20996-blue)](https://github.com/996icu/996.ICU)
-[![](https://img.shields.io/github/v/release/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/releases)
+[![](https://img.shields.io/github/v/release/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/releases) [![Join the chat at https://gitter.im/make-zero-coom/community](https://badges.gitter.im/make-zero-coom/community.svg)](https://gitter.im/make-zero-coom/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.make-zero)
 
 > Uncertain Language.

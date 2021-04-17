@@ -1,18 +1,11 @@
-## How to Build for Development 
-``` shell
- npm install 
- npm run build
-```
-The output directory is *dist_dev*
-
-## How to Build for Production
+## How to Build
 
 ```shell
 npm install
 npm run build:prod
 ```
 
-The output directory is *chrome_dir* and *market_packages*
+The output directory is _chrome_dir_ and _market_packages_
 
 ## Another
 

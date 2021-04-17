@@ -11,15 +11,13 @@
 
 > Uncertain Language.
 
-
 English | [简体中文](./README.zh-CN.md)
-
 
 ## What is it?
 
 <b><i>Make Zero</i></b> is a browser plugin/add-on for text encryption. It can run among Chrome, Firefox and the latest Edge.
 
-It can encrypt any texts you typed on net, and only those know your  password can decrypt it and see the origin text.
+It can encrypt any texts you typed on net, and only those know your password can decrypt it and see the origin text.
 
 It makes people with the same consensus more easily to discuss in public and to be ~~punkers~~ 🐶🐶🐶. Meanwhile, it also prevents your exhausted thought output from eventually turning into just corpus, even objects which are monitored and detected as to sensitive words.
 
@@ -27,12 +25,11 @@ It makes people with the same consensus more easily to discuss in public and to 
 
 <u>**Downloads**</u>: [Google Chrome](https://chrome.google.com/webstore/detail/make-zero/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gkjmpdoddilgcfoeokeajfecogaaocol) | [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
 
-
 ## What can it do?
 
-+ Text encryption and decryption, supports multiple interactive methods: manual, automatic, and fast cryption.
-+ Set a custom password, and the default is 123456 after the first installation.
-+ A variety of ciphertext styles to choose: fixed password, random ciphertext, Morse code, Cherus.
+- Text encryption and decryption, supports multiple interactive methods: manual, automatic, and fast cryption.
+- Set a custom password, and the default is 123456 after the first installation.
+- A variety of ciphertext styles to choose: fixed password, random ciphertext, Morse code, Cherus.
 
 <div align="center">
   <img src="./doc/img/use-in-douban.gif">
@@ -47,16 +44,16 @@ git clone https://github.com/sheepzh/make-zero.git
 cd make-zero
 npm install
 
-# Build for development
+# Run the development server
 # Two output directories:
 #  1. "dist_dev" for Chrome & Edge
 #  2. "firefox_dev" for FireFox
-# You can load it from above folders in development mode of browers.
-npm run build
+# You can load it from above folders in development mode of browsers, Chrome, Firefox or Edge.
+npm run dev
 
 # Build for production
 # The output directory is "chrome_dir"
-# Also the package of app and source code to be submitted to the store will be archived and moved to the "market_packages" directory 
+# Also the package of app and source code to be submitted to the store will be archived and moved to the "market_packages" directory
 npm run build:prod
 ```
 
@@ -64,20 +61,20 @@ npm run build:prod
 
 > A tutorial page will be open after installed, just follow it and do once.
 
-+ Settings
+- Settings
 
- Click the extension icon of <i>Make Zero</i>, which is always at the top-right corner of browser and the setting page will be popped. You can change password in this page.
+Click the extension icon of <i>Make Zero</i>, which is always at the top-right corner of browser and the setting page will be popped. You can change password in this page.
 
-+ Automatic encryption
+- Automatic encryption
 
   If automatic encryption is checked in the settings panel, the input boxes with ciphertext will display plaintext when focus and ciphertext after focus lost.
 
-+ Automatic decryption
+- Automatic decryption
 
   If automatic decryption is checked in the settings panel, the detected ciphertext will be replaced with plaintext with current password, after page loaded completely.
 
-+ Manually
-  
+- Manually
+
   Select texts, right click, and choose the menu item to encrypt or decrypt the selected texts. Also you can press the shortcut key <i>Ctrl</i>+<i>,</i> instead of the above operation.
 
 ## Any suggestions?

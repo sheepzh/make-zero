@@ -44,13 +44,6 @@ export default {
         icon: 'date'
       }
     ]
-    if (process.env.FEEDBACK_ENABLED) {
-      menu.push({
-        title: 'contact.meta.menu',
-        route: '/contact',
-        icon: 'edit-outline'
-      })
-    }
     return {
       menu
     }

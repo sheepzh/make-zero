@@ -1,3 +1,4 @@
+const path = require('path')
 const baseOption = require('./webpack.base')
 const GenerateJsonPlugin = require('generate-json-webpack-plugin')
 const FileManagerWebpackPlugin = require('filemanager-webpack-plugin')
@@ -33,5 +34,7 @@ baseOption.devtool = 'cheap-module-source-map'
 
 // Use cache with filesystem
 baseOption.cache = { type: 'filesystem' }
+
+baseOption.output.path = path.join(__dirname, '..', 'dist_dev')
 
 module.exports = baseOption

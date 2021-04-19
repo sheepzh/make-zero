@@ -55,7 +55,6 @@ const options = {
     'guide': './src/view/guide/index.js'
   },
   output: {
-    path: path.join(__dirname, '..', 'dist_dev'),
     filename: '[name].js',
   },
   plugins,

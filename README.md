@@ -29,7 +29,7 @@ It makes people with the same consensus more easily to discuss in public and to 
 
 - Text encryption and decryption, supports multiple interactive methods: manual, automatic, and fast cryption.
 - Set a custom password, and the default is 123456 after the first installation.
-- A variety of ciphertext styles to choose: fixed password, random ciphertext, Morse code, Cherus.
+- A variety of ciphertext styles to choose: fixed ciphertext, random ciphertext, Morse code, Cherus.
 
 <div align="center">
   <img src="./doc/img/use-in-douban.gif">

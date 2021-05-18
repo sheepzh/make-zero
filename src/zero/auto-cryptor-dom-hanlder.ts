@@ -15,19 +15,27 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
     }
 
     handle(): void {
-        cryptorConfig.getAutoFill(autoFill => {
-            if (!autoFill) {
-                return
-            }
-            $(":input").filter('textarea, input').on('focus', function () {
-                const _this = $(this)
-                const val: string = _this.val() ? _this.val().toString() : ""
-                val && cryptor.decrypt(val.toString(), val => _this.val(val))
-            }).on('blur', function () {
-                const _this = $(this)
-                const val: string = _this.val() ? _this.val().toString() : ""
-                val && cryptor.encrypt(val, cipher => _this.val(cipher))
-            })
+        $(":input").filter('textarea, input').on('focus', function () {
+            cryptorConfig.getAutoFill()
+                .then(autoFill => {
+                    if (!autoFill) {
+                        return
+                    }
+                    const _this = $(this)
+                    const val: string = _this.val() ? _this.val().toString() : ""
+                    val && cryptor.decrypt(val.toString(), val => _this.val(val))
+                })
+        }).on('blur', function () {
+            cryptorConfig.getAutoFill()
+                .then(autoFill => {
+                    if (!autoFill) {
+                        return
+                    }
+                    const _this = $(this)
+                    const val: string = _this.val() ? _this.val().toString() : ""
+                    val && cryptor.encrypt(val, cipher => _this.val(cipher))
+                })
         })
+
     }
 }

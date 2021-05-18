@@ -72,7 +72,7 @@ export default {
   },
   created () {
     cryptorConfig.getPassword(password => this.password = password)
-    cryptorConfig.getAutoFill(isOn => this.autoEncrypt = !!isOn)
+    cryptorConfig.getAutoFill().then(isOn => this.autoEncrypt = !!isOn)
     cryptorConfig.getAutoDecrypt(isOn => this.autoDecrypt = !!isOn)
     cryptorConfig.getCipherVersion(version => this.cipherVersion = version)
   },

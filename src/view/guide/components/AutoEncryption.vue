@@ -35,12 +35,7 @@ export default {
     }
   },
   created () {
-    cryptorConfig.getAutoFill(af => this.on = af)
-  },
-  methods: {
-    showSettingsPanel () {
-
-    }
+    cryptorConfig.getAutoFill().then(af => this.on = af)
   }
 }
 </script>

@@ -41,8 +41,10 @@ class CryptorConfig implements Initializable {
         this.update()
     }
 
-    public getAutoFill(callback: (autoFill: boolean) => void): void {
-        this.init((config: any) => callback && callback(!!config.autoFill))
+    public getAutoFill(): Promise<boolean> {
+        return new Promise(resolve => {
+            this.init((config: any) => resolve(!!config.autoFill))
+        })
     }
 
     /**

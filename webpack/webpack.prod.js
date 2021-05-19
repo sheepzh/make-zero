@@ -1,3 +1,4 @@
+const path = require('path')
 const baseOption = require('./webpack.base')
 
 const FileManagerWebpackPlugin = require('filemanager-webpack-plugin')
@@ -41,5 +42,7 @@ baseOption.plugins.push(
     }
   })
 )
+baseOption.output.path = path.join(__dirname, '..', 'chrome_dir')
+
 
 module.exports = baseOption

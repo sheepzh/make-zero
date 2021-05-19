@@ -1,6 +1,13 @@
 {
-  "1.6.0": {
+  "1.6.1": {
     "current": true,
+    "name": "Ooka Shin-01",
+    "ts": "2021-05-18",
+    "contents": [
+      "f"
+    ]
+  },
+  "1.6.0": {
     "name": "Ooka Shin",
     "ts": "2021-04-07",
     "contents": [

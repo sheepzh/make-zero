@@ -48,6 +48,9 @@ module.exports = {
     },
     "1_6_0": {
       "0": "Support new ciphertext format: Cherus"
+    },
+    "1_6_1": {
+      "0": "Needn't refresh pages after changing auto-encrption any more"
     }
   },
   zh_CN: {
@@ -102,6 +105,9 @@ module.exports = {
     },
     "1_6_0": {
       "0": "支持新的密文风格：切噜语"
+    },
+    "1_6_1": {
+      "0": "修改自动加密设置后不用刷新页面即可生效"
     }
   }
 }

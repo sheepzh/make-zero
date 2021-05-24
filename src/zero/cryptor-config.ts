@@ -10,111 +10,117 @@ export const DEFAULT_PASSWORD = '123456'
  */
 class CryptorConfig implements Initializable {
 
-    private static KEY: string = '__CryptorConfig__'
+  private static KEY: string = '__CryptorConfig__'
 
-    private config: any = {
-        password: DEFAULT_PASSWORD,
-        autoFill: false,
-        /**
-         * @since 1.1.0
-         */
-        autoDecrypt: false,
-        /**
-         * @since 1.1.1
-         */
-        cipherVersion: 1
-    }
-
-    initialize(): void { this.changePassword(DEFAULT_PASSWORD) }
-
-    public changePassword(psw: string, callback?: () => void) {
-        this.config.password = psw
-        this.update(callback)
-    }
-
-    public getPassword(callback: (psw: string) => void): void {
-        this.init((config: any) => callback && callback(config.password))
-    }
-
-    public changeAutoFill(autoFill: boolean) {
-        this.config.autoFill = autoFill
-        this.update()
-    }
-
-    public getAutoFill(): Promise<boolean> {
-        return new Promise(resolve => {
-            this.init((config: any) => resolve(!!config.autoFill))
-        })
-    }
-
-    /**
-     * @since 1.4.0
-     */
-    public getConfig(callback: (config: any) => void): void {
-        this.init((config: any) => callback && callback(!!config))
-    }
-
+  /**
+   * Default settings
+   */
+  private config: ConfigInfo = {
+    password: DEFAULT_PASSWORD,
+    autoFill: false,
     /**
      * @since 1.1.0
      */
-    public changeAutoDecrypt(autoDecrypt: boolean) {
-        this.config.autoDecrypt = autoDecrypt
-        this.update()
-    }
-
-    /**
-     * @since 1.1.0
-     */
-    public getAutoDecrypt(callback: (autoDecrypt: boolean) => void): void {
-        this.init((config: any) => callback && callback(!!config.autoDecrypt))
-        return this.config.autoDecrypt
-    }
-
+    autoDecrypt: false,
     /**
      * @since 1.1.1
      */
-    public getCipherVersion(callback: (version: number) => void): void {
-        this.init((config: any) => callback && callback(config.cipherVersion))
-    }
-    /**
-     * @since 1.1.1
-     */
-    public changeCipherVersion(version: number) {
-        this.config.cipherVersion = version
-        this.update()
-        this.updateBadge()
-    }
+    cipherVersion: 1
+  }
 
-    private static INSTANCE: CryptorConfig
+  initialize(): void { this.changePassword(DEFAULT_PASSWORD) }
 
-    private constructor() {
-        this.init()
-    }
+  public changePassword(psw: string): Promise<void> {
+    this.config.password = psw
+    return this.update()
+  }
 
-    private init(callback?: (config: any) => void) {
-        asyncStorage.getAsync(CryptorConfig.KEY, (config: any) => {
-            if (config) this.config = config
-            callback && callback(this.config)
-            this.updateBadge()
-        })
-    }
+  public async getPassword(): Promise<string> {
+    const config = await this.init();
+    return await Promise.resolve(config.password);
+  }
 
-    private update(callback?: () => void) {
-        asyncStorage.setAsync(CryptorConfig.KEY, this.config, callback)
-    }
+  public changeAutoFill(autoFill: boolean) {
+    this.config.autoFill = autoFill
+    this.update()
+  }
 
-    private updateBadge() {
-        const version = this.config.cipherVersion
+  public async getAutoFill(): Promise<boolean> {
+    const config = await this.init();
+    return await Promise.resolve(config.autoFill);
+  }
 
-        chrome && chrome.browserAction
-            && chrome.browserAction.setBadgeText
-            && chrome.browserAction.setBadgeText({ text: version ? version + '' : '' })
-    }
+  /**
+   * @since 1.4.0
+   */
+  public async getConfig(): Promise<ConfigInfo> {
+    const config = await this.init();
+    return await Promise.resolve(config);
+  }
 
-    public static getInstance(): CryptorConfig {
-        if (CryptorConfig.INSTANCE == null) CryptorConfig.INSTANCE = new CryptorConfig()
-        return CryptorConfig.INSTANCE
-    }
+  /**
+   * @since 1.1.0
+   */
+  public changeAutoDecrypt(autoDecrypt: boolean) {
+    this.config.autoDecrypt = autoDecrypt
+    this.update()
+  }
+
+  /**
+   * @since 1.1.0
+   */
+  public async getAutoDecrypt(): Promise<boolean> {
+    const config = await this.init();
+    return await Promise.resolve(config.autoDecrypt);
+  }
+
+  /**
+   * @since 1.1.1
+   */
+  public async getCipherVersion(): Promise<number> {
+    const config = await this.init();
+    return await Promise.resolve(config.cipherVersion);
+  }
+
+  /**
+   * @since 1.1.1
+   */
+  public changeCipherVersion(version: number) {
+    this.config.cipherVersion = version
+    this.update()
+    this.updateBadge()
+  }
+
+  private static INSTANCE: CryptorConfig
+
+  private constructor() {
+    this.init()
+  }
+
+  private async init(): Promise<ConfigInfo> {
+    const config = await asyncStorage.getAsync<ConfigInfo>(CryptorConfig.KEY);
+    if (config)
+      this.config = config;
+    this.updateBadge();
+    return await Promise.resolve(this.config);
+  }
+
+  private update(): Promise<void> {
+    return asyncStorage.setAsync<ConfigInfo>(CryptorConfig.KEY, this.config)
+  }
+
+  private updateBadge() {
+    const version = this.config.cipherVersion
+
+    chrome && chrome.browserAction
+      && chrome.browserAction.setBadgeText
+      && chrome.browserAction.setBadgeText({ text: version ? version + '' : '' })
+  }
+
+  public static getInstance(): CryptorConfig {
+    if (CryptorConfig.INSTANCE == null) CryptorConfig.INSTANCE = new CryptorConfig()
+    return CryptorConfig.INSTANCE
+  }
 }
 
 export default CryptorConfig.getInstance()

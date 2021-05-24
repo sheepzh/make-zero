@@ -23,7 +23,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                     }
                     const _this = $(this)
                     const val: string = _this.val() ? _this.val().toString() : ""
-                    val && cryptor.decrypt(val.toString(), val => _this.val(val))
+                    val && cryptor.decrypt(val.toString()).then(val => _this.val(val))
                 })
         }).on('blur', function () {
             cryptorConfig.getAutoFill()
@@ -33,7 +33,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                     }
                     const _this = $(this)
                     const val: string = _this.val() ? _this.val().toString() : ""
-                    val && cryptor.encrypt(val, cipher => _this.val(cipher))
+                    val && cryptor.encrypt(val).then(cipher => _this.val(cipher))
                 })
         })
 

@@ -20,7 +20,7 @@ export default defineComponent({
     }
   },
   created() {
-    cryptor.encrypt(t('guide.welcome'), cipher => this.ciphertextExample = cipher)
+    cryptor.encrypt(t('guide.welcome')).then(cipher => this.ciphertextExample = cipher)
   },
   render(_ctx: any) {
     // title

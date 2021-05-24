@@ -20,10 +20,10 @@ export default defineComponent({
     })
   },
   created() {
-    cryptorConfig.getPassword(password => this.password = password)
+    cryptorConfig.getPassword().then(password => this.password = password)
     cryptorConfig.getAutoFill().then(isOn => this.autoEncrypt = !!isOn)
-    cryptorConfig.getAutoDecrypt(isOn => this.autoDecrypt = !!isOn)
-    cryptorConfig.getCipherVersion(version => this.cipherVersion = version)
+    cryptorConfig.getAutoDecrypt().then(isOn => this.autoDecrypt = !!isOn)
+    cryptorConfig.getCipherVersion().then(version => this.cipherVersion = version)
   },
   render(_ctx: any) {
     // Auto encryption
@@ -79,7 +79,10 @@ export default defineComponent({
     // Password
     const line1 = () => h(ElFormItem, { label: t('setting.password.title') }, () =>
       h(ElInput,
-        { modelValue: _ctx.password, onChange: (val: string) => cryptorConfig.changePassword(_ctx.password = val) },
+        {
+          modelValue: _ctx.password,
+          onInput: (val: string) => cryptorConfig.changePassword(_ctx.password = val)
+        },
         {
           append: () => h(ElTooltip, { content: t('button.copy') }, () => h(ElButton, { icon: 'el-icon-copy-document', class: 'copy-append', onClick: (val: string) => copy(val) }))
         }

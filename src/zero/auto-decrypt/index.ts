@@ -21,16 +21,17 @@ export default class AutoDecryptorComposite implements IDomCompleteHandler {
   }
 
   handle(): void {
-    cryptorConfig.getAutoDecrypt(autoDecrypt => {
-      if (!autoDecrypt) {
-        return
-      }
-      for (const decryptor of this.composites) {
-        if (decryptor.support(this.host)) {
-          decryptor.handle()
+    cryptorConfig.getAutoDecrypt()
+      .then(autoDecrypt => {
+        if (!autoDecrypt) {
           return
         }
-      }
-    })
+        for (const decryptor of this.composites) {
+          if (decryptor.support(this.host)) {
+            decryptor.handle()
+            return
+          }
+        }
+      })
   }
 }

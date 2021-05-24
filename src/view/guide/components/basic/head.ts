@@ -12,7 +12,7 @@ export default defineComponent({
     return reactive({ password: '' })
   },
   created() {
-    cryptorConfig.getPassword(p => this.password = p)
+    cryptorConfig.getPassword().then(p => this.password = p)
   },
   render(_ctx: any) {
     return h('div', {},

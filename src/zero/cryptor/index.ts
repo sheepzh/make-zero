@@ -33,25 +33,24 @@ class CryptorComposite {
     return this.latest.version()
   }
 
-  encrypt(plain: string, callback: (ciphertext: string) => void): void {
-    cryptorConfig.getCipherVersion(version => {
-      const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
-      cryptorConfig.getPassword((password: string) => {
-        callback(cryptor.encript(plain, password))
+  encrypt(plain: string): Promise<string> {
+    return cryptorConfig.getCipherVersion()
+      .then(version => {
+        const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
+        return cryptorConfig.getPassword()
+          .then((password: string) => Promise.resolve(cryptor.encript(plain, password)))
       })
-    })
   }
 
-  decrypt(cipher: string, callback: (plaintext: string) => void): void {
+  decrypt(cipher: string): Promise<string> {
     const cryptor: ICryptor = this.getCryptor(cipher)
     if (cryptor === null) {
       // return if not support
-      callback(cipher)
+      return Promise.resolve(cipher)
     } else {
-      cryptorConfig.getPassword((psw: string) => {
-        const plaintext = cryptor.decrypt(cipher, psw)
-        callback(plaintext)
-      })
+      return cryptorConfig
+        .getPassword()
+        .then((psw: string) => Promise.resolve(cryptor.decrypt(cipher, psw)))
     }
   }
 

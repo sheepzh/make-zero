@@ -16,7 +16,7 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
         }
         const cipher = node.textContent
         if (cryptor.support(cipher)) {
-          cryptor.decrypt(cipher, plain => node.textContent = plain)
+          cryptor.decrypt(cipher).then(plain => node.textContent = plain)
         }
       })
     })
@@ -39,13 +39,13 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
 
   private decript(selector: JQuery) {
     selector
-      .filter((index, p) => {
+      .filter((_index, p) => {
         const support: boolean = cryptor.support(p.innerText)
         if (support && !super.hasMarked(p)) {
           super.mark(p)
         }
         return support
-      }).each((_, p) => { cryptor.decrypt(p.innerText, plain => p.innerText = plain) })
+      }).each((_, p) => { cryptor.decrypt(p.innerText).then(plain => p.innerText = plain) })
   }
 
   private registerObserver() {

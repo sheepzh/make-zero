@@ -19,11 +19,13 @@ export default defineComponent({
     }
   },
   created() {
-    cryptorConfig.getAutoDecrypt(ad => {
-      console.log(ad)
-      this.on = ad
-      !ad && cryptor.encrypt(this.foo, cipher => this.foo = cipher)
-    })
+    cryptorConfig.getAutoDecrypt().then(
+      ad => {
+        console.log(ad)
+        this.on = ad
+        !ad && cryptor.encrypt(this.foo).then(cipher => this.foo = cipher)
+      }
+    )
   },
   render(_ctx: any) {
     const alertText = t(`guide.autoDecryption.${_ctx.on ? 'alertIfOn' : 'alertIfOff'}`)

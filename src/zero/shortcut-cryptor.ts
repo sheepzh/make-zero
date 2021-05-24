@@ -23,7 +23,7 @@ export default class ShortcutCryptor implements IDomCompleteHandler {
         const selectionText = getSelectionText()
         // Try to decrypt first.
         // If failed, then encrypt the selection text
-        decryptAndMessage(selectionText, false, success => success || encryptAndMessage(selectionText))
+        decryptAndMessage(selectionText, false).then(success => success || encryptAndMessage(selectionText))
       }
     }
   }

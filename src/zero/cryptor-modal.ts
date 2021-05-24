@@ -24,14 +24,17 @@ const error = (message: string) => _alert(message, 'error')
  * @param plaintext  plaintext
  */
 export function encryptAndMessage(plaintext: string) {
-  cryptor.encrypt(plaintext, txt => {
-    copy(txt).then(() => {
-      success(chrome.i18n.getMessage("message_encryptionSuccess"))
-    }).catch((e: any) => {
-      console.log(e)
-      error(chrome.i18n.getMessage("message_encryptionFail") + txt)
-    })
-  })
+  cryptor.encrypt(plaintext)
+    .then(
+      txt => {
+        copy(txt).then(() => {
+          success(chrome.i18n.getMessage("message_encryptionSuccess"))
+        }).catch((e: any) => {
+          console.log(e)
+          error(chrome.i18n.getMessage("message_encryptionFail") + txt)
+        })
+      }
+    )
 }
 
 /**
@@ -41,28 +44,30 @@ export function encryptAndMessage(plaintext: string) {
  * @param showError  whether to show error if the ciphertext is unknown
  * @return true if decrypted, or false
  */
-export function decryptAndMessage(ciphertext: string, showError: boolean, callback?: (success: boolean) => void): void {
+export function decryptAndMessage(ciphertext: string, showError: boolean): Promise<boolean> {
   ciphertext = ciphertext.trimLeft()
-  const txt = cryptor.decrypt(ciphertext, txt => {
-    if (txt === ciphertext) {
-      if (showError) {
-        error(chrome.i18n.getMessage("message_unknownCipherText"))
+  return cryptor.decrypt(ciphertext)
+    .then(txt => {
+      if (txt === ciphertext) {
+        if (showError) {
+          error(chrome.i18n.getMessage("message_unknownCipherText"))
+        }
+        return Promise.resolve(false)
+      } else {
+        ElMessageBox({
+          title: chrome.i18n.getMessage('message_decryptionResult'),
+          message: txt,
+          type: 'success',
+          showCancelButton: true,
+          cancelButtonText: chrome.i18n.getMessage('button_cancel'),
+          confirmButtonText: chrome.i18n.getMessage('button_copy')
+        }).then(() => {
+          copy(txt)
+            .then(() => success(chrome.i18n.getMessage("message_decryptionCopied")))
+            .catch(() => error(chrome.i18n.getMessage("message_decryptionCopyFailed")))
+        }).catch(() => { })
+        return Promise.resolve(true)
       }
-      callback && callback(false)
-    } else {
-      ElMessageBox({
-        title: chrome.i18n.getMessage('message_decryptionResult'),
-        message: txt,
-        type: 'success',
-        showCancelButton: true,
-        cancelButtonText: chrome.i18n.getMessage('button_cancel'),
-        confirmButtonText: chrome.i18n.getMessage('button_copy')
-      }).then(() => {
-        copy(txt)
-          .then(() => success(chrome.i18n.getMessage("message_decryptionCopied")))
-          .catch(() => error(chrome.i18n.getMessage("message_decryptionCopyFailed")))
-      }).catch(() => { })
-      callback && callback(true)
-    }
-  })
+    })
+
 }

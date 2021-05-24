@@ -5,7 +5,6 @@
  */
 const path = require('path')
 
-const VueLoaderPlugin = require('vue-loader-plugin')
 const GenerateJsonPlugin = require('generate-json-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -34,7 +33,6 @@ for (const localeName in chromeMessages) {
 }
 
 const plugins = [
-  new VueLoaderPlugin(),
   ...generateJsonPlugins,
   new CopyWebpackPlugin({
     // copy static resources
@@ -51,8 +49,8 @@ const plugins = [
 const options = {
   entry: {
     ...entry,
-    'popup': './src/view/popup/index.js',
-    'guide': './src/view/guide/index.js'
+    'popup': './src/view/popup/index',
+    'guide': './src/view/guide/index'
   },
   output: {
     filename: '[name].js',
@@ -61,18 +59,11 @@ const options = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         exclude: '/node_modules/',
-        use: ['ts-loader', {
-          loader: 'ui-component-loader',
-          options: {
-            'element-ui': {
-              'camel2': '-'
-            }
-          }
-        }]
-
-      }, {
+        use: ['ts-loader']
+      },
+      {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       }, {
@@ -83,32 +74,13 @@ const options = {
         // exclude: /node_modules/,
         use: ['url-loader?limit=100000']
       }, {
-        test: /\.vue$/,
-        exclude: /node_modules/,
-        use: ['vue-loader']
-      }, {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
-        use:
-        {
-          loader: 'babel-loader',
-          options: {
-            plugins: [
-              [
-                'component', {
-                  "libraryName": "element-ui",
-                  "styleLibraryName": "theme-chalk"
-                },
-                "element-ui"
-              ]
-            ]
-          }
-        }
       }
     ]
   },
   resolve: {
-    extensions: [".tsx", '.ts', ".js", '.vue', 'css'],
+    extensions: ['.ts', ".js", '.css', '.scss', '.sass'],
   }
 }
 

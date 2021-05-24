@@ -4,15 +4,15 @@
 import cryptor from './cryptor'
 import { write as copy } from 'clipboardy'
 /**
- * Replace sweetalert2 with element-ui
+ * Replace sweetalert2 with element-plus
  * @since 1.4.1 
  */
-import { Message, MessageBox } from 'element-ui'
-import { MessageType } from 'element-ui/types/message'
-import 'element-ui/lib/theme-chalk/message-box.css'
-import 'element-ui/lib/theme-chalk/message.css'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { MessageType } from 'element-plus/lib/el-message-box/src/message-box.type'
+import 'element-plus/lib/theme-chalk/el-message-box.css'
+import 'element-plus/lib/theme-chalk/el-message.css'
 
-const _alert = (message: string, type: MessageType) => Message({ message, duration: 2000, type })
+const _alert = (message: string, type: MessageType) => ElMessage({ message, duration: 2000, type })
 
 const success = (message: string) => _alert(message, 'success')
 
@@ -50,11 +50,12 @@ export function decryptAndMessage(ciphertext: string, showError: boolean, callba
       }
       callback && callback(false)
     } else {
-      MessageBox({
+      ElMessageBox({
         title: chrome.i18n.getMessage('message_decryptionResult'),
         message: txt,
         type: 'success',
         showCancelButton: true,
+        cancelButtonText: chrome.i18n.getMessage('button_cancel'),
         confirmButtonText: chrome.i18n.getMessage('button_copy')
       }).then(() => {
         copy(txt)

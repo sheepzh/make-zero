@@ -9,28 +9,47 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
   private static ELE_TYPES_2_LISTEN = ['span', 'p', 'pre']
   private floatAlert: FloatAlert
 
-  support(host: string): boolean {
+  support(_host: string): boolean {
     return true
+  }
+
+  /**
+   * The node with only one text child needs to listen
+   * 
+   * @since 1.6.2
+   */
+  needListen(ele: HTMLElement) {
+    const node: Node = ele as Node
+    const childNodes = node.childNodes
+    return childNodes && childNodes.length === 1 && childNodes[0].nodeName === '#text'
   }
 
   handle(): void {
     this.floatAlert = new FloatAlert($('body'))
     DefaultDecryptor.ELE_TYPES_2_LISTEN.forEach(
-      eleName => this.addListener($(eleName))
+      eleName => {
+        const elements = document.getElementsByTagName(eleName)
+        Array.from(elements)
+          .filter(ele => ele instanceof HTMLElement)
+          .map(ele => ele as HTMLElement)
+          .filter(ele => this.needListen(ele))
+          .forEach(ele => this.addListener(ele))
+      }
     )
     this.registerObserver()
   }
 
-  private addListener(selecotor: JQuery) {
+  private addListener(ele: HTMLElement) {
     const _this_ = this
-    selecotor.filter((index: number, el: HTMLElement) => {
-      const support = el.hasAttribute(CIPHER_ATTR_NAME) || cryptor.support(el.innerText)
-      if (support && !super.hasMarked(el)) {
-        super.mark(el)
-      }
-      return support
-    }).on("mouseover", e => _this_.mouseover(e.currentTarget, e.pageX, e.pageY))
-      .on("mouseout", () => _this_.floatAlert.hide())
+
+    const support = ele.hasAttribute(CIPHER_ATTR_NAME) || cryptor.support(ele.innerText)
+    if (support && !super.hasMarked(ele)) {
+      super.mark(ele)
+    }
+    if (support) {
+      ele.onmouseover = e => _this_.mouseover(ele, e.pageX, e.pageY)
+      ele.onmouseout = () => _this_.floatAlert.hide()
+    }
   }
 
   private registerObserver() {

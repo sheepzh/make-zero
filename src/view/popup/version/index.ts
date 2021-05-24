@@ -1,6 +1,6 @@
 import { ElButton, ElTag, ElTimeline, ElTimelineItem, ElTooltip } from "element-plus"
 import { defineComponent, h } from "vue"
-import t from "../../plugin/i18n"
+import { t } from "../../plugin/i18n"
 import copy from "../../util/copy-util"
 import './style'
 

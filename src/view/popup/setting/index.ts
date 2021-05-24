@@ -2,7 +2,7 @@ import { ElButton, ElCol, ElForm, ElFormItem, ElInput, ElOption, ElRow, ElSelect
 import { defineComponent, reactive, h } from "vue"
 import cryptor from "../../../zero/cryptor"
 import cryptorConfig from "../../../zero/cryptor-config"
-import t from "../../plugin/i18n"
+import { t } from "../../plugin/i18n"
 import copy from "../../util/copy-util"
 
 const maxVersion = cryptor.version()

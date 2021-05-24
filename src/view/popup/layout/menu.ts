@@ -1,7 +1,7 @@
 import { ElMenu, ElMenuItem } from 'element-plus'
 import { defineComponent, h } from 'vue'
 import { openGuide } from '../../../zero/common/guide-opener'
-import t from '../../plugin/i18n'
+import { t } from '../../plugin/i18n'
 
 declare class MenuItem {
   title: string

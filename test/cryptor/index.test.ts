@@ -1,4 +1,4 @@
-import cryptor from '../../../../src/zero/cryptor'
+import cryptor from '../../src/cryptor'
 
 test('test-cryptor-support-01', () => {
   expect(cryptor.support('z01ጠኻ㮷㵂ព鬾鬾鬾')).toBeTruthy()
@@ -11,8 +11,4 @@ test('test-cryptor-support-01', () => {
 test('test-cryptor-support-02', () => {
   expect(cryptor.support('--adk')).toBeFalsy()
   expect(cryptor.support('-----')).toBeTruthy()
-})
-
-test('test-cryptor-type', () => {
-
 })

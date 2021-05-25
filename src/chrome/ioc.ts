@@ -3,7 +3,7 @@
  * 
  * @author zhy
  */
-import cryptorConfig from '../zero/cryptor-config'
+import cryptorConfig from '../config'
 import ITabUpdateHandler from './interface/i-tab-update-handler'
 import Initializable from './interface/initializable'
 import GuideOpener from '../zero/common/guide-opener'

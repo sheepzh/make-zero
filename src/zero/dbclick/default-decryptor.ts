@@ -1,4 +1,4 @@
-import cryptor from "../cryptor"
+import cryptionExcutor from "../../service/cryption-excutor"
 import FloatAlert from "./float-alert"
 import AbstractDomDecryptor from "./abstract-dom-decryptor"
 import { CIPHER_ATTR_NAME } from "."
@@ -41,7 +41,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
   private addListener(ele: HTMLElement) {
     const _this_ = this
 
-    const support = ele.hasAttribute(CIPHER_ATTR_NAME) || cryptor.support(ele.innerText)
+    const support = ele.hasAttribute(CIPHER_ATTR_NAME) || cryptionExcutor.support(ele.innerText)
     if (support && !super.hasMarked(ele)) {
       super.mark(ele)
     }
@@ -61,7 +61,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
             && !element.getAttribute('contenteditable') // exclude the contenteditable elements
           if (needDeryct) {
             const cipher = node.textContent
-            if (cryptor.support(cipher)) {
+            if (cryptionExcutor.support(cipher)) {
               // listen to the outer element of the text
               element.onmouseover = (e: MouseEvent) => this.mouseover(element, e.pageX, e.pageY)
               element.onmouseout = () => this.floatAlert.hide()
@@ -79,7 +79,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
   private mouseover(element: HTMLElement, x: number, y: number) {
     const innerText: string = element.innerText
 
-    if (!cryptor.support(innerText)) {
+    if (!cryptionExcutor.support(innerText)) {
       // return if not support
       return
     }
@@ -88,8 +88,8 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
 
     element.ondblclick = () => {
       const innerText = element.innerText
-      if (cryptor.support(innerText)) {
-        cryptor.decrypt(innerText)
+      if (cryptionExcutor.support(innerText)) {
+        cryptionExcutor.decrypt(innerText)
           .then(plain => element.innerHTML = plain)
         this.floatAlert.hide()
       }

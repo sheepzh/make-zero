@@ -1,4 +1,4 @@
-import Cryptor1 from "../../../../src/zero/cryptor/cryptor1"
+import Cryptor1 from "../../src/cryptor/cryptor1"
 
 const cryptor = new Cryptor1()
 

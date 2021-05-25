@@ -1,5 +1,5 @@
 import { defineComponent, h, reactive } from 'vue'
-import cryptor from '../../../../zero/cryptor'
+import cryptionExcutor from '../../../../service/cryption-excutor'
 import { CIPHER_ATTR_NAME } from '../../../../zero/dbclick'
 import { t, tN } from '../../../plugin/i18n'
 import { boldAndItalic } from '../../../util/vue-util'
@@ -20,7 +20,7 @@ export default defineComponent({
     }
   },
   created() {
-    cryptor.encrypt(t('guide.welcome')).then(cipher => this.ciphertextExample = cipher)
+    cryptionExcutor.encrypt(t('guide.welcome')).then(cipher => this.ciphertextExample = cipher)
   },
   render(_ctx: any) {
     // title

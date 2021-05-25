@@ -1,6 +1,6 @@
 import { defineComponent, h, reactive } from "@vue/runtime-core"
 import { ElAlert } from "element-plus"
-import cryptorConfig from "../../../../zero/cryptor-config"
+import cryptorConfig from "../../../../config"
 import { t } from "../../../plugin/i18n"
 
 /**

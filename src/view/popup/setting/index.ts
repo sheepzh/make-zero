@@ -1,7 +1,7 @@
 import { ElButton, ElCol, ElForm, ElFormItem, ElInput, ElOption, ElRow, ElSelect, ElSwitch, ElTooltip } from "element-plus"
 import { defineComponent, reactive, h } from "vue"
-import cryptor from "../../../zero/cryptor"
-import cryptorConfig from "../../../zero/cryptor-config"
+import cryptor from "../../../cryptor"
+import cryptorConfig from "../../../config"
 import { t } from "../../plugin/i18n"
 import copy from "../../util/copy-util"
 

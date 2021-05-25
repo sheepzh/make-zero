@@ -1,4 +1,3 @@
-import cryptorConfig from "../cryptor-config"
 import Cryptor1 from './cryptor1'
 import Cryptor2 from './cryptor2'
 import Cryptor3 from "./cryptor3"
@@ -33,25 +32,14 @@ class CryptorComposite {
     return this.latest.version()
   }
 
-  encrypt(plain: string): Promise<string> {
-    return cryptorConfig.getCipherVersion()
-      .then(version => {
-        const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
-        return cryptorConfig.getPassword()
-          .then((password: string) => Promise.resolve(cryptor.encript(plain, password)))
-      })
+  public encrypt(plain: string, version: number, password: string): string {
+    const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
+    return cryptor == null ? plain : cryptor.encript(plain, password)
   }
 
-  decrypt(cipher: string): Promise<string> {
+  public decrypt(cipher: string, version: number, password: string): string {
     const cryptor: ICryptor = this.getCryptor(cipher)
-    if (cryptor === null) {
-      // return if not support
-      return Promise.resolve(cipher)
-    } else {
-      return cryptorConfig
-        .getPassword()
-        .then((psw: string) => Promise.resolve(cryptor.decrypt(cipher, psw)))
-    }
+    return cryptor == null ? cipher : cryptor.encript(cipher, password)
   }
 
   /**

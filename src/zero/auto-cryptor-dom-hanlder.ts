@@ -1,6 +1,6 @@
 import IDomCompleteHandler from "../chrome/interface/i-dom-complete-hanler"
-import cryptor from './cryptor'
-import cryptorConfig from './cryptor-config'
+import cryptionExcutor from '../service/cryption-excutor'
+import cryptorConfig from '../config'
 
 /**
  * Encrypt the <input> and <textarea> tags 
@@ -23,7 +23,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                         .then(autoFill => {
                             if (!autoFill) return
                             const val: string = input.value ? input.value.toString() : ""
-                            val && cryptor.decrypt(val).then(val => input.value = val)
+                            val && cryptionExcutor.decrypt(val).then(val => input.value = val)
                         })
                 }
                 input.onblur = () => {
@@ -32,7 +32,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                         .then(autoFill => {
                             if (!autoFill) return
                             const val: string = input.value ? input.value.toString() : ""
-                            val && cryptor.encrypt(val).then(cipher => input.value = cipher)
+                            val && cryptionExcutor.encrypt(val).then(cipher => input.value = cipher)
                         })
                 }
             })

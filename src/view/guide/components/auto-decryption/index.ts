@@ -1,7 +1,7 @@
 import { ElAlert } from 'element-plus'
 import { defineComponent, h, reactive } from 'vue'
-import cryptor from '../../../../zero/cryptor'
-import cryptorConfig from '../../../../zero/cryptor-config'
+import cryptionExcutor from '../../../../service/cryption-excutor'
+import cryptorConfig from '../../../../config'
 import { CIPHER_ATTR_NAME, PLAIN_ATTR_NAME } from '../../../../zero/dbclick'
 import { t } from '../../../plugin/i18n'
 
@@ -23,7 +23,7 @@ export default defineComponent({
       ad => {
         console.log(ad)
         this.on = ad
-        !ad && cryptor.encrypt(this.foo).then(cipher => this.foo = cipher)
+        !ad && cryptionExcutor.encrypt(this.foo).then(cipher => this.foo = cipher)
       }
     )
   },

@@ -1,5 +1,5 @@
-import { DEFAULT_PASSWORD } from "../../../../src/zero/cryptor-config"
-import Cryptor4 from "../../../../src/zero/cryptor/cryptor4"
+import { DEFAULT_PASSWORD } from "../../src/config/default"
+import Cryptor4 from "../../src/cryptor/cryptor4"
 
 const cryptor = new Cryptor4()
 

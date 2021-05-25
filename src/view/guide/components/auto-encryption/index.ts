@@ -1,6 +1,6 @@
 import { ElAlert, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { defineComponent, h, reactive } from 'vue'
-import cryptorConfig from '../../../../zero/cryptor-config'
+import cryptorConfig from '../../../../config'
 import { t } from '../../../plugin/i18n'
 
 export default defineComponent({

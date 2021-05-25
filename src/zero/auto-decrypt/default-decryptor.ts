@@ -1,4 +1,4 @@
-import cryptor from "../cryptor"
+import cryptionExcutor from "../../service/cryption-excutor"
 import AbstractAutoDecryptor from "./abstract-auto-decryptor"
 
 export default class DefaultDecryptor extends AbstractAutoDecryptor {
@@ -14,8 +14,8 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
           return
         }
         const cipher = node.textContent
-        if (cryptor.support(cipher)) {
-          cryptor.decrypt(cipher).then(plain => node.textContent = plain)
+        if (cryptionExcutor.support(cipher)) {
+          cryptionExcutor.decrypt(cipher).then(plain => node.textContent = plain)
         }
       })
     })
@@ -40,13 +40,13 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
     const elements = document.getElementsByTagName(tagName)
     Array.from(elements)
       .filter((ele: HTMLElement, _index: number) => {
-        const support: boolean = cryptor.support(ele.innerText)
+        const support: boolean = cryptionExcutor.support(ele.innerText)
         if (support && !super.hasMarked(ele)) {
           super.mark(ele)
         }
         return support
       })
-      .forEach((ele: HTMLElement) => cryptor.decrypt(ele.innerText).then(plain => ele.innerText = plain))
+      .forEach((ele: HTMLElement) => cryptionExcutor.decrypt(ele.innerText).then(plain => ele.innerText = plain))
     return this
   }
 

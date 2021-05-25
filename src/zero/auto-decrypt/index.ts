@@ -1,5 +1,5 @@
 import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
-import cryptorConfig from "../cryptor-config";
+import cryptorConfig from "../../config";
 import AbstractAutoDecryptor from "./abstract-auto-decryptor";
 import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'

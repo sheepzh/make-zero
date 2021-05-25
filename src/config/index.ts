@@ -1,7 +1,7 @@
 import asyncStorage from '../chrome/common/async-storage';
 import Initializable from "../chrome/interface/initializable";
+import { DEFAULT_PASSWORD } from './default';
 
-export const DEFAULT_PASSWORD = '123456'
 /**
  * Config for cryptor
  * 

@@ -1,7 +1,7 @@
 /**
  * Reconstructed @since 1.3.0
  */
-import cryptor from './cryptor'
+import cryptionExcutor from '../service/cryption-excutor'
 import { write as copy } from 'clipboardy'
 /**
  * Replace sweetalert2 with element-plus
@@ -24,7 +24,7 @@ const error = (message: string) => _alert(message, 'error')
  * @param plaintext  plaintext
  */
 export function encryptAndMessage(plaintext: string) {
-  cryptor.encrypt(plaintext)
+  cryptionExcutor.encrypt(plaintext)
     .then(
       txt => {
         copy(txt).then(() => {
@@ -46,7 +46,7 @@ export function encryptAndMessage(plaintext: string) {
  */
 export function decryptAndMessage(ciphertext: string, showError: boolean): Promise<boolean> {
   ciphertext = ciphertext.trimLeft()
-  return cryptor.decrypt(ciphertext)
+  return cryptionExcutor.decrypt(ciphertext)
     .then(txt => {
       if (txt === ciphertext) {
         if (showError) {

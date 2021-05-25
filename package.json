@@ -18,7 +18,6 @@
   "devDependencies": {
     "@types/chrome": "0.0.134",
     "@types/jest": "^26.0.22",
-    "@types/jquery": "^3.5.5",
     "babel-loader": "^8.2.2",
     "babel-plugin-component": "^1.1.1",
     "copy-webpack-plugin": "^8.1.1",
@@ -28,7 +27,6 @@
     "generate-json-webpack-plugin": "^2.0.0",
     "jest": "^24",
     "jest-chrome": "^0.7.0",
-    "node-sass": "^5.0.0",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "ts-jest": "^26.5.6",
@@ -44,7 +42,6 @@
   "dependencies": {
     "clipboardy": "^2.3.0",
     "element-plus": "*",
-    "jquery": "^3.6.0",
     "vue": "^3.0.11",
     "vue-router": "^4.0.8"
   }

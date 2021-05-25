@@ -1,6 +1,5 @@
-import cryptor from "../cryptor";
-import $ = require('jquery')
-import AbstractAutoDecryptor from "./abstract-auto-decryptor";
+import cryptor from "../cryptor"
+import AbstractAutoDecryptor from "./abstract-auto-decryptor"
 
 export default class DefaultDecryptor extends AbstractAutoDecryptor {
   /**
@@ -32,20 +31,23 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
   }
 
   private decriptAll() {
-    this.decript($("p"))
-    this.decript($("pre"))
-    this.decript($('span'))
+    this.decriptByTag("p")
+      .decriptByTag("pre")
+      .decriptByTag('span')
   }
 
-  private decript(selector: JQuery) {
-    selector
-      .filter((_index, p) => {
-        const support: boolean = cryptor.support(p.innerText)
-        if (support && !super.hasMarked(p)) {
-          super.mark(p)
+  private decriptByTag(tagName: string): DefaultDecryptor {
+    const elements = document.getElementsByTagName(tagName)
+    Array.from(elements)
+      .filter((ele: HTMLElement, _index: number) => {
+        const support: boolean = cryptor.support(ele.innerText)
+        if (support && !super.hasMarked(ele)) {
+          super.mark(ele)
         }
         return support
-      }).each((_, p) => { cryptor.decrypt(p.innerText).then(plain => p.innerText = plain) })
+      })
+      .forEach((ele: HTMLElement) => cryptor.decrypt(ele.innerText).then(plain => ele.innerText = plain))
+    return this
   }
 
   private registerObserver() {

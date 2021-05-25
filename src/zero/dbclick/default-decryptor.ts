@@ -1,6 +1,5 @@
 import cryptor from "../cryptor"
 import FloatAlert from "./float-alert"
-import $ = require('jquery')
 import AbstractDomDecryptor from "./abstract-dom-decryptor"
 import { CIPHER_ATTR_NAME } from "."
 
@@ -25,7 +24,7 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
   }
 
   handle(): void {
-    this.floatAlert = new FloatAlert($('body'))
+    this.floatAlert = new FloatAlert(document.body as HTMLBodyElement)
     DefaultDecryptor.ELE_TYPES_2_LISTEN.forEach(
       eleName => {
         const elements = document.getElementsByTagName(eleName)

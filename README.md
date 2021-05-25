@@ -52,7 +52,7 @@ npm run dev
 
 # 生产环境编译
 # 输出目录：chrome_dir，以及 market_packages (发布到各大插件商城的 zip，以及源码 zip)
-npm run build:prod
+npm run build
 ```
 
 ## 如何使用？

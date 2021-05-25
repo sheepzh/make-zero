@@ -54,7 +54,7 @@ npm run dev
 # Build for production
 # The output directory is "chrome_dir"
 # Also the package of app and source code to be submitted to the store will be archived and moved to the "market_packages" directory
-npm run build:prod
+npm run build
 ```
 
 ## How to use it?

@@ -1,4 +1,4 @@
-import { reactive, VNode } from 'vue'
+import { VNode } from 'vue'
 import { vueMessages, defaultLocale } from '../../locale/index'
 
 

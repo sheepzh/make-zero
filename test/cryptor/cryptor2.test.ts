@@ -9,6 +9,6 @@ test('test-cryptor2', () => {
   // Because the cipher is random
   // So can't use for definite ciphertexts
   const plain = '1111'
-  const cipher = cryptor.encript(plain, DEFAULT_PASSWORD)
+  const cipher = cryptor.encrypt(plain, DEFAULT_PASSWORD)
   expect(cryptor.decrypt(cipher, DEFAULT_PASSWORD)).toEqual(plain)
 })

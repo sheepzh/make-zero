@@ -25,7 +25,7 @@ export default class DomDecryptorComposite implements IDomCompleteHandler {
     this.composites.push(new DefaultDecryptor())
   }
 
-  support(host: string, href: string): boolean {
+  support(host: string, _href: string): boolean {
     this.host = host
     return host !== "wx2.qq.com"
   }

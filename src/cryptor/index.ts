@@ -34,12 +34,12 @@ class CryptorComposite {
 
   public encrypt(plain: string, version: number, password: string): string {
     const cryptor: ICryptor = version && this.cryptorMap.get(version) || this.latest
-    return cryptor == null ? plain : cryptor.encript(plain, password)
+    return cryptor == null ? plain : cryptor.encrypt(plain, password)
   }
 
-  public decrypt(cipher: string, version: number, password: string): string {
+  public decrypt(cipher: string, password: string): string {
     const cryptor: ICryptor = this.getCryptor(cipher)
-    return cryptor == null ? cipher : cryptor.encript(cipher, password)
+    return cryptor == null ? cipher : cryptor.decrypt(cipher, password)
   }
 
   /**

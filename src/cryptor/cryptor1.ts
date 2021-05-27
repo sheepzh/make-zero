@@ -22,7 +22,7 @@ export default class Cryptor1 implements ICryptor {
     return 1
   }
 
-  encript(plain: string, password: string): string {
+  encrypt(plain: string, password: string): string {
     return this.prefix() + this.ring(plain, password)
   }
 

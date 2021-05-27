@@ -10,14 +10,10 @@ declare global {
   }
 }
 
-export default defineComponent({
-  name: 'Basic',
-  components: { BasicHead, BasicEncrypt, BasicDecrypt },
-  render(_ctx: any) {
-    return h('div', {}, [
-      h(BasicHead),
-      h(BasicEncrypt),
-      h(BasicDecrypt)
-    ])
-  }
+export default defineComponent(() => {
+  return () => h('div', [
+    h(BasicHead),
+    h(BasicEncrypt),
+    h(BasicDecrypt)
+  ])
 })

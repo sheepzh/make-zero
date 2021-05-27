@@ -90,7 +90,9 @@ export default class DefaultDecryptor extends AbstractDomDecryptor {
       const innerText = element.innerText
       if (cryptionExcutor.support(innerText)) {
         cryptionExcutor.decrypt(innerText)
-          .then(plain => element.innerHTML = plain)
+          .then(plain => {
+            element.innerHTML = plain
+          })
         this.floatAlert.hide()
       }
     }

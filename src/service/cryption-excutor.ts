@@ -16,9 +16,8 @@ export class CryptionExcutor {
   }
 
   public async decrypt(cipher: string): Promise<string> {
-    const version = await cryptorConfig.getCipherVersion()
     const password = await cryptorConfig.getPassword()
-    return await Promise.resolve(cryptorComposite.decrypt(cipher, version, password))
+    return await Promise.resolve(cryptorComposite.decrypt(cipher, password))
   }
 }
 

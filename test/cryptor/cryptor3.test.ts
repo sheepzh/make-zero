@@ -14,7 +14,7 @@ function randomStr() {
 test('test-cryptor3', () => {
   for (let i = 5; i; i--) {
     const str = randomStr()
-    const cipher = cryptor.encript(str, DEFAULT_PASSWORD)
+    const cipher = cryptor.encrypt(str, DEFAULT_PASSWORD)
     const plain = cryptor.decrypt(cipher, DEFAULT_PASSWORD)
     expect(str).toEqual(plain)
   }

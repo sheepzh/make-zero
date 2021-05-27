@@ -29,7 +29,7 @@ export default class Cryptor4 implements ICryptor {
   version(): number {
     return 4
   }
-  encript(plain: string, password: string): string {
+  encrypt(plain: string, password: string): string {
     let pn = password2Number(password)
     const cipherUnicodes: number[] = ringToUnicodes(pn, plain)
     const unicodeLength: number = maxUnicodeLength(cipherUnicodes)

@@ -24,7 +24,7 @@ export default class Cryptor2 extends Cryptor1 implements ICryptor {
     return 'z02'
   }
 
-  encript(plain: string, password: string): string {
+  encrypt(plain: string, password: string): string {
     let pn: number = password2Number(password)
     const salt: Salt = new Salt()
     salt.calcSalt(pn)

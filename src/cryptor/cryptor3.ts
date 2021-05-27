@@ -38,7 +38,7 @@ export default class Cryptor3 implements ICryptor {
     return 3
   }
 
-  encript(plain: string, password: string): string {
+  encrypt(plain: string, password: string): string {
     let pn = password2Number(password)
     const cipherUnicodes: number[] = ringToUnicodes(pn, plain)
     const unicodeLength: number = maxUnicodeLength(cipherUnicodes)

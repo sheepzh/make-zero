@@ -20,7 +20,7 @@ export interface ICryptor {
    */
   version(): number
 
-  encript(plain: string, password: string): string
+  encrypt(plain: string, password: string): string
 
   decrypt(cipher: string, password: string): string
 }

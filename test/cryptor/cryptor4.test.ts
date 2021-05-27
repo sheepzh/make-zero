@@ -5,7 +5,7 @@ const cryptor = new Cryptor4()
 
 test('test-cryptor4', () => {
   const plain = '你妈死了'
-  const cipher = cryptor.encript(plain, DEFAULT_PASSWORD)
+  const cipher = cryptor.encrypt(plain, DEFAULT_PASSWORD)
   expect(cryptor.decrypt(cipher, DEFAULT_PASSWORD)).toEqual(plain)
   expect(cryptor.decrypt(cipher.substring(0, cipher.length - 1), DEFAULT_PASSWORD) === plain).toBeFalsy()
 

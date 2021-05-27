@@ -1,11 +1,12 @@
 import { ElMenu, ElMenuItem } from "element-plus"
 import { defineComponent, h } from "vue"
+import { useRoute, useRouter } from "vue-router"
 import { t } from "../../plugin/i18n"
 
 /**
  * Info of menu items
  */
-declare class MenuItem {
+type MenuItem = {
   title: string
   route: string
 }
@@ -23,18 +24,17 @@ const menus: MenuItem[] = [
   }
 ]
 
-export default defineComponent({
-  name: 'GuideMenu',
-  render(_ctx: any) {
-    const menuItems = () => menus.map((item: MenuItem, index: number) => {
-      const { route, title } = item
-      return h(ElMenuItem,
-        { index: route, onClick: () => _ctx.$route.path !== route && _ctx.$router.push(route) },
-        {
-          title: () => h('span', {}, `${index + 1}. ${t(title)}`)
-        }
-      )
-    })
-    return h(ElMenu, { defaultActive: _ctx.$route.path }, menuItems)
-  }
+export default defineComponent<{}, {}>(() => {
+  const router = useRouter()
+  const currentRoute = useRoute().path
+  const menuItems = () => menus.map((item: MenuItem, index: number) => {
+    const { route, title } = item
+    return h(ElMenuItem,
+      { index: route, onClick: () => currentRoute !== route && router.push(route) },
+      {
+        title: () => h('span', {}, `${index + 1}. ${t(title)}`)
+      }
+    )
+  })
+  return () => h(ElMenu, { defaultActive: currentRoute }, menuItems)
 })

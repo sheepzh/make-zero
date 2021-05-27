@@ -4,61 +4,54 @@ import { t } from "../../plugin/i18n"
 import copy from "../../util/copy-util"
 import './style'
 
-declare class VersionItem {
+type ContentType = 'f' | 'b'
+
+type VersionItem = {
   current?: boolean
   name: string
   ts: string
-  contents: ('f' | 'b')[]
+  contents: ContentType[]
 }
-const version: { item: VersionItem } = require('../../../../version_log.json')
 
-const iconMap = { f: 'star-on', b: 'warning-outline' }
+const version: { [key: string]: VersionItem } = require('../../../../version_log.json')
+
+const iconMap: Map<ContentType, string> = new Map()
+iconMap.set('f', 'star-on')
+iconMap.set('b', 'warning-outline')
+
 const email = 'returnzhy1996@outlook.com'
 
-const key2Version = (key: string) => {
-  while (key.includes('.')) {
-    key = key.replace('.', '_')
-  }
-  return key
-}
+const key2Version = (key: string) => key.split('.').join('_')
 
-export default defineComponent({
-  name: 'Version',
-  setup() { },
-  render() {
-    const versionItems = []
-    for (const [key, value] of Object.entries(version)) {
-      const item = value as VersionItem
+export default defineComponent<{}, {}>(() => {
+  const versionItems = []
+  for (const [key, item] of Object.entries(version)) {
+    const contents = item.contents.map(
+      (tag, index) => h('p', [
+        h('i', { class: `el-icon-${iconMap[tag]}` }),
+        h('a', { class: 'version-item' }, t(`version.${key2Version(key)}.${index}`))
+      ])
+    )
 
-      const contents = item.contents.map(
-        (tag, index) => h('p', {}, [
-          h('i', { class: `el-icon-${iconMap[tag]}` }),
-          h('a', { class: 'version-item' }, t(`version.${key2Version(key)}.${index}`))
-        ])
+    versionItems.push(
+      h(ElTimelineItem,
+        { timestamp: item.ts || '0000-00-00', placement: 'top', type: item.current ? 'success' : 'primary' },
+        () => [
+          // title
+          h('h5', {}, [`v${key}`, h(ElTag, { class: 'version-item', type: item.current ? 'success' : 'primary', size: 'mini' }, () => item.name)]),
+          // contents
+          ...contents
+        ]
       )
-
-      versionItems.push(
-        h(ElTimelineItem,
-          { timestamp: item.ts || '0000-00-00', placement: 'top', type: item.current ? 'success' : 'primary' },
-          () => [
-            // title
-            h('h5', {}, [`v${key}`, h(ElTag, { class: 'version-item', type: item.current ? 'success' : 'primary', size: 'mini' }, () => item.name)]),
-            // contents
-            ...contents
-          ]
-        )
-      )
-    }
-    return h(ElTimeline, {},
-      () => [
-        ...versionItems,
-        h('br'),
-        h('p', {}, [
-          h('a', {}, h('i', { class: 'el-icon-message' })),
-          ` ${email} `,
-          h(ElTooltip, { content: t('button.copy') }, () => h(ElButton, { icon: 'el-icon-copy-document', type: 'primary', size: 'mini', circle: true, onClick: () => copy(email) }))
-        ])
-      ]
     )
   }
+  return () => h(ElTimeline, () => [
+    ...versionItems,
+    h('br'),
+    h('p', {}, [
+      h('a', {}, h('i', { class: 'el-icon-message' })),
+      ` ${email} `,
+      h(ElTooltip, { content: t('button.copy') }, () => h(ElButton, { icon: 'el-icon-copy-document', type: 'primary', size: 'mini', circle: true, onClick: () => copy(email) }))
+    ])
+  ])
 })

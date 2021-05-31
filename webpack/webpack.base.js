@@ -67,7 +67,7 @@ const options = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       }, {
-        test: /\.scss$/,
+        test: /\.sc|ass$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       }, {
         test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,

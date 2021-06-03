@@ -5,7 +5,7 @@ import { CIPHER_ATTR_NAME } from "."
 
 
 export default class DefaultDecryptor extends AbstractDomDecryptor {
-  private static ELE_TYPES_2_LISTEN = ['span', 'p', 'pre']
+  private static ELE_TYPES_2_LISTEN = ['span', 'p', 'pre', 'div']
   private floatAlert: FloatAlert
 
   support(_host: string): boolean {

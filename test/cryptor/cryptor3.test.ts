@@ -21,6 +21,7 @@ test('test-cryptor3', () => {
 
   expect(cryptor.decrypt('---·····A', DEFAULT_PASSWORD)).toEqual('---·····A')
   expect(cryptor.decrypt('---', DEFAULT_PASSWORD)).toEqual('---')
+  expect(cryptor.decrypt('dadad', DEFAULT_PASSWORD)).toEqual('dadad')
   expect(cryptor.decrypt('---·-', DEFAULT_PASSWORD)).toEqual('---·-')
 })
 

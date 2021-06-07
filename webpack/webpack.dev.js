@@ -27,7 +27,13 @@ const fileCopyForFirefox = new FileManagerWebpackPlugin({
   }
 })
 
-baseOption.plugins.push(firefoxManifestGeneratePlugin, fileCopyForFirefox)
+baseOption.plugins.push(
+  firefoxManifestGeneratePlugin, fileCopyForFirefox,
+  new webpack.DefinePlugin({
+    __VUE_OPTIONS_API__: false,
+    __VUE_PROD_DEVTOOLS__: false
+  })
+)
 
 // No eval with development, but generate *.map.js
 baseOption.devtool = 'cheap-module-source-map'

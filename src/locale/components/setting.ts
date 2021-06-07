@@ -1,4 +1,29 @@
-module.exports = {
+import { Messages } from "../constant"
+
+/**
+ * Used in the setting page
+ */
+export type SettingMessage = {
+  meta: { menu: string }
+  password: { title: string }
+  auto: {
+    encryptLabel: string
+    encryptTip: string
+    decryptLabel: string
+    decryptTip: string
+  },
+  cipherType: {
+    label: string
+    remark: {
+      1: string
+      2: string
+      3: string
+      4: string
+    }
+  }
+}
+
+const _default: Messages<SettingMessage> = {
   en: {
     meta: { menu: 'Settings' },
     password: { title: 'Password' },
@@ -38,3 +63,5 @@ module.exports = {
     }
   },
 }
+
+export default _default

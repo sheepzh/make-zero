@@ -1,4 +1,19 @@
-module.exports = {
+import { Messages } from "../constant"
+
+/**
+ * Message texts
+ */
+export type MsgMessage = {
+  unsupportedWeiboDecAuto: string
+  encryptionSuccess: string
+  encryptionFail: string
+  unknownCipherText: string
+  decryptionResult: string
+  decryptionCopied: string
+  decryptionCopyFailed: string
+}
+
+const _default: Messages<MsgMessage> = {
   zh_CN: {
     unsupportedWeiboDecAuto: "Sorry 啦，暂时还不支持微博自动解密哦！",
     encryptionSuccess: "密文已经复制到剪切板！",
@@ -18,3 +33,5 @@ module.exports = {
     decryptionCopyFailed: "Copy failed!"
   }
 }
+
+export default _default

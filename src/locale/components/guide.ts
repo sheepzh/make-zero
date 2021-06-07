@@ -1,4 +1,59 @@
-module.exports = {
+/**
+ * Used for guide page
+ */
+
+import { Messages } from "../constant"
+
+type BasicMessage = {
+  title: string
+  currentPassword: string
+  pasteError: string
+  clickMe: string
+  shortcut: string
+  encrypt: {
+    title: string
+    selectText: string
+    rightClick: string
+    paste: string
+    pasteInputHolder: string
+    pasteButton: string
+  }
+  decrypt: {
+    title: string
+    selectText: string
+    ciphertextPrefix: string
+    rightClick1: string
+    rightClick2: string
+  }
+}
+
+type AutoEncryptionMessage = {
+  title: string
+  alertIfOn: string
+  alertIfOff: string
+  form1: string
+  form2: string
+}
+
+type AutoDecryptionMessage = {
+  title: string
+  alertIfOn: string
+  alertIfOff: string
+}
+
+export type GuideMessage = {
+  period: string
+  meta: {
+    menu: string
+    title: string
+  }
+  welcome: string
+  basic: BasicMessage
+  autoEncryption: AutoEncryptionMessage
+  autoDecryption: AutoDecryptionMessage
+}
+
+const _default: Messages<GuideMessage> = {
   en: {
     period: '.',
     meta: { menu: 'Guidebook', title: 'Guidebook | Make Zero' },
@@ -52,7 +107,6 @@ module.exports = {
       encrypt: {
         title: '怎么加密？',
         selectText: "请先划取你想加密的文字，或者 ",
-        currentPassword: '当前密码是：',
         rightClick: "按下 {shortcut} 键加密。或者将鼠标放在选中的文字上，右击，点击弹出框里的 {menuItemPath} 选项。",
         paste: "你可以在下面输入框里粘贴刚才自动复制的密文，或者点击{btn}。",
         pasteInputHolder: 'Ctrl + V',
@@ -80,3 +134,5 @@ module.exports = {
     }
   }
 }
+
+export default _default

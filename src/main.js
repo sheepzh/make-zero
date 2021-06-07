@@ -9,7 +9,6 @@ const permissions = require('./chrome/config/permission')
 const background = require('./chrome/config/background')
 const contentListener = require('./chrome/config/content-listener')
 const contentScript = require('./chrome/config/content-script')
-const { defaultLocale } = require('./locale/index')
 
 module.exports = {
     name: '__MSG_app_name__',
@@ -22,7 +21,7 @@ module.exports = {
         "128": "static/images/icon.png"
     },
     author,
-    default_locale: defaultLocale,
+    default_locale: 'zh_CN',
     permissions,
     homepage_url: homepage,
     background: {

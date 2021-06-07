@@ -4,7 +4,7 @@
  * @author zhy
  */
 const path = require('path')
-
+const GenerateLocaleForChrome = require('./plugins/generate-locale-for-chrome')
 const GenerateJsonPlugin = require('generate-json-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -13,8 +13,6 @@ const manifest = require('../src/main.js')
 const background = require('../src/chrome/config/background')
 const contentListener = require('../src/chrome/config/content-listener')
 const contentScript = require('../src/chrome/config/content-script')
-// @since 1.2.0 Resolve the locale json files
-const { chromeMessages } = require('../src/locale/index')
 
 const entry = {}
 
@@ -25,15 +23,10 @@ entry[contentListener.script] = './src/content-listener.ts'
 entry[contentScript.script] = './src/content-script.ts'
 
 
-// Generate json files 
-const generateJsonPlugins = [new GenerateJsonPlugin('manifest.json', manifest)]
-for (const localeName in chromeMessages) {
-  const locale = chromeMessages[localeName]
-  generateJsonPlugins.push(new GenerateJsonPlugin(path.join('_locales', localeName, "messages.json"), locale))
-}
 
 const plugins = [
-  ...generateJsonPlugins,
+  new GenerateJsonPlugin('manifest.json', manifest),
+  new GenerateLocaleForChrome('locale', './src/locale'),
   new CopyWebpackPlugin({
     // copy static resources
     patterns: [

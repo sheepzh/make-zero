@@ -1,4 +1,42 @@
-module.exports = {
+import { Messages } from "../constant"
+
+export type VersionMessage = {
+  meta: { menu: string }
+  "1_0_0": { 0: string }
+  "1_0_1": { 0: string }
+  "1_1_0": {
+    0: string
+    1: string
+  }
+  "1_1_1": {
+    0: string
+    1: string
+  }
+  "1_1_2": {
+    0: string
+    1: string
+  }
+  "1_2_0": {
+    0: string
+    1: string
+  }
+  "1_3_0": {
+    0: string
+    1: string
+  }
+  "1_3_1": { 0: string }
+  "1_4_0": { 0: string }
+  "1_4_1": { 0: string }
+  "1_5_0": {
+    0: string
+    1: string
+  }
+  "1_5_1": { 0: string }
+  "1_5_2": { 0: string }
+  "1_6_0": { 0: string }
+  "1_6_1": { 0: string }
+}
+const _default: Messages<VersionMessage> = {
   en: {
     meta: { menu: "Versions" },
     "1_0_0": {
@@ -90,9 +128,6 @@ module.exports = {
     "1_4_1": {
       "0": "优化安装包体积。"
     },
-    "1_4_2": {
-      "0": "修复 www.tumblr.com 上的一些 bug"
-    },
     "1_5_0": {
       "0": "支持新的密文风格：摩斯码",
       "1": "修改设置信息后不用再刷新页面"
@@ -111,3 +146,5 @@ module.exports = {
     }
   }
 }
+
+export default _default

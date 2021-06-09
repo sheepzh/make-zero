@@ -71,6 +71,10 @@ npm run build
 - 手动加/解密
 
   直接选中文字，点击右键弹出菜单，然后点击菜单项 make-zero -> 加/解密。或者使用快捷键 Ctrl + ,
+  
+## 捐款链接
+
+[面包多](https://mianbaoduo.com/o/bread/mbd-YZqUmJtx)
 
 ## 有什么好的建议吗？
 

@@ -1,5 +1,5 @@
 const path = require('path')
-const baseOption = require('./webpack.base')
+const baseOption = require('./webpack.common')
 
 const FileManagerWebpackPlugin = require('filemanager-webpack-plugin')
 

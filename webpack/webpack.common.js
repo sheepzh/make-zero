@@ -22,8 +22,6 @@ entry[background.script] = './src/background.ts'
 entry[contentListener.script] = './src/content-listener.ts'
 entry[contentScript.script] = './src/content-script.ts'
 
-
-
 const plugins = [
   new GenerateJsonPlugin('manifest.json', manifest),
   new GenerateLocaleForChrome('locale', './src/locale'),
@@ -37,7 +35,6 @@ const plugins = [
     ]
   })
 ]
-
 
 const options = {
   entry: {
@@ -76,6 +73,5 @@ const options = {
     extensions: ['.ts', ".js", '.css', '.scss', '.sass'],
   }
 }
-
 
 module.exports = options

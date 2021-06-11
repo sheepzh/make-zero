@@ -19,7 +19,11 @@ MakeZero 是一个用于加密网络文本的 Chrome 插件。它能够加密你
 
 <u>**插件演示视频**</u>：[www.bilibili.com](https://www.bilibili.com/video/BV1x54y1t7MR)
 
-<u>**下载地址**</u>: [Google Chrome](https://chrome.google.com/webstore/detail/make-zero/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gkjmpdoddilgcfoeokeajfecogaaocol) | [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
+<u>**下载地址**</u>
+
+[![Chrome](https://img.shields.io/chrome-web-store/v/ihpcojcdiclghnggnlkcinbmfpomefcc?label=Google%20Chrome)](https://chrome.google.com/webstore/detail/%E7%BD%91%E8%B4%B9%E5%BE%88%E8%B4%B5-%E4%B8%8A%E7%BD%91%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN)
+[![Firefox](https://img.shields.io/amo/v/2688458?color=green&label=Mozilla%20Firefox)](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
+[![Edge](https://img.shields.io/badge/dynamic/json?label=Microsoft%20Edge&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fgkjmpdoddilgcfoeokeajfecogaaocol)](https://microsoftedge.microsoft.com/addons/detail/timer-running-browsin/gkjmpdoddilgcfoeokeajfecogaaocol)
 
 ## 它能做什么？
 
@@ -71,7 +75,7 @@ npm run build
 - 手动加/解密
 
   直接选中文字，点击右键弹出菜单，然后点击菜单项 make-zero -> 加/解密。或者使用快捷键 Ctrl + ,
-  
+
 ## 捐款链接
 
 [面包多](https://mianbaoduo.com/o/bread/mbd-YZqUmJtx)

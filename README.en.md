@@ -23,7 +23,11 @@ It makes people with the same consensus more easily to discuss in public and to 
 
 <u>**Demo video**</u>: [www.youtube.com](https://youtu.be/y97xMhQpce8)
 
-<u>**Downloads**</u>: [Google Chrome](https://chrome.google.com/webstore/detail/make-zero/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gkjmpdoddilgcfoeokeajfecogaaocol) | [FireFox](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
+<u>**Downloads**</u>
+
+[![Chrome](https://img.shields.io/chrome-web-store/v/ihpcojcdiclghnggnlkcinbmfpomefcc?label=Google%20Chrome)](https://chrome.google.com/webstore/detail/%E7%BD%91%E8%B4%B9%E5%BE%88%E8%B4%B5-%E4%B8%8A%E7%BD%91%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/ihpcojcdiclghnggnlkcinbmfpomefcc?hl=zh-CN)
+[![Firefox](https://img.shields.io/amo/v/2688458?color=green&label=Mozilla%20Firefox)](https://addons.mozilla.org/zh-CN/firefox/addon/make-zero/)
+[![Edge](https://img.shields.io/badge/dynamic/json?label=Microsoft%20Edge&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fgkjmpdoddilgcfoeokeajfecogaaocol)](https://microsoftedge.microsoft.com/addons/detail/timer-running-browsin/gkjmpdoddilgcfoeokeajfecogaaocol)
 
 ## What can it do?
 

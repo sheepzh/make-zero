@@ -3,16 +3,16 @@
  * 
  * @author zhy
  */
-const path = require('path')
-const GenerateLocaleForChrome = require('./plugins/generate-locale-for-chrome')
-const GenerateJsonPlugin = require('generate-json-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+import webpack from 'webpack'
+import GenerateJsonPlugin from 'generate-json-webpack-plugin'
+import GenerateLocaleForChrome from './plugins/generate-locale-for-chrome'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 // Require from this path
-const manifest = require('../src/main.js')
-const background = require('../src/chrome/config/background')
-const contentListener = require('../src/chrome/config/content-listener')
-const contentScript = require('../src/chrome/config/content-script')
+import manifest from '../src/main'
+import background from '../src/chrome/config/background'
+import contentListener from '../src/chrome/config/content-listener'
+import contentScript from '../src/chrome/config/content-script'
 
 const entry = {}
 
@@ -22,8 +22,8 @@ entry[background.script] = './src/background.ts'
 entry[contentListener.script] = './src/content-listener.ts'
 entry[contentScript.script] = './src/content-script.ts'
 
-const plugins = [
-  new GenerateJsonPlugin('manifest.json', manifest),
+const plugins: webpack.WebpackPluginInstance[] = [
+  new GenerateJsonPlugin('manifest.json', manifest) as unknown as webpack.WebpackPluginInstance,
   new GenerateLocaleForChrome('locale', './src/locale'),
   new CopyWebpackPlugin({
     // copy static resources
@@ -36,7 +36,7 @@ const plugins = [
   })
 ]
 
-const options = {
+const options: webpack.Configuration = {
   entry: {
     ...entry,
     'popup': './src/view/popup/index',
@@ -74,4 +74,4 @@ const options = {
   }
 }
 
-module.exports = options
+export default options

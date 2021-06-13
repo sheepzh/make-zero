@@ -4,7 +4,9 @@
         "target": "es5",
         "sourceMap": true,
         "importHelpers": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
     },
     "lib": [
         "dom"
@@ -13,6 +15,5 @@
         "node_modules",
         "dist"
     ],
-    "strict": true,
-    "esModuleInterop": true
+    "strict": true
 }

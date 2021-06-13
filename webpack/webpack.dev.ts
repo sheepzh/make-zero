@@ -1,11 +1,10 @@
-const path = require('path')
-const webpack = require('webpack')
-const baseOption = require('./webpack.common')
-const GenerateJsonPlugin = require('generate-json-webpack-plugin')
-const FileManagerWebpackPlugin = require('filemanager-webpack-plugin')
+import path from 'path'
+import webpack from 'webpack'
+import baseOption from './webpack.common'
+import GenerateJsonPlugin from 'generate-json-webpack-plugin'
+import FileManagerWebpackPlugin from 'filemanager-webpack-plugin'
 
-const manifest = require('../src/main.js')
-
+import manifest from '../src/main'
 
 // Build for Firefox
 const manifestFirefoxName = 'manifest-firefox.json'
@@ -29,7 +28,8 @@ const fileCopyForFirefox = new FileManagerWebpackPlugin({
 })
 
 baseOption.plugins.push(
-  firefoxManifestGeneratePlugin, fileCopyForFirefox,
+  firefoxManifestGeneratePlugin as unknown as webpack.WebpackPluginInstance,
+  fileCopyForFirefox as webpack.WebpackPluginInstance,
   new webpack.DefinePlugin({
     __VUE_OPTIONS_API__: false,
     __VUE_PROD_DEVTOOLS__: false
@@ -42,6 +42,6 @@ baseOption.devtool = 'cheap-module-source-map'
 // Use cache with filesystem
 baseOption.cache = { type: 'filesystem' }
 
-baseOption.output.path = path.join(__dirname, '..', 'dist_dev')
+baseOption.output.path = path.resolve(__dirname, '..', 'dist_dev')
 
-module.exports = baseOption
+export default baseOption

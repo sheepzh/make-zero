@@ -4,7 +4,7 @@
  * @author zhy 
  * @since 1.0.0
  */
-module.exports = [
+export default [
     "storage",
     "tabs",
     "contextMenus"

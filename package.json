@@ -7,8 +7,8 @@
   },
   "homepage": "https://github.com/sheepzh/make-zero",
   "scripts": {
-    "dev": "webpack --mode=development --config=webpack/webpack.dev.js --watch",
-    "build": "webpack --mode=production --config=webpack/webpack.prod.js",
+    "dev": "webpack --mode=development --config=webpack/webpack.dev.ts --watch",
+    "build": "webpack --mode=production --config=webpack/webpack.prod.ts",
     "test": "jest",
     "test-c": "jest --coverage"
   },
@@ -16,8 +16,14 @@
   "author": "zhy",
   "license": "MIT",
   "devDependencies": {
-    "@types/chrome": "0.0.144",
+    "@jest/types": "^27.0.2",
+    "@types/chrome": "0.0.145",
+    "@types/copy-webpack-plugin": "^8.0.0",
+    "@types/echarts": "^4.9.8",
+    "@types/generate-json-webpack-plugin": "^0.3.3",
     "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-component": "^1.1.1",
     "copy-webpack-plugin": "^9.0.0",
@@ -27,15 +33,16 @@
     "generate-json-webpack-plugin": "^2.0.0",
     "jest": "^27.0.4",
     "node-sass": "^6.0.0",
-    "sass-loader": "^12.0.0",
+    "sass-loader": "^12.1.0",
     "style-loader": "^2.0.0",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
-    "tslib": "^2.2.0",
+    "ts-node": "^10.0.0",
+    "tslib": "^2.3.0",
     "typescript": "^4.3.2",
     "url-loader": "^4.1.1",
     "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "webpack-cli": "^4.7.2"
   },
   "dependencies": {
     "clipboardy": "^2.3.0",

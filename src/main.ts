@@ -4,13 +4,15 @@
  * @author zhy
  * @since 1.0.0
  */
-const { version, author, homepage } = require('../package.json')
-const permissions = require('./chrome/config/permission')
-const background = require('./chrome/config/background')
-const contentListener = require('./chrome/config/content-listener')
-const contentScript = require('./chrome/config/content-script')
+//@ts-ignore
+import { version, author, homepage } from '../package.json'
+import permissions from './chrome/config/permission'
+import background from './chrome/config/background'
+import contentListener from './chrome/config/content-listener'
+import contentScript from './chrome/config/content-script'
+import { Locale } from './locale/constant'
 
-module.exports = {
+const manifest = {
     name: '__MSG_app_name__',
     version,
     // @since 1.2.0 defined with i18n
@@ -21,7 +23,7 @@ module.exports = {
         "128": "static/images/icon.png"
     },
     author,
-    default_locale: 'zh_CN',
+    default_locale: Locale.ZH_CN,
     permissions,
     homepage_url: homepage,
     background: {
@@ -47,3 +49,5 @@ module.exports = {
     },
     manifest_version: 2
 }
+
+export default manifest

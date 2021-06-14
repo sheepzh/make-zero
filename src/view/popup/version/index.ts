@@ -4,16 +4,7 @@ import { t } from "../../plugin/i18n"
 import copy from "../../util/copy-util"
 import './style'
 
-type ContentType = 'f' | 'b'
-
-type VersionItem = {
-  current?: boolean
-  name: string
-  ts: string
-  contents: ContentType[]
-}
-
-const version: { [key: string]: VersionItem } = require('../../../../version_log.json')
+import version, { ContentType } from '../../../version-log'
 
 const iconMap: Map<ContentType, string> = new Map()
 iconMap.set('f', 'star-on')

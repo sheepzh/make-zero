@@ -9,7 +9,7 @@ import { name, version } from '../package.json'
 const normalZipFilePath = `./market_packages/${name}-${version}.zip`
 const sourceCodeForFireFox = `./market_packages/${name}-${version}-src.zip`
 
-const srcDir = ['public', 'src', 'package.json', 'tsconfig.json', 'version_log.json', 'webpack']
+const srcDir = ['public', 'src', 'package.json', 'tsconfig.json', 'jest.config.ts', 'webpack']
 const copyMapper = srcDir.map(path => { return { source: `./${path}`, destination: `./firefox/${path}` } })
 
 const filemanager = new FileManagerWebpackPlugin({

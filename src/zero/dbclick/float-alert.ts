@@ -2,6 +2,18 @@ import { t2Chrome } from "../../util/i18n/chrome/t"
 
 const idPrefix: string = 'make-zero-float-'
 
+const containerStyle: Partial<CSSStyleDeclaration> = {
+  position: 'absolute',
+  margin: '5px',
+  borderRadius: '10px',
+  backgroundColor: '#fff',
+  width: '46px',
+  height: '46px',
+  verticalAlign: 'middle',
+  boxShadow: '5px 5px 5px #aaa',
+  padding: '10px',
+  zIndex: '99999'
+}
 export default class FloatAlert {
   private parent: HTMLBodyElement
   private target: HTMLDivElement
@@ -33,15 +45,8 @@ export default class FloatAlert {
     floatAlertContainer.append(this.icon)
     floatAlertContainer.append(this.createAlertText())
 
-    floatAlertContainer.style.position = 'absolute'
-    floatAlertContainer.style.margin = '5px'
-    floatAlertContainer.style.borderRadius = '10px'
-    floatAlertContainer.style.backgroundColor = '#fff'
-    floatAlertContainer.style.width = '46px'
-    floatAlertContainer.style.height = '46px'
-    floatAlertContainer.style.verticalAlign = 'middle'
-    floatAlertContainer.style.boxShadow = '5px 5px 5px #aaa'
-    floatAlertContainer.style.padding = '10px'
+    Object.assign(floatAlertContainer.style, containerStyle)
+
     this.target = floatAlertContainer
 
     // append to the body and hide it at first

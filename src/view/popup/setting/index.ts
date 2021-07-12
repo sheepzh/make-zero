@@ -96,7 +96,7 @@ export default defineComponent<{}, RawBinding>(() => {
             {
               icon: 'el-icon-copy-document',
               class: 'copy-append',
-              onClick: (val: string) => copy(val)
+              onClick: () => copy(binding.password)
             }
           )
         )

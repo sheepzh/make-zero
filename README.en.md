@@ -15,7 +15,7 @@
 
 ## What is it?
 
-<b><i>Make Zero</i></b> is a browser plugin/add-on for text encryption. It can run among Chrome, Firefox and the latest Edge.
+<b><i>Make Zero</i></b> is a browser extension/add-on for text encryption. It can run among Chrome, Firefox and the latest Edge.
 
 It can encrypt any texts you typed on net, and only those know your password can decrypt it and see the origin text.
 

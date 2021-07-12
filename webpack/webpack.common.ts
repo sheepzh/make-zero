@@ -9,7 +9,7 @@ import GenerateLocaleForChrome from './plugins/generate-locale-for-chrome'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 // Require from this path
-import manifest from '../src/main'
+import manifest from '../src/manifest'
 import background from '../src/chrome/config/background'
 import contentListener from '../src/chrome/config/content-listener'
 import contentScript from '../src/chrome/config/content-script'

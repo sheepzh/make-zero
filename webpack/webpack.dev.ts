@@ -4,7 +4,7 @@ import baseOption from './webpack.common'
 import GenerateJsonPlugin from 'generate-json-webpack-plugin'
 import FileManagerWebpackPlugin from 'filemanager-webpack-plugin'
 
-import manifest from '../src/main'
+import manifest from '../src/manifest'
 
 // Build for Firefox
 const manifestFirefoxName = 'manifest-firefox.json'

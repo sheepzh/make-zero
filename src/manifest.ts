@@ -26,6 +26,15 @@ const manifest = {
     default_locale: Locale.ZH_CN,
     permissions,
     homepage_url: homepage,
+    commands: {
+        _execute_browser_action: {
+            suggested_key: {
+                default: "Ctrl+Shift+Y",
+                mac: "Command+Shift+Y"
+            },
+            description: "Open the popup page."
+        },
+    },
     background: {
         scripts: [
             background.script + '.js'

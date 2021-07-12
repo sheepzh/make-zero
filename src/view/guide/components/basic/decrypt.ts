@@ -1,4 +1,4 @@
-import { defineComponent, h, reactive, ref } from 'vue'
+import { defineComponent, h, ref } from 'vue'
 import cryptionExcutor from '../../../../service/cryption-excutor'
 import { CIPHER_ATTR_NAME } from '../../../../zero/dbclick'
 import { t, tN } from '../../locale'

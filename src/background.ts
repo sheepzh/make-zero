@@ -34,6 +34,5 @@ const bg: Background = new Background()
 
 new MenuDefine().create()
 
-
 bg.onTabUpdate()
 bg.onInstalled()

@@ -1,25 +1,25 @@
 import { ElMenu, ElMenuItem } from "element-plus"
 import { defineComponent, h } from "vue"
 import { useRoute, useRouter } from "vue-router"
-import { t } from "../../plugin/i18n"
+import { I18nKey, t } from "../locale"
 
 /**
  * Info of menu items
  */
 type MenuItem = {
-  title: string
+  title: I18nKey
   route: string
 }
 
 const menus: MenuItem[] = [
   {
-    title: 'guide.basic.title',
+    title: msg => msg.basic.title,
     route: '/basic'
   }, {
-    title: 'guide.autoEncryption.title',
+    title: msg => msg.autoEncryption.title,
     route: '/auto-encryption'
   }, {
-    title: 'guide.autoDecryption.title',
+    title: msg => msg.autoDecryption.title,
     route: '/auto-decryption'
   }
 ]

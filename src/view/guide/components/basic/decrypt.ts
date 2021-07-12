@@ -1,11 +1,11 @@
 import { defineComponent, h, reactive, ref } from 'vue'
 import cryptionExcutor from '../../../../service/cryption-excutor'
 import { CIPHER_ATTR_NAME } from '../../../../zero/dbclick'
-import { t, tN } from '../../../plugin/i18n'
-import { boldAndItalic } from '../../../util/vue-util'
+import { t, tN } from '../../locale'
+import { boldAndItalic } from '../../vue-util'
 
 const ciphertextExample = ref('')
-cryptionExcutor.encrypt(t('guide.welcome')).then(cipher => ciphertextExample.value = cipher)
+cryptionExcutor.encrypt(t(msg => msg.welcome)).then(cipher => ciphertextExample.value = cipher)
 
 const selectCiphertext = () => window.find(ciphertextExample.value) || window.find(ciphertextExample.value, true, true)
 
@@ -14,33 +14,33 @@ const selectCiphertext = () => window.find(ciphertextExample.value) || window.fi
  */
 const _default = defineComponent(() => {
   // title
-  const title = () => h('h3', t('guide.basic.decrypt.title'))
+  const title = () => h('h3', t(msg => msg.basic.decrypt.title))
   // step 1
   const exampleProp = { style: 'text-indent:2em;' }
   exampleProp[CIPHER_ATTR_NAME] = true
   const alert1 = () =>
     h('p', [
       h('a', { class: 'step-sort' }, '1. '),
-      tN('guide.basic.decrypt.selectText',
+      tN(msg => msg.basic.decrypt.selectText,
         {
-          clickMe: h('a', { href: '#', onClick: selectCiphertext }, t('guide.basic.clickMe')),
-          ciphertextPrefix: boldAndItalic(t('guide.basic.decrypt.ciphertextPrefix'))
+          clickMe: h('a', { href: '#', onClick: selectCiphertext }, t(msg => msg.basic.clickMe)),
+          ciphertextPrefix: boldAndItalic(t(msg => msg.basic.decrypt.ciphertextPrefix))
         }
       )
     ])
   const cipher = () => h('p', exampleProp, boldAndItalic(ciphertextExample.value))
   const alert21 = () => h('p', [
     h('a', { class: 'step-sort' }, '2.1. '),
-    tN('guide.basic.decrypt.rightClick1',
+    tN(msg => msg.basic.decrypt.rightClick1,
       {
-        shortcut: boldAndItalic(t('guide.basic.shortcut')),
-        menuItemPath: boldAndItalic(`${t('app.name')} >> ${t('contextMenu.decrypt')}`)
+        shortcut: boldAndItalic(t(msg => msg.basic.shortcut)),
+        menuItemPath: boldAndItalic(`${t(msg => msg.app.name)} >> ${t(msg => msg.contextMenu.decrypt)}`)
       }
     )
   ])
   const alert22 = () => h('p', [
     h('a', { class: 'step-sort' }, '2.2. '),
-    h('a', t('guide.basic.decrypt.rightClick2'))
+    h('a', t(msg => msg.basic.decrypt.rightClick2))
   ])
   return () => h('div', [title(), alert1(), cipher(), alert21(), alert22()])
 })

@@ -1,8 +1,6 @@
 import { App } from 'vue'
 import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router'
 
-
-
 const routes: RouteRecordRaw[] = [
   {
     path: '/',

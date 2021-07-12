@@ -1,48 +1,52 @@
+import optionGenerator from './webpack.common'
 import path from 'path'
-import baseOption from './webpack.common'
-
-import webpack from 'webpack'
 import FileManagerWebpackPlugin from 'filemanager-webpack-plugin'
+import webpack from 'webpack'
 
-import { name, version } from '../package.json'
+const { name, version } = require(path.join(__dirname, '..', 'package.json'))
 
-const normalZipFilePath = `./market_packages/${name}-${version}.zip`
-const sourceCodeForFireFox = `./market_packages/${name}-${version}-src.zip`
+const outputDir = path.resolve(__dirname, '..', 'dist_prod')
+const options = optionGenerator(outputDir)
 
-const srcDir = ['public', 'src', 'package.json', 'tsconfig.json', 'jest.config.ts', 'webpack']
-const copyMapper = srcDir.map(path => { return { source: `./${path}`, destination: `./firefox/${path}` } })
+const normalZipFilePath = path.resolve(__dirname, '..', 'market_packages', `${name}-${version}.zip`)
+const sourceCodeForFireFox = path.resolve(__dirname, '..', 'market_packages', `${name}-${version}-src.zip`)
 
-const filemanager = new FileManagerWebpackPlugin({
-  events: {
-    onStart: [{ delete: ['./chrome_dir/*'] }],
-    // Archive at the end
-    onEnd: [
-      // Delete license files
-      { delete: ['./chrome_dir/*.LICENSE.txt'] },
-      // Define plugin to archive zip for differrent markets
-      {
-        delete: [normalZipFilePath],
-        archive: [
-          { source: './chrome_dir', destination: normalZipFilePath },
+// Temperary directory for source code to archive on Firefox
+const sourceTempDir = path.resolve(__dirname, '..', 'firefox')
+
+const srcDir = ['public', 'src', 'package.json', 'tsconfig.json', 'webpack']
+const copyMapper = srcDir.map(p => { return { source: path.resolve(__dirname, '..', p), destination: path.resolve(sourceTempDir, p) } })
+
+const readmeForForfix = path.join(__dirname, '..', 'doc', 'for-fire-fox.md')
+
+const filemanagerWebpackPlugin = new FileManagerWebpackPlugin({
+    events: {
+        // Archive at the end
+        onEnd: [
+            { delete: [path.join(outputDir, '*.LICENSE.txt')] },
+            // Define plugin to archive zip for differrent markets
+            {
+                delete: [normalZipFilePath],
+                archive: [{ source: outputDir, destination: normalZipFilePath }]
+            },
+            // Archive srouce code for FireFox
+            {
+                copy: [
+                    { source: readmeForForfix, destination: path.join(sourceTempDir, 'README.md') },
+                    { source: readmeForForfix, destination: path.join(sourceTempDir, 'doc', 'for-fire-fox.md') },
+                    ...copyMapper
+                ],
+                archive: [
+                    { source: sourceTempDir, destination: sourceCodeForFireFox },
+                ],
+                delete: [sourceTempDir]
+            }
         ]
-      },
-      // Archive srouce code for FireFox
-      {
-        copy: [
-          { source: './doc/for-fire-fox.md', destination: './firefox/README.md' },
-          { source: './doc/for-fire-fox.md', destination: './firefox/doc/for-fire-fox.md' },
-          ...copyMapper
-        ],
-        archive: [
-          { source: './firefox', destination: sourceCodeForFireFox },
-        ],
-        delete: ['./firefox']
-      }
-    ]
-  }
+    }
 })
 
-baseOption.plugins.push(filemanager as webpack.WebpackPluginInstance)
-baseOption.output.path = path.resolve(__dirname, '..', 'chrome_dir')
+options.plugins.push(filemanagerWebpackPlugin as webpack.WebpackPluginInstance)
 
-export default baseOption
+options.output.path = outputDir
+
+export default options

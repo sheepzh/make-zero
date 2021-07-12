@@ -6,11 +6,6 @@
  */
 //@ts-ignore
 import { version, author, homepage } from '../package.json'
-import permissions from './chrome/config/permission'
-import background from './chrome/config/background'
-import contentListener from './chrome/config/content-listener'
-import contentScript from './chrome/config/content-script'
-import { Locale } from './locale/constant'
 
 const manifest = {
     name: '__MSG_app_name__',
@@ -23,8 +18,12 @@ const manifest = {
         "128": "static/images/icon.png"
     },
     author,
-    default_locale: Locale.ZH_CN,
-    permissions,
+    default_locale: 'en',
+    permissions: [
+        "storage",
+        "tabs",
+        "contextMenus"
+    ],
     homepage_url: homepage,
     commands: {
         _execute_browser_action: {
@@ -37,19 +36,18 @@ const manifest = {
     },
     background: {
         scripts: [
-            background.script + '.js'
+            'background.js'
         ],
-        persistent: background.persistent
+        persistent: true
     },
     content_scripts: [
         {
-            matches: [contentListener.matches],
-            js: [contentListener.script + '.js'],
-            run_at: contentListener.runAt
-        }, {
-            matches: [contentScript.matches],
-            js: [contentScript.script + '.js'],
-            run_at: contentScript.runAt
+            matches: ["<all_urls>"],
+            js: [
+                "content_listener.js",
+                "content_scripts.js"
+            ],
+            run_at: "document_end"
         }
     ],
     browser_action: {

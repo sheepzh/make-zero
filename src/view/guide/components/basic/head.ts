@@ -1,8 +1,8 @@
 import { defineComponent, h, ref } from "vue"
 import { ElAlert } from "element-plus"
 import cryptorConfig from "../../../../config"
-import { t } from "../../../plugin/i18n"
-import { boldAndItalic } from "../../../util/vue-util"
+import { boldAndItalic } from "../../vue-util"
+import { t } from "../../locale"
 
 /**
  * Head of this page
@@ -15,15 +15,15 @@ const _default = defineComponent<{}, {}>(() => {
   return () => h('div',
     [
       // title
-      h('h2', t('guide.basic.title')),
+      h('h2', t(msg => msg.basic.title)),
       // alert
       h(ElAlert,
         { type: 'success' },
         {
           title: () => [
-            t('guide.basic.currentPassword'),
+            t(msg => msg.basic.currentPassword),
             boldAndItalic(password.value),
-            t('guide.period')
+            t(msg => msg.period)
           ]
         }
       )

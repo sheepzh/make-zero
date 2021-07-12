@@ -2,8 +2,8 @@ import { ElButton, ElCol, ElForm, ElFormItem, ElInput, ElOption, ElRow, ElSelect
 import { defineComponent, reactive, h, UnwrapRef } from "vue"
 import cryptor from "../../../cryptor"
 import cryptorConfig from "../../../config"
-import { t } from "../../plugin/i18n"
-import copy from "../../util/copy-util"
+import { t } from "../locale"
+import copy from "../copy-util"
 
 const maxVersion = cryptor.version()
 
@@ -40,10 +40,10 @@ export default defineComponent<{}, RawBinding>(() => {
         }),
         label: () => {
           const vnodes = []
-          vnodes.push(h('span', {}, t('setting.auto.encryptLabel')))
+          vnodes.push(h('span', {}, t(msg => msg.setting.auto.encryptLabel)))
           const infoTooltip = h(ElTooltip, { placement: 'top' },
             {
-              content: () => h('p', {}, t('setting.auto.encryptTip')),
+              content: () => h('p', {}, t(msg => msg.setting.auto.encryptTip)),
               default: () => h('i', { class: 'el-icon-question' })
             }
           )
@@ -64,10 +64,10 @@ export default defineComponent<{}, RawBinding>(() => {
         ),
         label: () => {
           const vnodes = []
-          vnodes.push(h('span', {}, t('setting.auto.decryptLabel')))
+          vnodes.push(h('span', {}, t(msg => msg.setting.auto.decryptLabel)))
           const infoTooltip = h(ElTooltip, { placement: 'top' },
             {
-              content: () => h('p', {}, t('setting.auto.decryptTip')),
+              content: () => h('p', {}, t(msg => msg.setting.auto.decryptTip)),
               default: () => h('i', { class: 'el-icon-question' })
             }
           )
@@ -81,14 +81,25 @@ export default defineComponent<{}, RawBinding>(() => {
   const line0 = () => h(ElRow, { gutter: 10 }, () => [line0Col0(), line0Col1()])
 
   // Password
-  const line1 = () => h(ElFormItem, { label: t('setting.password.title') }, () =>
+  const line1 = () => h(ElFormItem, { label: t(msg => msg.setting.password.title) }, () =>
     h(ElInput,
       {
         modelValue: binding.password,
         onInput: (val: string) => cryptorConfig.changePassword(binding.password = val)
       },
       {
-        append: () => h(ElTooltip, { content: t('button.copy') }, () => h(ElButton, { icon: 'el-icon-copy-document', class: 'copy-append', onClick: (val: string) => copy(val) }))
+        append: () => h(ElTooltip,
+          {
+            content: t(msg => msg.button.copy)
+          },
+          () => h(ElButton,
+            {
+              icon: 'el-icon-copy-document',
+              class: 'copy-append',
+              onClick: (val: string) => copy(val)
+            }
+          )
+        )
       }
     )
   )
@@ -97,8 +108,8 @@ export default defineComponent<{}, RawBinding>(() => {
   const formatOptions = () =>
     Array.from(Array(maxVersion).keys())
       .map(index => index + 1)
-      .map(no => h(ElOption, { value: no, label: no + '. ' + t(`setting.cipherType.remark.${no}`) }))
-  const line2 = () => h(ElFormItem, { label: t('setting.cipherType.label') }, () =>
+      .map(no => h(ElOption, { value: no, label: no + '. ' + t(msg => msg.setting.cipherType.remark[no]) }))
+  const line2 = () => h(ElFormItem, { label: t(msg => msg.setting.cipherType.label) }, () =>
     h(ElSelect, { modelValue: binding.cipherVersion, onChange: (val: number) => cryptorConfig.changeCipherVersion(binding.cipherVersion = val) },
       () => formatOptions()
     )

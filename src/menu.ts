@@ -1,10 +1,11 @@
+import { t2Chrome } from './util/i18n/chrome/t'
 import ContextMenuListener from './zero/context-menu-listener'
 
 export class MenuDefine {
   create() {
     chrome.contextMenus.create({
       type: 'normal',
-      title: chrome.i18n.getMessage('contextMenu_decrypt'),
+      title: t2Chrome(msg => msg.contextMenu.decrypt),
       id: 'Zero-encryt',
       contexts: ['all'],
       onclick: (info, tab) => {
@@ -16,7 +17,7 @@ export class MenuDefine {
 
     chrome.contextMenus.create({
       type: 'normal',
-      title: chrome.i18n.getMessage('contextMenu_encrypt'),
+      title: t2Chrome(msg => msg.contextMenu.encrypt),
       id: 'Zero-decrypt',
       contexts: ['all'],
       onclick: (info, tab) => {

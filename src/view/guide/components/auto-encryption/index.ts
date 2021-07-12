@@ -1,7 +1,7 @@
 import { ElAlert, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { defineComponent, h, reactive, UnwrapRef } from 'vue'
 import cryptorConfig from '../../../../config'
-import { t } from '../../../plugin/i18n'
+import { t } from '../../locale'
 
 type RawBinding = {
   on: boolean
@@ -17,12 +17,12 @@ const binding: UnwrapRef<RawBinding> = reactive({
 cryptorConfig.getAutoFill().then(af => binding.on = af)
 
 const _default = defineComponent<{}, RawBinding>(() => {
-  const title = () => h('h2', t('guide.autoEncryption.title'))
-  const alertText = t(`guide.autoEncryption.${binding.on ? 'alertIfOn' : 'alertIfOff'}`)
+  const title = () => h('h2', t(msg => msg.autoEncryption.title))
+  const alertText = t(msg => binding.on ? msg.autoEncryption.alertIfOn : msg.autoEncryption.alertIfOff)
   const alertType = binding.on ? 'success' : 'warning'
   const alertInfo = () => h(ElAlert, { type: alertType }, { default: () => alertText })
   const formFoo = () => h(ElFormItem,
-    { label: t('guide.autoEncryption.form1') },
+    { label: t(msg => msg.autoEncryption.form1) },
     () => h(ElInput,
       {
         modelValue: binding.foo,
@@ -34,7 +34,7 @@ const _default = defineComponent<{}, RawBinding>(() => {
     )
   )
   const formBar = () => h(ElFormItem,
-    { label: t('guide.autoEncryption.form2') },
+    { label: t(msg => msg.autoEncryption.form2) },
     () => h(ElInput,
       {
         modelValue: binding.bar,

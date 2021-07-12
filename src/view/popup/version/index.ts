@@ -1,10 +1,10 @@
 import { ElButton, ElTag, ElTimeline, ElTimelineItem, ElTooltip } from "element-plus"
 import { defineComponent, h } from "vue"
-import { t } from "../../plugin/i18n"
-import copy from "../../util/copy-util"
+import copy from "../copy-util"
 import './style'
 
 import version, { ContentType } from '../../../version-log'
+import { t } from "../locale"
 
 const iconMap: Map<ContentType, string> = new Map()
 iconMap.set('f', 'star-on')
@@ -20,7 +20,7 @@ export default defineComponent<{}, {}>(() => {
     const contents = item.contents.map(
       (tag, index) => h('p', [
         h('i', { class: `el-icon-${iconMap[tag]}` }),
-        h('a', { class: 'version-item' }, t(`version.${key2Version(key)}.${index}`))
+        h('a', { class: 'version-item' }, t(msg => msg.version[key2Version(key)][index]))
       ])
     )
 
@@ -42,7 +42,7 @@ export default defineComponent<{}, {}>(() => {
     h('p', {}, [
       h('a', {}, h('i', { class: 'el-icon-message' })),
       ` ${email} `,
-      h(ElTooltip, { content: t('button.copy') }, () => h(ElButton, { icon: 'el-icon-copy-document', type: 'primary', size: 'mini', circle: true, onClick: () => copy(email) }))
+      h(ElTooltip, { content: t(msg => msg.button.copy) }, () => h(ElButton, { icon: 'el-icon-copy-document', type: 'primary', size: 'mini', circle: true, onClick: () => copy(email) }))
     ])
   ])
 })

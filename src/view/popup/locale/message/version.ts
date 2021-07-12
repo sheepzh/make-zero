@@ -1,4 +1,4 @@
-import { Messages } from "../constant"
+import { Messages } from "../../../../util/i18n"
 
 export type VersionMessage = {
   meta: { menu: string }
@@ -36,6 +36,7 @@ export type VersionMessage = {
   "1_6_0": { 0: string }
   "1_6_1": { 0: string }
 }
+
 const _default: Messages<VersionMessage> = {
   en: {
     meta: { menu: "Versions" },

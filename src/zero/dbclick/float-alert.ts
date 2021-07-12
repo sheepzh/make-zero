@@ -1,3 +1,5 @@
+import { t2Chrome } from "../../util/i18n/chrome/t"
+
 const idPrefix: string = 'make-zero-float-'
 
 export default class FloatAlert {
@@ -50,7 +52,7 @@ export default class FloatAlert {
   private createAlertText(): HTMLElement {
     const floatAlert = document.createElement('p')
     floatAlert.id = `${idPrefix}alert-${this.roundId()}`
-    floatAlert.innerHTML = chrome.i18n.getMessage('button_dbclick')
+    floatAlert.innerHTML = t2Chrome(msg => msg.button.dbclick)
 
     floatAlert.style.fontFamily = 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif'
     floatAlert.style.margin = '0 auto'

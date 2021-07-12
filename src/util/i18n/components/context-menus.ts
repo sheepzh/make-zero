@@ -1,7 +1,7 @@
 /**
  * Used for the context menu items of chrome
  */
-import { Messages } from "../constant"
+import { Messages } from ".."
 
 export type ContextMenuMessage = {
   encrypt: string

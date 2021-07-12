@@ -1,7 +1,7 @@
 /**
  * Buttons
  */
-import { Messages } from "../constant"
+import { Messages } from ".."
 
 export type ButtonMessage = {
   copy: string

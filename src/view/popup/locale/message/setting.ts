@@ -1,4 +1,4 @@
-import { Messages } from "../constant"
+import { Messages } from "../../../../util/i18n"
 
 /**
  * Used in the setting page

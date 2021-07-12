@@ -11,6 +11,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { MessageType } from 'element-plus/lib/el-message-box/src/message-box.type'
 import 'element-plus/lib/theme-chalk/el-message-box.css'
 import 'element-plus/lib/theme-chalk/el-message.css'
+import { t2Chrome } from '../util/i18n/chrome/t'
 
 const _alert = (message: string, type: MessageType) => ElMessage({ message, duration: 2000, type })
 
@@ -28,10 +29,10 @@ export function encryptAndMessage(plaintext: string) {
     .then(
       txt => {
         copy(txt).then(() => {
-          success(chrome.i18n.getMessage("message_encryptionSuccess"))
+          success(t2Chrome(msg => msg.message.encryptionSuccess))
         }).catch((e: any) => {
           console.log(e)
-          error(chrome.i18n.getMessage("message_encryptionFail") + txt)
+          error(t2Chrome(msg => msg.message.encryptionFail) + txt)
         })
       }
     )
@@ -50,21 +51,21 @@ export function decryptAndMessage(ciphertext: string, showError: boolean): Promi
     .then(txt => {
       if (txt === ciphertext) {
         if (showError) {
-          error(chrome.i18n.getMessage("message_unknownCipherText"))
+          error(t2Chrome(msg => msg.message.unknownCipherText))
         }
         return Promise.resolve(false)
       } else {
         ElMessageBox({
-          title: chrome.i18n.getMessage('message_decryptionResult'),
+          title: t2Chrome(msg => msg.message.decryptionResult),
           message: txt,
           type: 'success',
           showCancelButton: true,
-          cancelButtonText: chrome.i18n.getMessage('button_cancel'),
-          confirmButtonText: chrome.i18n.getMessage('button_copy')
+          cancelButtonText: t2Chrome(msg => msg.button.cancel),
+          confirmButtonText: t2Chrome(msg => msg.button.copy)
         }).then(() => {
           copy(txt)
-            .then(() => success(chrome.i18n.getMessage("message_decryptionCopied")))
-            .catch(() => error(chrome.i18n.getMessage("message_decryptionCopyFailed")))
+            .then(() => success(t2Chrome(msg => msg.message.decryptionCopied)))
+            .catch(() => error(t2Chrome(msg => msg.message.decryptionCopyFailed)))
         }).catch(() => { })
         return Promise.resolve(true)
       }

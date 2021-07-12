@@ -2,17 +2,17 @@ import { ElMenu, ElMenuItem } from 'element-plus'
 import { defineComponent, h } from 'vue'
 import { RouteLocationNormalizedLoaded, Router, useRoute, useRouter } from 'vue-router'
 import { openGuide } from '../../../zero/common/guide-opener'
-import { t } from '../../plugin/i18n'
+import { t, I18nKey } from '../locale'
 
 type MenuItem = {
-  title: string
+  title: I18nKey
   route: string
   icon: string
 }
 
 const menu: MenuItem[] = [
   {
-    title: 'version.meta.menu',
+    title: msg => msg.version.meta.menu,
     route: '/version',
     icon: 'date'
   }
@@ -42,7 +42,7 @@ export default defineComponent<{}, {}>(() => {
     { index: '/guide', onClick: openGuide },
     {
       default: () => h('i', { class: 'el-icon-notebook-1' }),
-      title: () => h('span', {}, t('guide.meta.menu'))
+      title: () => h('span', {}, t(msg => msg.guide.menuTitle))
     })
   return () => h(ElMenu,
     { defaultActive: route.path, class: 'menu' },

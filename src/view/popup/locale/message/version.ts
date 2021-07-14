@@ -35,6 +35,7 @@ export type VersionMessage = {
   "1_5_2": { 0: string }
   "1_6_0": { 0: string }
   "1_6_1": { 0: string }
+  "1_7_0": { 0: string }
 }
 
 const _default: Messages<VersionMessage> = {
@@ -51,12 +52,12 @@ const _default: Messages<VersionMessage> = {
       "1": "Decrypt automatically"
     },
     "1_1_1": {
-      "0": "Support new ciphertext format",
-      "1": "Decrypt ciphertext in <span>"
+      "0": "Support new cipher text format",
+      "1": "Decrypt cipher text in <span>"
     },
     "1_1_2": {
       "0": "Support lofter.com",
-      "1": "Support ciphertext element inserted dymically"
+      "1": "Support cipher text element inserted dynamically"
     },
     "1_2_0": {
       "0": "Internationalized, and both Chinese and English are supported",
@@ -67,7 +68,7 @@ const _default: Messages<VersionMessage> = {
       "1": "Support Ctrl+, to quickly encrypt and decrypt the selected text"
     },
     "1_3_1": {
-      "0": "Fix manual decription bug caused by FireFox's bug"
+      "0": "Fix manual decryption bug caused by FireFox's bug"
     },
     "1_4_0": {
       "0": "Add guide page."
@@ -76,7 +77,7 @@ const _default: Messages<VersionMessage> = {
       "0": "Optimize package size."
     },
     "1_5_0": {
-      "0": "Support new ciphertext format: morse code",
+      "0": "Support new cipher text format: morse code",
       "1": "Needn't refresh pages any more after settings changed"
     },
     "1_5_1": {
@@ -86,10 +87,13 @@ const _default: Messages<VersionMessage> = {
       "0": "Fix some bugs of cryptor1 and cryptor2"
     },
     "1_6_0": {
-      "0": "Support new ciphertext format: Cherus"
+      "0": "Support new cipher text format: Cherus"
     },
     "1_6_1": {
-      "0": "Needn't refresh pages after changing auto-encrption any more"
+      "0": "Needn't refresh pages after changing auto-encryption any more"
+    },
+    "1_7_0": {
+      "0": "Support encrypt and decrypt the contents of clipboard"
     }
   },
   zh_CN: {
@@ -144,6 +148,9 @@ const _default: Messages<VersionMessage> = {
     },
     "1_6_1": {
       "0": "修改自动加密设置后不用刷新页面即可生效"
+    },
+    "1_7_0": {
+      "0": "支持直接加解密剪切板里的内容"
     }
   }
 }

@@ -7,9 +7,23 @@ export type VersionItem = {
   contents: ContentType[]
 }
 
-const _default: { [version: string]: VersionItem } = {
-  "1.6.1": {
+export type VersionNumber = '1.0.0' | '1.0.1'
+  | '1.1.0' | '1.1.1' | '1.1.2'
+  | '1.2.0'
+  | '1.3.0' | '1.3.1'
+  | '1.4.0' | '1.4.1'
+  | '1.5.0' | '1.5.1' | '1.5.2'
+  | '1.6.0' | '1.6.1'
+  | '1.7.0'
+
+const _default: { [version in VersionNumber]: VersionItem } = {
+  "1.7.0": {
     current: true,
+    name: 'Anne Sexton',
+    ts: '2021-07-14',
+    contents: ['f']
+  },
+  "1.6.1": {
     name: "Ooka Shin-01",
     ts: "2021-05-18",
     contents: [

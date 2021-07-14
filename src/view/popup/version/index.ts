@@ -19,7 +19,7 @@ export default defineComponent<{}, {}>(() => {
   for (const [key, item] of Object.entries(version)) {
     const contents = item.contents.map(
       (tag, index) => h('p', [
-        h('i', { class: `el-icon-${iconMap[tag]}` }),
+        h('i', { class: `el-icon-${iconMap.get(tag)}` }),
         h('a', { class: 'version-item' }, t(msg => msg.version[key2Version(key)][index]))
       ])
     )

@@ -14,7 +14,7 @@ export default class ShortcutCryptor implements IDomCompleteHandler {
   }
   handle(): void {
     let existingOnkeydown = document.onkeydown
-    document.onkeydown = function (ev: KeyboardEvent) {
+    document.onkeydown = async function (ev: KeyboardEvent) {
       existingOnkeydown && existingOnkeydown.call(this, ev)
       if (ev.defaultPrevented) {
         return
@@ -23,7 +23,8 @@ export default class ShortcutCryptor implements IDomCompleteHandler {
         const selectionText = getSelectionText()
         // Try to decrypt first.
         // If failed, then encrypt the selection text
-        decryptAndMessage(selectionText, false).then(success => success || encryptAndMessage(selectionText))
+        const success: boolean = await decryptAndMessage(selectionText, false)
+        success || encryptAndMessage(selectionText)
       }
     }
   }

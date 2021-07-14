@@ -3,7 +3,7 @@ import { ElNotification } from 'element-plus'
 import { t } from './locale'
 
 export default function copy(txt: string) {
-  copy0(txt).then(r => {
+  copy0(txt).then(_r => {
     ElNotification({
       message: t(msg => msg.button.copied),
       duration: 1000,

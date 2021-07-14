@@ -36,6 +36,7 @@ const placeholder: ChromeMessage = {
     message: {
         unsupportedWeiboDecAuto: "",
         encryptionSuccess: "",
+        encryptionSuccessWithPlain: '',
         encryptionFail: "",
         unknownCipherText: "",
         decryptionResult: "",
@@ -44,7 +45,9 @@ const placeholder: ChromeMessage = {
     },
     contextMenu: {
         encrypt: '',
-        decrypt: ''
+        decrypt: '',
+        encryptClipboard: '',
+        decryptClipboard: ''
     },
     button: {
         copy: '',

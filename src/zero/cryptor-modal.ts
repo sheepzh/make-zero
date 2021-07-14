@@ -8,14 +8,23 @@ import { write as copy } from 'clipboardy'
  * @since 1.4.1 
  */
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { MessageParams } from 'element-plus/lib/el-message/src/types'
 import { MessageType } from 'element-plus/lib/el-message-box/src/message-box.type'
 import 'element-plus/lib/theme-chalk/el-message-box.css'
 import 'element-plus/lib/theme-chalk/el-message.css'
 import { t2Chrome } from '../util/i18n/chrome/t'
 
-const _alert = (message: string, type: MessageType) => ElMessage({ message, duration: 2000, type })
+const _alert = (message: string, type: MessageType, useHtml?: Boolean) => {
+  const config: MessageParams = { message, duration: 2000, type }
+  if (useHtml) {
+    config.dangerouslyUseHTMLString = true
+    config.duration = 10000
+    config.showClose = true
+  }
+  ElMessage(config)
+}
 
-const success = (message: string) => _alert(message, 'success')
+const success = (message: string, useHtml?: Boolean) => _alert(message, 'success', useHtml)
 
 const error = (message: string) => _alert(message, 'error')
 
@@ -24,18 +33,17 @@ const error = (message: string) => _alert(message, 'error')
  * 
  * @param plaintext  plaintext
  */
-export function encryptAndMessage(plaintext: string) {
-  cryptoExecutor.encrypt(plaintext)
-    .then(
-      txt => {
-        copy(txt).then(() => {
-          success(t2Chrome(msg => msg.message.encryptionSuccess))
-        }).catch((e: any) => {
-          console.log(e)
-          error(t2Chrome(msg => msg.message.encryptionFail) + txt)
-        })
-      }
-    )
+export async function encryptAndMessage(plaintext: string, showPlain?: boolean) {
+  const txt = await cryptoExecutor.encrypt(plaintext)
+  copy(txt).then(() => {
+    const msg = showPlain
+      ? t2Chrome(msg => msg.message.encryptionSuccessWithPlain, { plaintext })
+      : t2Chrome(msg => msg.message.encryptionSuccess)
+    success(msg, showPlain)
+  }).catch((e: any) => {
+    console.log(e)
+    error(t2Chrome(msg => msg.message.encryptionFail) + txt)
+  })
 }
 
 /**

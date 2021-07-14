@@ -1,4 +1,4 @@
-export default interface IMessageListener {
+export default interface IMessageListener<T> {
     msgTag: string
-    handleMessage(data: any, sender: chrome.runtime.MessageSender, sendResponse: Function): void
+    handleMessage(data: T, sender: chrome.runtime.MessageSender, sendResponse: Function): void
 }

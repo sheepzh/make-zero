@@ -14,7 +14,12 @@ const binding: UnwrapRef<RawBinding> = reactive({
   foo: '',
   bar: ''
 })
-cryptorConfig.getAutoFill().then(af => binding.on = af)
+
+async function init() {
+  const autoFill: boolean = await cryptorConfig.getAutoFill()
+  binding.on = autoFill
+}
+init()
 
 const _default = defineComponent<{}, RawBinding>(() => {
   const title = () => h('h2', t(msg => msg.autoEncryption.title))

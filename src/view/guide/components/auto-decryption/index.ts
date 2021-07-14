@@ -8,10 +8,17 @@ import { t } from '../../locale'
 // Initialize
 const on = ref(false)
 const foo = ref(t(msg => msg.welcome))
-cryptorConfig.getAutoDecrypt().then(ad => {
+
+async function init() {
+  const ad = await cryptorConfig.getAutoDecrypt()
   on.value = ad
-  !ad && cryptoExecutor.encrypt(foo.value).then(cipher => foo.value = cipher)
-})
+  if (!ad) {
+    const cipher = await cryptoExecutor.encrypt(foo.value)
+    foo.value = cipher
+  }
+}
+
+init()
 
 const cipherTextAttrName = computed(() => on.value ? PLAIN_ATTR_NAME : CIPHER_ATTR_NAME)
 

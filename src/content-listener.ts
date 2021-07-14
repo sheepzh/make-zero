@@ -1,7 +1,7 @@
 import IMessageListener from './chrome/interface/i-message-listener'
 import ContextMenuListener from './zero/context-menu-listener'
 
-const listeners: IMessageListener[] = []
+const listeners: IMessageListener<unknown>[] = []
 
 listeners.push(new ContextMenuListener())
 

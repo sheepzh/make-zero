@@ -1,5 +1,5 @@
-import IDomCompleteHandler from "../chrome/interface/i-dom-complete-hanler"
-import cryptionExcutor from '../service/cryption-excutor'
+import IDomCompleteHandler from "../chrome/interface/i-dom-complete-handler"
+import cryptoExecutor from '../service/crypto-executor'
 import cryptorConfig from '../config'
 
 /**
@@ -7,7 +7,7 @@ import cryptorConfig from '../config'
  * 
  * @author zhy
  */
-export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
+export default class AutoCryptorDomHandler implements IDomCompleteHandler {
 
     support(): boolean {
         return true
@@ -23,7 +23,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                         .then(autoFill => {
                             if (!autoFill) return
                             const val: string = input.value ? input.value.toString() : ""
-                            val && cryptionExcutor.decrypt(val).then(val => input.value = val)
+                            val && cryptoExecutor.decrypt(val).then(val => input.value = val)
                         })
                 }
                 input.onblur = () => {
@@ -32,7 +32,7 @@ export default class AutoCryptorDomHanlder implements IDomCompleteHandler {
                         .then(autoFill => {
                             if (!autoFill) return
                             const val: string = input.value ? input.value.toString() : ""
-                            val && cryptionExcutor.encrypt(val).then(cipher => input.value = cipher)
+                            val && cryptoExecutor.encrypt(val).then(cipher => input.value = cipher)
                         })
                 }
             })

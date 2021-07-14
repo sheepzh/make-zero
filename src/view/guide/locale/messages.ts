@@ -22,7 +22,7 @@ type BasicMessage = {
     decrypt: {
         title: string
         selectText: string
-        ciphertextPrefix: string
+        cipherTextPrefix: string
         rightClick1: string
         rightClick2: string
     }
@@ -70,16 +70,16 @@ const _default: Messages<GuideMessage> = {
                 title: 'How to Encrypt?',
                 selectText: "Please select texts you want to encrypt, or ",
                 rightClick: "Press {shortcut} to encrypt it. Or move the cursor to it, right click and choose the menu item {menuItemPath} in pop-up box.",
-                paste: "You can paste the ciphertext in the input box below, or click {btn} button.",
+                paste: "You can paste the cipher text in the input box below, or click {btn} button.",
                 pasteInputHolder: 'Paste here',
                 pasteButton: "Paste"
             },
             decrypt: {
                 title: 'How to Decrypt?',
-                selectText: "Ciphertexts start with {ciphertextPrefix}, you can {clickMe} or move the cursor on follow ciphertext.",
-                ciphertextPrefix: '\'z\' + 2-bits number',
-                rightClick1: "If you selected the ciphertext, press {shortcut} or move the cursor to it and right click and choose the menu item {menuItemPath} in pop-up box to decrypt it.",
-                rightClick2: "If the cursor has been put on the ciphertext, double click."
+                selectText: "Cipher texts start with {cipherTextPrefix}, you can {clickMe} or move the cursor on follow cipher text.",
+                cipherTextPrefix: '\'z\' + 2-bits number',
+                rightClick1: "If you selected the cipher text, press {shortcut} or move the cursor to it and right click and choose the menu item {menuItemPath} in pop-up box to decrypt it.",
+                rightClick2: "If the cursor has been put on the cipher text, double click."
             }
         },
         autoEncryption: {
@@ -92,7 +92,7 @@ const _default: Messages<GuideMessage> = {
         autoDecryption: {
             title: 'Auto-decryption',
             alertIfOn: 'Automatic decryption is on. So you can see the plaintext after this page loads completely. You can try to turn it off in the settings panel and refresh this page.',
-            alertIfOff: 'Automatic decryption is off, So the ciphertext is shown. You can try to turn it on in the settings panel and refresh this page.',
+            alertIfOff: 'Automatic decryption is off, So the cipher text is shown. You can try to turn it on in the settings panel and refresh this page.',
         },
         app: appMessages.en,
         contextMenu: contextMenuMessages.en
@@ -117,8 +117,8 @@ const _default: Messages<GuideMessage> = {
             },
             decrypt: {
                 title: '怎么解密？',
-                selectText: '你可以把鼠标移动至像下面这样以 "{ciphertextPrefix}" 开头的密文上，或者{clickMe}。',
-                ciphertextPrefix: 'z+两位数字',
+                selectText: '你可以把鼠标移动至像下面这样以 "{cipherTextPrefix}" 开头的密文上，或者{clickMe}。',
+                cipherTextPrefix: 'z+两位数字',
                 rightClick1: "如果你选取了密文，可以按下 {shortcut} 键解密，或者将鼠标放在选中的密文上，右击，点击弹出框里的 {menuItemPath} 选项。",
                 rightClick2: "如果你已经将鼠标放在了密文上，请双击。"
             }

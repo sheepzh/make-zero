@@ -4,7 +4,7 @@
 import cryptorConfig from "../config"
 import cryptorComposite from "../cryptor"
 
-export class CryptionExcutor {
+export class CryptoExecutor {
   public support(cipher: string): boolean {
     return cryptorComposite.support(cipher)
   }
@@ -21,4 +21,4 @@ export class CryptionExcutor {
   }
 }
 
-export default new CryptionExcutor()
+export default new CryptoExecutor()

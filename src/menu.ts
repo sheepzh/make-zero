@@ -6,7 +6,7 @@ export class MenuDefine {
     chrome.contextMenus.create({
       type: 'normal',
       title: t2Chrome(msg => msg.contextMenu.decrypt),
-      id: 'Zero-encryt',
+      id: 'Zero-encrypt',
       contexts: ['all'],
       onclick: (info, tab) => {
         chrome.tabs.sendMessage(tab.id, { tag: new ContextMenuListener().msgTag, data: false }, res => console.log(res))

@@ -1,7 +1,7 @@
 /**
  * Reconstructed @since 1.3.0
  */
-import cryptionExcutor from '../service/cryption-excutor'
+import cryptoExecutor from '../service/crypto-executor'
 import { write as copy } from 'clipboardy'
 /**
  * Replace sweetalert2 with element-plus
@@ -25,7 +25,7 @@ const error = (message: string) => _alert(message, 'error')
  * @param plaintext  plaintext
  */
 export function encryptAndMessage(plaintext: string) {
-  cryptionExcutor.encrypt(plaintext)
+  cryptoExecutor.encrypt(plaintext)
     .then(
       txt => {
         copy(txt).then(() => {
@@ -39,36 +39,33 @@ export function encryptAndMessage(plaintext: string) {
 }
 
 /**
- * Try to decrypt the ciphertext and open modal
+ * Try to decrypt the cipher text and open modal
  * 
- * @param originText ciphertext
- * @param showError  whether to show error if the ciphertext is unknown
+ * @param originText cipher text
+ * @param showError  whether to show error if the cipher text is unknown
  * @return true if decrypted, or false
  */
-export function decryptAndMessage(ciphertext: string, showError: boolean): Promise<boolean> {
-  ciphertext = ciphertext.trimLeft()
-  return cryptionExcutor.decrypt(ciphertext)
-    .then(txt => {
-      if (txt === ciphertext) {
-        if (showError) {
-          error(t2Chrome(msg => msg.message.unknownCipherText))
-        }
-        return Promise.resolve(false)
-      } else {
-        ElMessageBox({
-          title: t2Chrome(msg => msg.message.decryptionResult),
-          message: txt,
-          type: 'success',
-          showCancelButton: true,
-          cancelButtonText: t2Chrome(msg => msg.button.cancel),
-          confirmButtonText: t2Chrome(msg => msg.button.copy)
-        }).then(() => {
-          copy(txt)
-            .then(() => success(t2Chrome(msg => msg.message.decryptionCopied)))
-            .catch(() => error(t2Chrome(msg => msg.message.decryptionCopyFailed)))
-        }).catch(() => { })
-        return Promise.resolve(true)
-      }
-    })
-
+export async function decryptAndMessage(cipherText: string, showError: boolean): Promise<boolean> {
+  cipherText = cipherText.trimLeft()
+  const txt = await cryptoExecutor.decrypt(cipherText)
+  if (txt === cipherText) {
+    if (showError) {
+      error(t2Chrome(msg => msg.message.unknownCipherText))
+    }
+    return Promise.resolve(false)
+  } else {
+    ElMessageBox({
+      title: t2Chrome(msg_1 => msg_1.message.decryptionResult),
+      message: txt,
+      type: 'success',
+      showCancelButton: true,
+      cancelButtonText: t2Chrome(msg_2 => msg_2.button.cancel),
+      confirmButtonText: t2Chrome(msg_3 => msg_3.button.copy)
+    }).then(() => {
+      copy(txt)
+        .then(() => success(t2Chrome(msg_4 => msg_4.message.decryptionCopied)))
+        .catch(() => error(t2Chrome(msg_5 => msg_5.message.decryptionCopyFailed)))
+    }).catch(() => { })
+    return true
+  }
 }

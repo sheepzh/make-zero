@@ -1,4 +1,4 @@
-import cryptionExcutor from "../../service/cryption-excutor"
+import cryptoExecutor from "../../service/crypto-executor"
 import AbstractAutoDecryptor from "./abstract-auto-decryptor"
 
 export default class DefaultDecryptor extends AbstractAutoDecryptor {
@@ -9,13 +9,13 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
     mutations.forEach(mutation => {
       const addedNodes: NodeList = mutation.addedNodes
       addedNodes.forEach(node => {
-        const needDeryct: boolean = '#text' === node.nodeName
-        if (!needDeryct) {
+        const needDecrypt: boolean = '#text' === node.nodeName
+        if (!needDecrypt) {
           return
         }
         const cipher = node.textContent
-        if (cryptionExcutor.support(cipher)) {
-          cryptionExcutor.decrypt(cipher).then(plain => node.textContent = plain)
+        if (cryptoExecutor.support(cipher)) {
+          cryptoExecutor.decrypt(cipher).then(plain => node.textContent = plain)
         }
       })
     })
@@ -26,33 +26,33 @@ export default class DefaultDecryptor extends AbstractAutoDecryptor {
   }
 
   handle(): void {
-    this.decriptAll()
+    this.decryptAll()
     this.registerObserver()
   }
 
-  private decriptAll() {
-    this.decriptByTag("p")
-      .decriptByTag("pre")
-      .decriptByTag('span')
+  private decryptAll() {
+    this.decryptByTag("p")
+      .decryptByTag("pre")
+      .decryptByTag('span')
   }
 
-  private decriptByTag(tagName: string): DefaultDecryptor {
+  private decryptByTag(tagName: string): DefaultDecryptor {
     const elements = document.getElementsByTagName(tagName)
     Array.from(elements)
       .filter((ele: HTMLElement, _index: number) => {
-        const support: boolean = cryptionExcutor.support(ele.innerText)
+        const support: boolean = cryptoExecutor.support(ele.innerText)
         if (support && !super.hasMarked(ele)) {
           super.mark(ele)
         }
         return support
       })
-      .forEach((ele: HTMLElement) => cryptionExcutor.decrypt(ele.innerText).then(plain => ele.innerText = plain))
+      .forEach((ele: HTMLElement) => cryptoExecutor.decrypt(ele.innerText).then(plain => ele.innerText = plain))
     return this
   }
 
   private registerObserver() {
     const body = document.body
-    const obseroverOptions: MutationObserverInit = { childList: true, subtree: true }
-    this.mutationObserver.observe(body, obseroverOptions)
+    const observerOptions: MutationObserverInit = { childList: true, subtree: true }
+    this.mutationObserver.observe(body, observerOptions)
   }
 }

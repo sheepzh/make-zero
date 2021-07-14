@@ -1,14 +1,14 @@
-import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
+import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-handler";
 import AbstractDomDecryptor from "./abstract-dom-decryptor";
 import DefaultDecryptor from "./default-decryptor";
 import WeiboDecryptor from './weibo-decryptor'
 
 /**
- * Mark the ciphertext and plaintext element with attr. 
+ * Mark the cipher text and plaintext element with attr. 
  * 
  * @since 1.4.0
  */
-export const CIPHER_ATTR_NAME = 'make-zero-ciphertext'
+export const CIPHER_ATTR_NAME = 'make-zero-cipher-text'
 export const PLAIN_ATTR_NAME = 'make-zero-plaintext'
 
 /**

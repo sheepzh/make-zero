@@ -27,7 +27,7 @@ export function getSelectionText(): string {
     try {
       selectionText = iframe[index].contentWindow.getSelection().toString()
     } catch {
-      // @2020/03/15 v1.5.0, fix erros caused by same-origin policy
+      // @2020/03/15 v1.5.0, fix errors caused by same-origin policy
       // do nothing
     }
   }

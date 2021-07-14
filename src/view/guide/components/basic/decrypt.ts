@@ -1,13 +1,13 @@
 import { defineComponent, h, ref } from 'vue'
-import cryptionExcutor from '../../../../service/cryption-excutor'
+import cryptoExecutor from '../../../../service/crypto-executor'
 import { CIPHER_ATTR_NAME } from '../../../../zero/dbclick'
 import { t, tN } from '../../locale'
 import { boldAndItalic } from '../../vue-util'
 
-const ciphertextExample = ref('')
-cryptionExcutor.encrypt(t(msg => msg.welcome)).then(cipher => ciphertextExample.value = cipher)
+const cipherTextExample = ref('')
+cryptoExecutor.encrypt(t(msg => msg.welcome)).then(cipher => cipherTextExample.value = cipher)
 
-const selectCiphertext = () => window.find(ciphertextExample.value) || window.find(ciphertextExample.value, true, true)
+const selectCipherText = () => window.find(cipherTextExample.value) || window.find(cipherTextExample.value, true, true)
 
 /**
  * How to decrypt
@@ -23,12 +23,12 @@ const _default = defineComponent(() => {
       h('a', { class: 'step-sort' }, '1. '),
       tN(msg => msg.basic.decrypt.selectText,
         {
-          clickMe: h('a', { href: '#', onClick: selectCiphertext }, t(msg => msg.basic.clickMe)),
-          ciphertextPrefix: boldAndItalic(t(msg => msg.basic.decrypt.ciphertextPrefix))
+          clickMe: h('a', { href: '#', onClick: selectCipherText }, t(msg => msg.basic.clickMe)),
+          cipherTextPrefix: boldAndItalic(t(msg => msg.basic.decrypt.cipherTextPrefix))
         }
       )
     ])
-  const cipher = () => h('p', exampleProp, boldAndItalic(ciphertextExample.value))
+  const cipher = () => h('p', exampleProp, boldAndItalic(cipherTextExample.value))
   const alert21 = () => h('p', [
     h('a', { class: 'step-sort' }, '2.1. '),
     tN(msg => msg.basic.decrypt.rightClick1,

@@ -7,6 +7,4 @@ const _default: { [locale in Locale]: any } = {
     en: compile(messages.en)
 }
 
-console.log(_default)
-
 export default _default

@@ -1,7 +1,7 @@
-import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler"
+import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-handler"
 
 /**
- * Make the contenteditable div pastable
+ * Make the contenteditable div pasteable
  * 
  * @since 1.1.2
  */

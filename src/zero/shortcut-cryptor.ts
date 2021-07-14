@@ -1,4 +1,4 @@
-import IDomCompleteHandler from "../chrome/interface/i-dom-complete-hanler"
+import IDomCompleteHandler from "../chrome/interface/i-dom-complete-handler"
 import { encryptAndMessage, decryptAndMessage } from "./cryptor-modal"
 import { getSelectionText } from './common/util'
 

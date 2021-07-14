@@ -1,4 +1,4 @@
-import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-hanler";
+import IDomCompleteHandler from "../../chrome/interface/i-dom-complete-handler";
 import cryptorConfig from "../../config";
 import AbstractAutoDecryptor from "./abstract-auto-decryptor";
 import DefaultDecryptor from "./default-decryptor";

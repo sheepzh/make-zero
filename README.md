@@ -8,6 +8,7 @@
 [![](https://img.shields.io/badge/license-Anti%20996-blue)](https://github.com/996icu/996.ICU)
 [![](https://img.shields.io/github/v/release/sheepzh/make-zero)](https://github.com/sheepzh/make-zero/releases)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.make-zero)
+[![](https://img.shields.io/badge/dynamic/json?color=red&label=users&query=total&url=http%3A%2F%2F148.70.16.14%3A12345%2Fusercount%2Fmakezero)](http://148.70.16.14:12345/usercount/makezero)
 
 > 语言属于未知。
 

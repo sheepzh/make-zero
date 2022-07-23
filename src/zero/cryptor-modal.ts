@@ -2,7 +2,7 @@
  * Reconstructed @since 1.3.0
  */
 import cryptoExecutor from '../service/crypto-executor'
-import { write as copy } from 'clipboardy'
+import clipboardy from 'clipboardy'
 /**
  * Replace sweetalert2 with element-plus
  * @since 1.4.1 
@@ -35,7 +35,7 @@ const error = (message: string) => _alert(message, 'error')
  */
 export async function encryptAndMessage(plaintext: string, showPlain?: boolean) {
   const txt = await cryptoExecutor.encrypt(plaintext)
-  copy(txt).then(() => {
+  clipboardy.write(txt).then(() => {
     const msg = showPlain
       ? t2Chrome(msg => msg.message.encryptionSuccessWithPlain, { plaintext })
       : t2Chrome(msg => msg.message.encryptionSuccess)
@@ -70,7 +70,7 @@ export async function decryptAndMessage(cipherText: string, showError: boolean):
       cancelButtonText: t2Chrome(msg_2 => msg_2.button.cancel),
       confirmButtonText: t2Chrome(msg_3 => msg_3.button.copy)
     }).then(() => {
-      copy(txt)
+      clipboardy.write(txt)
         .then(() => success(t2Chrome(msg_4 => msg_4.message.decryptionCopied)))
         .catch(() => error(t2Chrome(msg_5 => msg_5.message.decryptionCopyFailed)))
     }).catch(() => { })

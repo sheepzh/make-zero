@@ -1,7 +1,7 @@
 import { ElButton, ElInput, ElMessage } from "element-plus"
 import { defineComponent, h, Ref, ref } from "vue"
 import { boldAndItalic } from "../../vue-util"
-import { read as readClipboard } from 'clipboardy'
+import clipboardy from 'clipboardy'
 import { t, tN } from "../../locale"
 
 const spanToSelect = ref() as Ref<HTMLSpanElement>
@@ -15,7 +15,7 @@ const selectText = () => {
 }
 
 const pasteCiphertext = () => {
-  readClipboard()
+  clipboardy.read()
     .then((content: string) => {
       ciphertext.value = content || ''
     }).catch(e => {

@@ -1,7 +1,7 @@
 import IMessageListener from '../chrome/interface/i-message-listener'
 import { encryptAndMessage, decryptAndMessage } from './cryptor-modal'
 import { getSelectionText } from './common/util'
-import { read } from 'clipboardy'
+import clipboardy from 'clipboardy'
 
 
 type TextOrigin = 'clipboard' | 'selection'
@@ -13,7 +13,7 @@ export type ContextMenuMessageInfo = {
 
 async function getOriginText(origin: TextOrigin): Promise<string> {
     if (origin === 'clipboard') {
-        const clipboardContent = read()
+        const clipboardContent = clipboardy.readSync()
         return clipboardContent || ''
     } else {
         return getSelectionText()

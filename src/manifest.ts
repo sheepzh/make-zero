@@ -7,7 +7,7 @@
 //@ts-ignore
 import { version, author, homepage } from '../package.json'
 
-const manifest = {
+const manifest: chrome.runtime.ManifestV2 = {
     name: '__MSG_app_name__',
     version,
     // @since 1.2.0 defined with i18n
@@ -24,6 +24,7 @@ const manifest = {
         "tabs",
         "contextMenus"
     ],
+    optional_permissions: [],
     homepage_url: homepage,
     commands: {
         _execute_browser_action: {

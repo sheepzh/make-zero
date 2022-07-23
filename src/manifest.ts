@@ -24,7 +24,9 @@ const manifest: chrome.runtime.ManifestV2 = {
         "tabs",
         "contextMenus"
     ],
-    optional_permissions: [],
+    optional_permissions: [
+        'clipboardRead'
+    ],
     homepage_url: homepage,
     commands: {
         _execute_browser_action: {

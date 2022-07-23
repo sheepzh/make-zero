@@ -13,7 +13,7 @@ export type ContextMenuMessageInfo = {
 
 async function getOriginText(origin: TextOrigin): Promise<string> {
     if (origin === 'clipboard') {
-        const clipboardContent = clipboardy.readSync()
+        const clipboardContent = await clipboardy.read()
         return clipboardContent || ''
     } else {
         return getSelectionText()

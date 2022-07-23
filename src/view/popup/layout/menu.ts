@@ -39,7 +39,7 @@ export default defineComponent<{}, {}>(() => {
   ))
 
   const guideMenuItem = () => h(ElMenuItem,
-    { index: '/guide', onClick: openGuide },
+    { index: '/guide', onClick: () => openGuide() },
     {
       default: () => h('i', { class: 'el-icon-notebook-1' }),
       title: () => h('span', {}, t(msg => msg.guide.menuTitle))

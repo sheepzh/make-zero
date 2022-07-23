@@ -11,12 +11,17 @@ export function getSelectionText(): string {
   // @see https://bugzilla.mozilla.org/show_bug.cgi?id=85686
   if (!selectionText || selectionText === "") {
     const activeElement = document.activeElement
-    if (activeElement && activeElement instanceof HTMLInputElement) {
-      const { value, selectionStart, selectionEnd } = activeElement as HTMLInputElement
-      if (!!value) {
-        return value.substring(selectionStart, selectionEnd)
-      } else {
-        return ""
+    if (!activeElement) {
+      // do nothing
+    } else {
+      const tagName = activeElement.tagName
+      if (tagName === "INPUT" || tagName === "TEXTAREA") {
+        const { value, selectionStart, selectionEnd } = activeElement as HTMLInputElement | HTMLTextAreaElement
+        if (!!value) {
+          return value.substring(selectionStart, selectionEnd)
+        } else {
+          return ""
+        }
       }
     }
   }

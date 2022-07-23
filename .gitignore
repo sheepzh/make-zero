@@ -11,3 +11,5 @@ market_packages
 chrome_dir
 
 coverage
+
+package-lock.json

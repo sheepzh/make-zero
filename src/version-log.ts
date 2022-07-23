@@ -7,18 +7,24 @@ export type VersionItem = {
   contents: ContentType[]
 }
 
-export type VersionNumber = '1.0.0' | '1.0.1'
+export type VersionNumber =
+  | '1.0.0' | '1.0.1'
   | '1.1.0' | '1.1.1' | '1.1.2'
   | '1.2.0'
   | '1.3.0' | '1.3.1'
   | '1.4.0' | '1.4.1'
   | '1.5.0' | '1.5.1' | '1.5.2'
   | '1.6.0' | '1.6.1'
-  | '1.7.0'
+  | '1.7.0' | '1.7.1'
 
 const _default: { [version in VersionNumber]: VersionItem } = {
-  "1.7.0": {
+  "1.7.1": {
     current: true,
+    name: 'Anne Sexton-01',
+    ts: '2022-07-23',
+    contents: ['b'],
+  },
+  "1.7.0": {
     name: 'Anne Sexton',
     ts: '2021-07-14',
     contents: ['f']

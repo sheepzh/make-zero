@@ -36,6 +36,7 @@ export type VersionMessage = {
   "1_6_0": { 0: string }
   "1_6_1": { 0: string }
   "1_7_0": { 0: string }
+  "1_7_1": { 0: string }
 }
 
 const _default: Messages<VersionMessage> = {
@@ -94,6 +95,9 @@ const _default: Messages<VersionMessage> = {
     },
     "1_7_0": {
       "0": "Support encrypt and decrypt the contents of clipboard"
+    },
+    "1_7_1": {
+      "0": "Fix some bugs in Firefox"
     }
   },
   zh_CN: {
@@ -151,6 +155,9 @@ const _default: Messages<VersionMessage> = {
     },
     "1_7_0": {
       "0": "支持直接加解密剪切板里的内容"
+    },
+    "1_7_1": {
+      "0": "修复火狐中的一些 bug"
     }
   }
 }
